@@ -1,0 +1,69 @@
+<ion-view title="抽奖" hide-nav-bar="true" hide-back-button="true">
+	<ion-header-bar class="bar-calm header-back" style='border: none;'>
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">抽奖</h1>
+	</ion-header-bar>
+
+	<ion-content class='bodybg-normal luckdraw'>
+		<!--<ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()"></ion-refresher>-->
+		<div class="luckdraw-all">
+			 <div class="luckdraw-header">
+			 	<div>{{config.title}}
+			 	 <p>活动锦囊</p>
+			 	</div>
+		  	
+		  </div>
+		 
+		<div class="container">
+			<div id="lottery">
+				<img  src="imggame/luckdraw_bg.png"/>
+				<table >
+					<tr>
+						<td class="lottery-unit lottery-unit-0"><img ng-src="{{prizes[0].thumb}}">
+							<div class="gamemask"></div>
+						</td>
+						<td class="lottery-unit lottery-unit-1"><img ng-src="{{prizes[1].thumb}}">
+							<div class="gamemask"></div>
+						</td>
+						<td class="lottery-unit lottery-unit-2"><img ng-src="{{prizes[2].thumb}}">
+							<div class="gamemask"></div>
+						</td>
+					</tr>
+					<tr>
+						<td class="lottery-unit lottery-unit-7"><img ng-src="{{prizes[3].thumb}}">
+							<div class="gamemask"></div>
+						</td>
+						<td >
+							<a ></a>
+						</td>
+						<td class="lottery-unit lottery-unit-3"><img ng-src="{{prizes[4].thumb}}">
+							<div class="gamemask"></div>
+						</td>
+					</tr>
+					<tr>
+						<td class="lottery-unit lottery-unit-6"><img ng-src="{{prizes[5].thumb}}">
+							<div class="gamemask"></div>
+						</td>
+						<td class="lottery-unit lottery-unit-5"><img ng-src="{{prizes[6].thumb}}">
+							<div class="gamemask"></div>
+						</td>
+						<td class="lottery-unit lottery-unit-4"><img ng-src="{{prizes[7].thumb}}">
+							<div class="gamemask"></div>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div class="luckdraw-bottom">
+                        <div class="turntable_avaliable">有效期 : <span ng-if="config.begin_time">{{config.begin_time*1000 | date:'yyyy-MM-dd HH:mm' || 0}}</span> - <span ng-if="config.end_time">{{config.end_time*1000 | date:'yyyy-MM-dd HH:mm'  || 0}}</span> </div>
+                        <div class="turntable_avaliable">抽奖次数 : <span >每人一天可抽{{config.times}}</span>次</div>
+                        <div class="turntable_avaliable" ng-if="config.xiaohao == 0"> 消耗余额 : <span >每次抽奖消耗{{config.onceNum}}</span> 余额</div>
+                        <div class="turntable_avaliable" ng-if="config.xiaohao == 1"> 消耗{{globalInfo.nounInfo.LOVE}} : <span >每次抽奖消耗{{config.onceNum}}</span> {{globalInfo.nounInfo.LOVE}}</div>
+                </div>
+		</div>
+		 
+	</ion-content>
+
+</ion-view>

@@ -1,0 +1,81 @@
+<ion-view view-title="申请代理" hide-nav-bar="true">
+
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">申请代理</h1>
+		<div class="buttons">
+			<button class="button  button-clear" ui-sref='user.agentApplyresult'>申请结果</button>
+		</div>
+	</ion-header-bar>
+	<ion-content class="bodybg-normal">
+		<div class="area-applyinfo">
+			<ul>
+				<!--<li style="overflow: hidden;">
+						<label>店铺类型</label>
+						<b ng-if='areaInfo.shoptype=="person"' style="float: right;">个人店</b>
+						<b ng-if='areaInfo.shoptype==""' style="float: right;">品牌店</b>
+					</li>-->
+				<li>
+					<label>姓名</label>
+					<p><span>必填</span><input type="text" placeholder="请输入姓名" ng-model="areaInfo.userName">
+					</p>
+				</li>
+				<!--<li>
+					<label>推荐人</label>
+					<p><span></span><input type="text" placeholder="请输入推荐人账号" ng-model="areaInfo.rec_mobile">
+					</p>
+				</li>-->
+				<!--<li>
+					<label>身份证号</label>
+					<p><span> </span><input type="text" placeholder="请输入身份证号" ng-model="areaInfo.idcard">
+					</p>
+				</li>-->
+				<!--<li class="flex" ng-click="areaShow()">
+						<p class="flex_1">店铺区域</p>
+						<span ng-bind="up.userInfo.area||'点击选择'"></span>
+						<i class="iconfont icon-right"></i>
+				</li>-->
+				<li class="agentQuery" >
+					<label>申请区域(省/市/区县) <i ng-click='agentquery()'>查询</i></label>
+					<p ng-if='queryResult'>{{areaInfo.queryResult}}</p>
+					<h5 ng-if='!queryResult'>注：区域申请逐级选择</h5>
+					
+					<p><span>必填</span>
+						<em ng-click="areaShow('province')" >选择省</em>
+					<em ng-click="areaShow('city')" >选择市</em>
+					<em ng-click="areaShow('area')" >选择区县</em>
+						<input type="text" maxlength="11" disabled="true" placeholder="请选择区域" ng-model="up.userInfo.area">
+
+					</p>
+				</li>
+				<li>
+					<label>联系电话</label>
+					<p><span>必填</span><input type="text" maxlength="11" placeholder="请填写联系电话" ng-model="areaInfo.mobile">
+					</p>
+				</li>
+				<li>
+					<label>地址</label>
+					<p><span> </span><input type="text" maxlength="11" placeholder="请填写地址" ng-model="areaInfo.address">
+					</p>
+				</li>
+				<li>
+					<label>自我介绍</label>
+					<p> <span>必填</span><textarea rows="5" placeholder="请输入商家描述信息" ng-model="areaInfo.myDescrip"></textarea>
+					</p>
+				</li>
+				<li>
+					<label>QQ号码</label>
+					<p><span> </span><input type="text" maxlength="11" placeholder="请填写QQ" ng-model="areaInfo.qq">
+
+					</p>
+				</li>
+			</ul>
+		</div>
+	</ion-content>
+	<ion-footer-bar>
+		<button class="button button-calm" style="width: 100%;color: #fff;background: #EC0005;" ng-click="apply()">立即申请</button>
+	</ion-footer-bar>
+
+</ion-view>

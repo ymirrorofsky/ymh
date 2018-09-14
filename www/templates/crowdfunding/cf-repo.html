@@ -1,0 +1,50 @@
+<ion-view view-title="提现申请" hide-nav-bar="true">
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">提现申请</h1>
+		<!--<div class="buttons">
+			<button class="button button-clear" ui-sref="user.repoList">提现记录</button>
+		</div>-->
+	</ion-header-bar>
+	<ion-content class="bodybg-normal">
+		<div class="yd-donate-text padding" ng-bind-html="repoInfo.message"></div>
+		<div ng-if='globalInfo.user.isShop!=0||globalInfo.user.isAgent!=0'>
+		<div class="yd-add-bank" ui-sref="user.myBank({froms:'cdf'})" ng-if="!bankinfo">
+			<i class="ion-ios-plus-outline"></i>
+			<p>点击添加银行卡</p>
+		</div>
+		<ion-list ui-sref="user.myBank({froms:'cdf'})" ng-if="bankinfo">
+			<ion-item class="item-avatar item-icon-right">
+				<img src="img/wuimg.png">
+				<h3>{{bankinfo.bankName}}</h3>
+				<p>{{bankinfo.bankCard}}</p>
+				<i class="icon ion-ios-arrow-right right-color"></i>
+			</ion-item>
+		</ion-list>
+		</div>
+		<div class="yd-donate-count real-count">
+			<ul>
+				<li class="flex">
+					<p class="flex_1">账户金额</p>
+					<span>{{repoInfo.money}}</span>
+				</li>
+				<li class="repo">
+					<!--<label ng-if='globalInfo.user.isShop==0&&globalInfo.user.isAgent==0'>兑换金额</label>-->
+					<!--<label ng-if='globalInfo.user.isShop!=0||globalInfo.user.isAgent!=0'>提现金额</label>-->
+					<label >提现金额</label>
+					<input type="text" placeholder="请输入数量" ng-model="repoInfo.num">
+				</li>
+				<!--<li class="repo">
+					<label>支付密码</label>
+					<input type="password" placeholder="请输入支付密码" ng-model="repoInfo.passwords">
+				</li>-->
+			</ul>
+			<div class="padding sure-btn">
+				<button class="button button-block button-calm" ng-click="submit()">确定</button>
+			</div>
+		</div>
+	</ion-content>
+</ion-view>
+

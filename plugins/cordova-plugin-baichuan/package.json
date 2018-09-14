@@ -1,0 +1,58 @@
+{
+  "_from": "cordova-plugin-baichuan",
+  "_id": "cordova-plugin-baichuan@2.2.1",
+  "_inBundle": false,
+  "_integrity": "sha1-ZtePRlMrjHqhpiaggVcyOZ+nUOg=",
+  "_location": "/cordova-plugin-baichuan",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "cordova-plugin-baichuan",
+    "name": "cordova-plugin-baichuan",
+    "escapedName": "cordova-plugin-baichuan",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-baichuan/-/cordova-plugin-baichuan-2.2.1.tgz",
+  "_shasum": "66d78f46532b8c7aa1a626a0815732399fa750e8",
+  "_spec": "cordova-plugin-baichuan",
+  "_where": "E:\\ionic1\\workappusekey\\ymhapp",
+  "author": {
+    "name": "https://github.com/wenin819"
+  },
+  "bugs": {
+    "url": "https://github.com/wenin819/cordova-plugin-baichuan/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "cordova.plugin.baichuan",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "deprecated": false,
+  "description": "codrova/phonegap wrapper for baichuan sdk",
+  "homepage": "https://github.com/wenin819/cordova-plugin-baichuan",
+  "keywords": [
+    "taobao",
+    "baichuan",
+    "cordova",
+    "phonegap",
+    "plugin"
+  ],
+  "license": "MIT",
+  "name": "cordova-plugin-baichuan",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wenin819/cordova-plugin-baichuan.git"
+  },
+  "scripts": {},
+  "version": "2.2.1"
+}

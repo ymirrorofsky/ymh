@@ -1,0 +1,20 @@
+<ion-view title="商家位置" hide-nav-bar="true" hide-back-button="true">
+
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">商家位置</h1>
+		<div class="buttons">
+			<button class="button button-clear iconfont ion-android-navigate" ng-click="showAddress(locationInfo.locationUrl)"> 导航</button>
+		</div>
+
+	</ion-header-bar>
+
+	<ion-content>
+		<!--<div id='locationNav' ng-click="showAddress(locationInfo.locationUrl)">去这里</div>-->
+		<div id="shopMap">
+		</div>
+
+	</ion-content>
+</ion-view>

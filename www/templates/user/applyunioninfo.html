@@ -1,0 +1,53 @@
+<ion-view view-title="  " hide-nav-bar="true">
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">{{globalInfo.nounInfo.AXLM}}</h1>
+		<!--<div class="buttons" ng-if="orderInfo.orderStatus == 0 && type == 'shops'" ng-click="rejectContent()">
+			<button class="button button-clear">拒绝</button>
+		</div>-->
+	</ion-header-bar>
+	<ion-content class="bodybg-normal unionapplyinfo">
+	 <dl class="applyunioninfo">
+	 	<!--<dt> <img src="img/jinggao.png"/>申请条件  </dt>-->
+	 	<dd><span>账号/姓名：</span>{{applyunioninfo.username}} </dd>
+	 	<dd><span>申请省份：</span>{{applyunioninfo.birth}}</dd>
+	 	<dd><span>代理行业：</span>{{applyunioninfo.agentTrade}}</dd>
+	 	<dd><span>代理职务：</span>{{applyunioninfo.agentJob}}  
+	 		<i ng-click='showinfo()'>请选择<img src="img_ad/rightarrow1.png" alt="" /></i></dd>
+	 	<dd><span>所占股权：</span>{{applyunioninfo.railroad}}%</dd>
+	 	<dd><span>申请日期：</span>{{applyunioninfo.createtime*1000|date:"yyyy-MM-dd"}}</dd>
+	 </dl>
+     <div class="unionjobinfo" ng-if='showjobinfo'>
+     	<dl>
+	 	<dt> <img src="img/jinggao.png"/>申请条件  </dt>
+	 	<dd>1.{{globalInfo.nounInfo.CDDS}}身份</dd>
+	 	<dd>2.品牌商家身份</dd>
+	 	<dd>3.申请董事长：需一万个{{globalInfo.nounInfo.LOVE}},资源股东需五千个{{globalInfo.nounInfo.LOVE}}，行业股东需1千个{{globalInfo.nounInfo.LOVE}}。</dd>
+	 </dl>
+	 <div class="unionjobtype" ng-repeat='item in applyjobinfo'>
+	 	<h4  ng-click='chojob(item.type)'>{{item.title}}  <i ng-if='item.memuser!=0' id='{{item.type}}'>√</i></h4>
+	 	<h5><span>总名额：{{item.Members}}人</span><span>可用名额：{{item.memuser}}人</span></h5>
+	 	 <p>股权：占整个代理区域<em>{{item.Stock}}</em>%股权</p>
+	 	 <p>收益：按股权享受在商城3年内该区域运营中心商家（线上+线下）<em>{{item.Earn}}</em>%收益</p>
+	 	 <p>考核：<br />
+	 	 	1.申请通过日起3个月内，本店让利{{item.Rebate}}万元以上。</p>
+	 	 <p>2.需推荐<em>{{item.recommend}}个公益商家（不限商家行业）</em>入驻平台。</p>
+	 	 <p>3.考核期间正常享有股东分红收益。考核不通过运营中心资格失效，不再享受股东分红。</p>
+	 </div>
+     </div>
+	  <div class="checkjobinfo" ng-if='checkjobinfo'>
+	  	  <div>
+	  	  	<p>申请条件</p>
+	  	  	<p>个人账户当前拥有{{uncheckjob.heart}}颗{{globalInfo.nounInfo.LOVE}}以上</p>
+	  	  	<p>提示：{{globalInfo.nounInfo.LOVE}}数量还差<em>{{uncheckjob.love}}</em>颗</p>
+	  	  	<p>请满足条件后再来申请额！</p>
+	  	  	<a ng-click='alerthide()'>我知道了</a>
+	  	  </div>
+	  </div>
+	</ion-content>
+	<footer class="common-footer" ng-click='surejob()' ng-if='showjobinfo'>确定</footer>
+	<footer class="common-footer" ng-click='saveapplyunion()' ng-if='!showjobinfo'>提交申请</footer>
+</ion-view>
+

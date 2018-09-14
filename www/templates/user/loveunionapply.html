@@ -1,0 +1,27 @@
+<ion-view view-title="{{globalInfo.nounInfo.AXLM}}" hide-nav-bar="true">
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">{{globalInfo.nounInfo.AXLM}}</h1>
+		<!--<div class="buttons" ng-if="orderInfo.orderStatus == 0 && type == 'shops'" ng-click="rejectContent()">
+			<button class="button button-clear">拒绝</button>
+		</div>-->
+	</ion-header-bar>
+	<ion-content class="bodybg-normal loveunionapply">
+		<img style="height: 160px;width: 100%;" src="img/axlmbg.png"/>
+	 <ul>
+	 	<li ng-click='goapply("industry")'><img src="img/industrylogo.png" alt="" />
+	 	<h5>行业代理</h5>
+	 	<p>享受商城同一行业联盟商家总营业额<em>{{unionclassinfo.industry}}%</em>收益</p>
+	 	</li>
+	 	<li ng-click='goapply("area")'><img src="img/arealogo.png" alt="" />
+	 	<h5>区域代理</h5>
+	 	<p>享受在商城内该区域商家总营业额<em>{{unionclassinfo.area}}%</em>收益</p>
+	 	</li>
+	 </ul>
+	
+	</ion-content>
+	<!--<footer class="common-footer" ng-click='applyambassador()'>我知道了，前去申请</footer>-->
+</ion-view>
+

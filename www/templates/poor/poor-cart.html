@@ -1,0 +1,65 @@
+<ion-view title="购物车" hide-nav-bar="true" hide-back-button="false">
+	<ion-header-bar class="bar-calm header-back poorBar">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">购物车</h1>
+		<div class="buttons">
+			<span id='editdel' class="button  button-clear" style="font-size: 14px;" ng-click='editAdel()'>编辑</span>
+		</div>
+	</ion-header-bar>
+
+	<ion-content style='bottom: 55px;' class="poorContent">
+		<ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()"></ion-refresher>
+		<div class="plist-more" ng-if="!reciName" ui-sref="poorson.list({fromPage:'cart'})" style="background:#af0e11;color:white;font-size:15px;box-shadow:0 2px 5px #850B0D inset;">点击选择受助人<i class="icon ion-chevron-right" style="font-size: 1em;"></i></div>
+		<div class="plist-more" ng-if="reciName" ui-sref="poorson.list({fromPage:'cart'})" style="background:#af0e11;color:white;font-size:15px;box-shadow:0 2px 5px #850B0D inset;">受赠人:{{reciName}}&nbsp;&nbsp;{{reciMobile}}<i class="icon ion-chevron-right" style="font-size: 1em;"></i></div>
+		<div class="common-empty" ng-if='orderEmpty'>
+			什么也没有！...
+		</div>
+		<div ng-if='!orderEmpty'>
+			<dl class="cart-list" ng-repeat='items in cartlist'>
+				<dt id='p{{items.spid}}' class="shopchose" ng-click='changeshop(items.spid)'>
+					<ion-checkbox class='checkbox-calm' style='z-index:-1;position: absolute;'></ion-checkbox>
+					<span> {{items.title}}</span></dt>
+				<dd ng-repeat='item in items.goods' id='p{{item.id}}'>
+					<div ng-click='changegoods(item.id,item.goodsPrice)'>
+						<ion-checkbox class='checkbox-calm' style='z-index:-1;position: absolute;'>
+						</ion-checkbox>
+						<img ng-src='{{item.thumb}}' alt="" />
+					</div>
+					<div class="cart-goodsinfo">
+						<h5>{{item.goodsName}}</h5>
+						<p><span ng-repeat='butes in item.goodsField'>{{butes}}</span></p>
+						<p>￥<b>{{item.goodsPrice}}</b></p>
+						<div class="carts-num">
+							<i class="iconfont icon-move" ng-click="minusNum(item.id,item.goodsPrice)"></i>
+							<input type="text" value="{{item.goodsNum}}">
+							<i class="iconfont icon-add" ng-click="addNum(item.id,item.goodsPrice)"></i>
+						</div>
+					</div>
+				</dd>
+				<dt class="shopsmon">小计 ￥<input style="display: inline-block;padding: 0;" type="text" value="0.00" /></dt>
+			</dl>
+		</div>
+
+		<!--<ion-infinite-scroll ng-if="noMore && curPosition.status != 1 " on-infinite="loadMoreGoods()" distance="-1%" icon="" immediate-check="false">
+		</ion-infinite-scroll>-->
+	</ion-content>
+	<div class="cart-bottom">
+		<div class="allChoose">
+			<ion-checkbox class='checkbox-calm' ng-click='changeall()'>
+			</ion-checkbox>
+			<!--<label class="checkbox checkbox-calm">  
+                        <input type="checkbox"  /> 
+                    </label>-->
+			<span>全选</span>
+		</div>
+		<span class="totMoney">
+	 			<b>总金额：</b>￥{{allMon| number : 2}}
+		</span>
+		<div class="cart-settlement">
+			<a class='calculate ' ng-click="buyGoods()" ng-if='settlement'>结算</a>
+			<a class='del ' ng-click="delGoods()" ng-if='del'>删除</a>
+		</div>
+	</div>
+</ion-view>

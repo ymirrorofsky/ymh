@@ -1,0 +1,98 @@
+<ion-view view-title="" hide-nav-bar="true" hide-back-button="true" class="online_search">
+    <ion-content>
+        <ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()"></ion-refresher>
+        <div class="bar bar-header item-input-inset">
+            <i class="iconfont icon-back1" ng-click="$ionicGoBack()"></i>
+            <label class="item-input-wrapper">
+        <i class="icon ion-ios-search placeholder-icon"  ng-click="goSearch()"></i>
+        <input type="text" placeholder="搜索" value="" id='onlineSearch' ng-focus="goSearch()">
+      </label>
+            <button class="button button-clear" id="search_btn" ng-click="goSearch()">
+        搜索
+      </button>
+        </div>
+        <div class="onlineshops-serch">
+            <dl>
+                <dd style="width:25%"> <a ng-click="active(1)" id='1' ng-class="{'on': type == 1}">全部</a> </dd>
+                <dd style="width:25%"> <a id='6' ng-click="active(2)" ng-class="{'on': type == 2}">爱心</a> </dd>
+                <dd style="width:25%" class="priceshow"> <a ng-click='showPrice()'><span ng-class="{'on': type == 3 || type == 4}">价格</span> 
+							<b><i class="icon ion-android-arrow-dropup" ng-class="{'on': type ==3}"></i>
+								<i class="icon ion-android-arrow-dropdown" ng-class="{'on': type ==4}"></i></b>
+						</a> </dd>
+
+                <dd style="width:25%"> <a id='6' ng-click="active(100)" ng-class="{'on': type == 100}">捐赠次数</a> </dd>
+
+            </dl>
+        </div>
+
+
+        <!--<ul class="clearfix">
+        <li class="flex" ng-repeat="goods in goodList" ui-sref="goods.onlinegoodsInfo({id:goods.id})">
+            <img class="imgs" ng-src="{{goods.thumb || 'img/wuimg.png'}}">
+            <div class="info clearfix flex_1">
+                <h3 class="flex text-overflow_1" ng-bind="goods.goodsName"> </h3>
+                <div class="middle">
+                    <span ng-if='goods.freeDelivery==0'>包邮</span> <i>最近销量：{{goods.sales}}</i>
+                </div>
+                <div class="bottom">
+                    <span>{{goods.spe_price}}</span>
+                    <i> <img src="img/aixinzhi.png"/> <em>{{goods.memberHeart}}</em></i>
+                </div>
+
+            </div>
+        </li>
+    </ul>-->
+        <div class="common-empty" ng-if="orderEmpty">什么都没有</div>
+        <div class="online-shops-list" style="padding-top: 5px;" ng-if="type != 6&&!orderEmpty">
+            <ul class="clearfix">
+                <li class="flex" ng-repeat='goods in goodList' ui-sref="poorson.gooddetail({id:goods.id})">
+                    <img class="imgs" ng-src="{{goods.thumb || 'img/wuimg.png'}}">
+                    <div class="info clearfix flex_1">
+                        <h3 class="flex text-overflow_1">{{goods.goodsName}}</h3>
+                        <div class="middle">
+                            <span ng-if='goods.freeDelivery=="包邮"'>包邮</span>
+                            <span ng-if='goods.level=="2"'>品牌店</span>
+                        </div>
+                        <div class="flex" style="position:absolute;bottom:0">
+                            <div class="g-money">{{goods.spe_price | currency:'￥'}}</div>
+                            <div class="g-love">{{goods.memberHeart}}<span ></span></div>
+                        </div>
+                        <!--<div class="bottom">
+
+                            <span>￥{{goods.spe_price}}</span>
+                            <i> <img src="img/aixinzhi.png"/> <em>{{goods.memberHeart}}</em></i>
+                        </div>-->
+
+                    </div>
+                </li>
+            </ul>
+
+
+        </div>
+        <div class="search_shop" ng-if="type == 6&&!orderEmpty">
+            <div class="search_shop_item flex" ng-repeat='shop in goodList' ui-sref="goods.onlineshops({spid:shop.id})">
+                <div class="search_shop_item_left">
+                    <img src="{{shop.logo}}" alt="">
+                </div>
+                <div class="search_shop_item_middle flex_1">
+                    <span class='search_shop_item_name'>{{shop.title}}</span>
+                    <span class='search_shop_item_brand' ng-if='shop.level==2'>品牌店</span>
+                    <span class='search_shop_item_city'>{{shop.birth.city}}</span>
+                </div>
+                <div class="search_shop_item_right">
+                    <span>进入</span>
+                    <img src="img/arrowright.png" alt="">
+                    <!--<i class="icon ion-chevron-right"></i>-->
+                </div>
+            </div>
+
+
+
+        </div>
+
+
+
+        <ion-infinite-scroll ng-if="!noMore " on-infinite="loadMore() " distance="1% " immediate-check="false ">
+        </ion-infinite-scroll>
+    </ion-content>
+</ion-view>

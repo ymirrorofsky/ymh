@@ -1,0 +1,61 @@
+<ion-view view-title="支付" hide-nav-bar="true">
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack(-2)">返回</button>
+		</div>
+		<h1 class="title">支付</h1>
+	</ion-header-bar>
+	<ion-content class="bodybg-normal poor-pay">
+		<div class="co-pay">
+			<div class="onlinepay-balance">
+				<h4>￥{{money}}</h4>
+				<div>
+					<h5><i class="iconfont icon-qianbao"></i><span>余额</span> <a ng-click='showbalance()'>{{balancepay.userBalance}} <img src="img/poor/downarrow.png"/></a>						</h5>
+					<ul ng-if='showbalances'>
+						<li><a ng-click="getCode()" ng-disabled='getCaptchaSuccess'>
+							<span ng-if="!getCaptchaSuccess">获取验证码</span>
+							<span ng-if="getCaptchaSuccess">重新获取{{balancepay.number}}s</span>
+						</a>
+							<span>验证码：</span><input type="text" placeholder="请输入验证码" ng-model='balancepay.code' />
+						</li>
+						<li>
+							<p><a ui-sref='user.resetPayWord'>忘记密码</a><span>支付密码：</span>
+								<input type="password" placeholder="请输入支付密码" ng-model='balancepay.passwords' /></p>
+							<p>(注：默认支付密码与登录密码一致)</p>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div ng-if='!showbalances'>其它支付方式</div>
+			<ul ng-if='!showbalances'>
+				<li class="flex" ng-click="selectPayType('alipay')">
+					<img src="img/ali_logo.png" />
+					<div class="co-pay-info flex_1">
+						<h4>支付宝</h4>
+						<p>数亿用户都在使用，安全可托付</p>
+					</div>
+					<i class="iconfont poor-pay-i " ng-class="{'icon-roundcheckfill checked': payType == 'alipay', 'icon-round': payType != 'alipay'}"></i>
+				</li>
+				<li class="flex" ng-click="selectPayType('wechat')">
+					<img src="img/wechat_pay.png" />
+					<div class="co-pay-info flex_1">  
+						<h4>微信支付</h4>
+						<p>亿万用户选择，更快更安全</p>
+					</div>
+					<i class="iconfont poor-pay-i" ng-class="{'icon-roundcheckfill checked': payType == 'wechat', 'icon-round': payType != 'wechat'}"></i>
+				</li>
+
+				<!--<li class="flex" ng-click="selectPayType('credit')">
+					<img src="img/xianxia.png"/>
+					<div class="co-pay-info flex_1">
+						<h4>手动打款</h4>
+						<p>线下付款</p>
+					</div>
+					<i class="iconfont" ng-class="{'icon-roundcheckfill checked': payType == 'credit', 'icon-round': payType != 'credit'}"></i>
+				</li>-->
+			</ul>
+		</div>
+		<button ng-if='showbalances' class="button button-block button-calm zl_btn_center" style="margin-top: 40px;" ng-click="balanceConfirm()">确认支付</button>
+		<button ng-if='!showbalances' class="button button-block button-calm zl_btn_center" style="margin-top: 40px;" ng-click="orderConfirm()">确定</button>
+	</ion-content>
+</ion-view>

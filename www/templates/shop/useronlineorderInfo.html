@@ -1,0 +1,96 @@
+<ion-view title="我的订单" hide-nav-bar="true" hide-back-button="true">
+	<ion-header-bar class="bar-calm header-back" style='border: none;'>
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">我的订单</h1>
+	</ion-header-bar>
+	<ion-content class="bodybg-normal" style="bottom: 50px; ">
+		<!--<ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()"></ion-refresher>-->
+		<div class="useronlineorderinfo">
+			<div class="useronlineinfo-head">
+				<p><span>订单编号：</span> {{orderInfo.orderId||11}}</p>
+
+				<p><span>下单时间：</span> {{orderInfo.createtime*1000|date:'yyyy-MM-dd HH:mm'}}
+					<em ng-if='orderInfo.orderStatus!="-21"&&orderInfo.orderStatus!="-22"' ng-bind='statusName[orderInfo.orderStatus]'>
+					</em>
+					<em ng-if='(orderInfo.orderStatus=="-21"||orderInfo.orderStatus=="-22")&&(exitinfo.status=="3"&&exitinfo.process_mode=="1")'>退款成功</em>
+					<em ng-if='(orderInfo.orderStatus=="-21"||orderInfo.orderStatus=="-22")&&exitinfo.status=="2"'>处理中</em>
+					<em ng-if='(orderInfo.orderStatus=="-21"||orderInfo.orderStatus=="-22")&&exitinfo.status=="1"'>已申请</em>
+				</p>
+			</div>
+			<div class="useronlineinfo-address">
+				<p><span>{{orderInfo.addressInfo.username||''}}</span> <i>{{orderInfo.addressInfo.mobile}}</i></p>
+				<p><span>收货地址：</span>{{orderInfo.addressInfo.ssx}}{{orderInfo.addressInfo.address}}</p>
+			</div>
+			<div class="useronlineinfo-good">
+				<h5 ui-sref='shops.shopsInfo({spid:orderInfo.spid})'>
+					<i class="icon ion-ios-arrow-right"></i> {{orderInfo.shop.title}}
+				</h5>
+				<div class="goodsinfo" ng-repeat='item in orderInfo.goods' ui-sref='goods.onlinegoodsInfo({id:item.goodsId})'>
+					<img ng-src="{{item.thumb}}" class="imgs" />
+					<div class="">
+						<p>{{item.goodsName}}</p>
+						<p>{{item.field}}</p>
+						<p class="flex_row_left flex_grow1">
+					 <span> ￥{{item.goodsPrice}}</span>	
+							<span  style="margin-left: 20px;" ng-if="orderInfo.direct != 1">
+								<!-- <img src="img/lovelogo.png"/> -->
+								 <b>{{item.userHeart}}</b>
+								 </span>
+
+							<span ng-if="orderInfo.direct == 1">
+								<img src="img/lovelogo.png"/>
+								 <b>自营商品</b>
+								 </span>
+							<i style="    flex-grow: 1;
+							text-align: right;">×{{item.goodsNum}}</i></p>
+					</div>
+				</div>
+			</div>
+			<div class="useronlineinfo-ditch">
+				<p><span>配送方式：</span>
+					<b ng-if='orderInfo.express==0'>包邮</b>
+					<b ng-if='orderInfo.express!=0'>{{orderInfo.express}}</b> </p>
+				<p ng-if='orderInfo.expressCompany!=""'><span>快递公司：{{orderInfo.expressCompany}}</span></p>
+				<p ng-if='orderInfo.orderExpress!=""'><span>快递号：{{orderInfo.orderExpress}}</span></p>
+				<p><span>实付款：</span> ￥{{orderInfo.payPrice||100}}</p>
+				<p><span>成交时间：</span> {{orderInfo.createtime*1000|date:'yyyy-MM-dd HH:mm'}} </p>
+
+			</div>
+		</div>
+		<dl ng-if='orderInfo.express_trace!=""' class="orderInfo-expressInfo">
+			<dt>快递信息</dt>
+			<dd ng-repeat='item in orderInfo.express_trace'>
+				<i>{{item.time}}</i>
+				<div>
+					<b></b>
+					{{item.context}}
+				</div>
+			</dd>
+			<!--<dd >
+				<i></i>
+				<div>
+					<b></b>
+					卖家已发货
+				</div>
+			</dd>-->
+		</dl>
+
+		<!--<ion-infinite-scroll ng-if="!noMore" on-infinite="loadMore()" distance="-1%" immediate-check="false">
+		</ion-infinite-scroll>-->
+	</ion-content>
+	<div class="common-footer useronlineorderinfo-footer" style="background: #fff;border-top:solid 1px #E0E0E0 ;bottom: 0;">
+		<span ui-sref='goods.onlinepay({payid:orderInfo.orderId})' ng-if='orderInfo.orderStatus==0'>付款</span>
+		<span ng-if='orderInfo.orderStatus=="0"' ng-click='cancel(orderInfo.orderId,orderInfo.id)'>取消订单</span>
+		<span ng-if='orderInfo.orderStatus==-22||orderInfo.orderStatus==-21' ui-sref='shops.exitapply({id:orderInfo.id,money:orderInfo.payPrice})'>
+			{{(exitinfo.status=="3")?'退款记录':'查看进度'}}
+		</span>
+		<!--||orderInfo.orderStatus==2-->
+		<span ng-if='orderInfo.orderStatus==1||orderInfo.orderStatus==2' ui-sref='shops.exitapply({id:orderInfo.id,money:orderInfo.payPrice})'>
+			 {{(exitinfo.status=="3")?'退款记录':'申请退款'}}
+		</span>
+		<span ng-if='orderInfo.orderStatus=="-1"||orderInfo.orderStatus=="4"' ng-click='delorder(orderInfo.orderId,orderInfo.id)'>删除订单</span>
+       <span class="tinct{{singles.orderStatus}}" ng-if='orderInfo.orderStatus=="3"' ui-sref='shops.evaluate({orderid:orderInfo.orderId})'>评价</span>
+	</div>
+</ion-view>

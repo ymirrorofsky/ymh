@@ -1,0 +1,36 @@
+<ion-view title="订单详情" hide-nav-bar="true" hide-back-button="true">
+	<ion-header-bar class="bar-calm header-back" style='border: none;'>
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+			<!--ng-click="$ionicGoBack()"-->
+		</div>
+		<h1 class="title">订单详情</h1>
+	</ion-header-bar>
+	<ion-content class="bodybg-normal shoplinorder">
+		<!--<ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()"></ion-refresher>-->
+		<div class="order-list">
+			<div class="common-shoplineorder">
+				<dl>
+					<dt>
+				    <span>{{goodslist.orderId}}</span>
+				      <i style="color: #EC0005;" ng-bind="statusName[goodslist.orderStatus]"></i>
+						</dt>
+					<dd>
+						<p><span>订单金额：{{goodslist.shopRebate}}</span> <i>付款人{{goodslist.shop.tel}}</i></p>
+						<p><span>订单日期：{{goodslist.createtime*1000 | date:"yyyy-MM-dd HH:mm:ss" }}</span>
+							<i>店铺让利比：{{goodslist.shopRebateType}}</i>
+						</p>
+					</dd>
+						<dd>
+							<p><span>用户手机号：{{goodslist.mobile}}</span> <i>获得{{globalInfo.nounInfo.LOVE}}{{goodslist.userHeart}}</i></p>
+						<p><span>消费金额：{{goodslist.orderPrice}}</span>
+							<i>商家获得{{globalInfo.nounInfo.LOVE}}：{{goodslist.shopHeart}}</i>
+						</p>
+						</dd>
+				</dl>
+			</div>
+		</div>
+		<!--<ion-infinite-scroll ng-if="!noMore" on-infinite="loadMore()" distance="-1%" immediate-check="false">
+		</ion-infinite-scroll>-->
+	</ion-content>
+</ion-view>

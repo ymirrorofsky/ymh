@@ -1,0 +1,32 @@
+<ion-view view-title="我的二维码" hide-nav-bar="true">
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">我的二维码</h1>
+	</ion-header-bar>
+	<ion-content class="bodybg-normal">
+		<!--<div class="zlz-my-header flex padding">
+			<img ng-src="{{myqrcode.user.avatar || 'img/headimg.jpg'}}">
+			<div class="flex_1 user-share">
+				<h3 class="text-overflow_1">{{myqrcode.user.nickname}}</h3>
+				<p style="text-align: center;">我的推荐码：</p>
+				<p class="num assertive">{{myqrcode.user.mobile}}</p>
+			</div>
+		</div>-->
+		<!--<div style="height: 10px; background-color: #f3f3f3;"></div>-->
+		<div class="zlz-my-header flex padding">
+			<img ng-src="{{globalInfo.user.avatar || 'img/headimg.jpg'}}" style="border-radius: 50%;">
+			<div class="flex_1 user-share">
+				<h3 class="text-overflow_1" style="margin-top: 15px;">{{globalInfo.user.nickname}}</h3>
+			</div>
+		</div>
+		<div class="share-qcode">
+			<!--<h5>请先扫码下边的推荐码！</h5>-->
+			<img style="width: 100%;" ng-src="{{myQrcode.url}}" />
+			<h5 style="background: #fff;margin: 0;color: #333;font-size: 13px;">此二维码用于面对面扫码注册</h5>
+		</div>
+
+	</ion-content>
+</ion-view>
+

@@ -1,0 +1,32 @@
+<ion-view view-title="{{globalInfo.nounInfo.CDDS}}" hide-nav-bar="true">
+
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">{{globalInfo.nounInfo.CDDS}}</h1>
+	</ion-header-bar>
+	<ion-content class="bodybg-normal ambassadordelivery">
+		<div class="ambassadorlogo">
+				<img src="img/ambassadorbg.png" alt="" />
+			 <p><em>{{ambassador.ambassMoney}}</em></p>
+		</div>
+		<h5><span>有效期：<em>一年</em></span><b>已开通：<em>{{ambassador.sum}}</em>人</b></h5>
+          <dl>
+          	<dt> <img src="img/colorbook.png"/>为什么要加入{{globalInfo.nounInfo.CDDS}}行列？</dt>
+          	<!--<dd>1.可以成为大爱社会公益传播者;</dd>-->
+          	<!--<dd>1.享有分享直接客户消费<em>{{ambassador.firstMessenger}}%</em>{{globalInfo.nounInfo.LOVE}}激励，如消费1000元，可获得{{0.1*ambassador.firstMessenger}}颗{{globalInfo.nounInfo.LOVE}};</dd>
+          	<dd>2.享有分享间接客户消费<em>{{ambassador.secondMessenger}}%</em>{{globalInfo.nounInfo.LOVE}}激励，如消费1000元，可获得{{0.1*ambassador.secondMessenger | number:2}}颗{{globalInfo.nounInfo.LOVE}};</dd>
+          	<dd>3.享有推荐商家入驻后，其销售额<em>{{ambassador.shopsToShops}}%</em>{{globalInfo.nounInfo.LOVE}}激励，如销售10000元，可获得{{ambassador.shopsToShops}}颗{{globalInfo.nounInfo.LOVE}};</dd>
+          	<dd>4.开通品牌商家，可获得让利额*{{ambassador.brandShop}}倍{{globalInfo.nounInfo.LOVE}}激励。个人商家获得让利额*{{ambassador.personShop}}倍{{globalInfo.nounInfo.LOVE}}激励，可申请成为运营中心或{{globalInfo.nounInfo.LOVE}}超市合伙人。</dd>-->
+          	<dd>1、自营消费最高赚5倍{{globalInfo.nounInfo.LOVE}}，再赚创客资格 </dd>
+          	<dd>2、创客推荐会员在店铺消费、推荐店铺销售、推荐会员在自营消费、推荐代理等最高八重收益</dd>
+          </dl>
+          <!--<dl>
+          	<dt> <img src="img/colorliwu.png"/>物料：免费提供公益服装一件</dt>
+          	<dd>如你需要物料，请在开通后与平台客服联系</dd>
+          </dl>-->
+	</ion-content>
+  <footer class='common-footer' ng-click='applyAmbass()' ng-if='globalInfo.user.isAmbass != 1'>立即开通</footer>
+  <footer class='common-footer'  ng-if='globalInfo.user.isAmbass == 1' style="background: #999;">已开通</footer>
+</ion-view>

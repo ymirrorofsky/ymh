@@ -1,0 +1,61 @@
+<ion-view title="兑换记录" hide-nav-bar="true" hide-back-button="true">
+
+    <ion-header-bar class="bar-calm header-back">
+        <!--<div class="buttons">
+            <button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+        </div>-->
+        <h1 class="title">兑换记录</h1>
+    </ion-header-bar>
+ <div class="heart_passer_top flex " style="position: fixed;top:50px;width: 100%;">
+            <!--<div class="top_one flex_1" ng-class="{'on': type == 0}" ng-click="getteamP(0)">
+                <div class="img">
+                    <img src="img_ad/exchangeWait.png" />
+                </div>
+                <div>待兑换</div>
+            </div>-->
+            <div class="top_two flex_1" ng-class="{'on': type == 1}" ng-click="getteamP(1)">
+                <div class="img">
+                    <img src="img_ad/exchangeIn.png" />
+                </div>
+                <div>兑换中</div>
+                <!--<p><span>54</span>人</p>-->
+            </div>
+            <div class="top_two flex_1" ng-class="{'on': type == 2}" ng-click="getteamP(2)">
+                <div class="img">
+                    <img src="img_ad/exchangeFinsh.png" />
+                </div>
+                <div>已兑换</div>
+                <!--<p><span>54</span>人</p>-->
+            </div>
+        </div>
+    <ion-content class='heart_passer integralmallLists' style='margin-top: 87px;'>
+        <!--<ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()"></ion-refresher>-->
+       
+          <div class="common-empty" ng-if="orderEmpty">暂无记录</div>
+          <!--ng-if="!orderEmpty"-->
+        <div class="integralRecord" ng-repeat='item in recordInfo' >
+        	<!--<div class="integralRecord">-->
+           <ul>
+           	<li ui-sref='integral.recordInfo({id:item.id})'>
+           		<div class="integralRecord-top">
+           			<span>兑换商品：{{item.goodsname}}</span>
+           			<!--<b>{{statusName[item.status]}}</b>-->
+           		</div>
+           		<div class="integralRecord-top">
+           			<span>兑换编号：{{item.id}}</span>
+           			<b>{{statusName[item.status]}}</b>
+           		</div>
+           		<div class="integralRecord-bottom">
+           			<span ng-if='item.mode==3'>方式:{{globalInfo.nounInfo.LOVE}}券{{item.heartVoucher}}</span>
+           			<span ng-if='item.mode!=3'>方式:￥{{item.money}}+{{globalInfo.nounInfo.LOVE}}{{item.userHeart+item.shopHeart | number:4}}</span>
+           			<!--<span ng-if='item.mode!=3'>方式:￥{{item.money}}+{{globalInfo.nounInfo.LOVE}}{{item.userHeart+item.shopHeart | number:4}}</span>-->
+           			
+           			<b>{{item.create_time*1000| date:"yyyy-MM-dd HH:mm:ss" }}</b>
+           		</div>
+           	</li>
+           </ul>
+        </div>
+        <!--<ion-infinite-scroll ng-if="!noMore" on-infinite="loadMore()" distance="1%" immediate-check="false">
+        </ion-infinite-scroll>-->
+    </ion-content>
+</ion-view>

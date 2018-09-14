@@ -1,0 +1,34 @@
+<ion-view view-title="我的钱包" hide-nav-bar="true">
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">我的钱包</h1>
+	</ion-header-bar>
+	<ion-content class="bodybg-normal cfmoney">
+		<div class="cfmoney-top">
+			<h3>{{moneynum}}</h3>
+			<p>账户余额(元)</p>
+		</div>
+		<div class="cfmoney-lists">
+			<nav>交易记录</nav>
+			<ul>
+				<li ng-repeat='item in moneyInfo | orderBy :"id"'> 
+					<img src="{{(item.type=='cut')?(item.payType=='alipay')?'imgG/cf-alipay.png':'imgG/cf-wechat.png':'imgG/cf-addmoney.png'}}" alt="" />
+					<div>
+						<span>{{(item.type=='add')?'+':'-'}}{{item.SMoney}}元</span>
+					<p><span ng-if='item.type=="cut"'>{{(item.type=='cut')?'支付宝支付':'微信支付'}}</span>{{item.SName||'成功' }}</p>
+					</div>
+					
+				</li>
+			</ul>
+		</div>
+ 
+		<ion-label></ion-label>
+
+	</ion-content>
+	<div class="cfbtn-commonbottom" style="bottom:0;">
+		<button ui-sref='cdF.cf-repo'>提现</button>
+	</div>
+	
+</ion-view>

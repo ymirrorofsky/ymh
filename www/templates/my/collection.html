@@ -1,0 +1,61 @@
+<ion-view view-title="我的收藏" hide-nav-bar="true">
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">我的收藏</h1>
+		<div class="buttons">
+			<button class="button button-clear" id='changeedit' ng-click="changeedit()">编辑</button>
+		</div>
+	</ion-header-bar>
+	<ion-content class="bodybg-normal">
+		<div class="mycollecttype">
+			<a ng-class="{'clickthis':collectgood==true}" ng-click='collecttype("goods")'>收藏商品</a>
+			<a ng-class="{'clickthis':collectgood==false}" ng-click='collecttype("shops")'>收藏商家</a>
+		</div>
+		<div class="mycollectgood commoncollect" ng-if='collectgood'>
+			<div class="common-empty" ng-if='orderEmpty'>
+				你没有收藏！
+			</div>
+			<div ng-repeat='item in collectList' id="p{{item.goodsId}}">
+				<a ng-if='item.goodsType == 0 || item.goodsType ==1 '  ng-click="goPage(item)">
+					<em ng-click='changestyle(item.goodsId,"",$event)' id='{{item.goodsId}}' data-type='{{item.type}}'>
+						<i class="icon ion-ios-checkmark-empty"></i>
+					</em>
+					<img ng-src="{{item.info.thumb}}">
+					<h2 ng-if='item.goodsType == 0'><span style="color:#EC0005">【淘宝】</span>{{item.info.goodsName}}</h2>
+					<h2 ng-if='item.goodsType == 1'><span  style="color:#EC0005">【天猫】</span>{{item.info.goodsName}}</h2>
+
+					<p>￥{{item.info.spe_price}}</p>
+				</a>
+				<a ng-if='item.goodsType == 2'  ng-click="goPage(item)">
+					<em ng-click='changestyle(item.goodsId,"",$event)' id='{{item.goodsId}}' data-type='{{item.type}}'>
+						<i class="icon ion-ios-checkmark-empty"></i>
+					</em>
+					<img ng-src="{{item.info.thumb}}">
+					<h2><span style="color:#EC0005">【亿民惠】</span>{{item.info.goodsName}}</h2>
+					<p>￥{{item.info.spe_price}}</p>
+				</a>
+			</div>
+
+		</div>
+		<div class="mycollectshop commoncollect" ng-if='!collectgood'>
+			<div class="common-empty" ng-if='orderEmpty'>
+				你没有收藏！
+			</div>
+			<a ng-repeat='items in collectList' id="p{{items.spid}}" ui-sref='goods.onlineshops({spid:items.spid})'>
+				<em ng-click='changestyle("",items.spid)' id='{{items.spid}}'>
+					<i class="icon ion-ios-checkmark-empty"></i>
+				</em>
+				<img ng-src="{{items.info.logo}}">
+				<h2>{{items.info.title}}</h2>
+				<p>{{items.info.birthInfo}}{{items.info.address}}</p>
+			</a>
+		</div>
+
+	</ion-content>
+	<footer class="collectfooter" ng-if='operate'>
+		<a ng-click='totop("top")'>置顶首页</a>
+		<a ng-click='todel("delete")'>删除</a>
+	</footer>
+</ion-view>

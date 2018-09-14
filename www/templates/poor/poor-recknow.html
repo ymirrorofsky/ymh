@@ -1,0 +1,35 @@
+<ion-view view-title="推荐流程" hide-nav-bar="true">
+    <ion-header-bar class="bar-calm header-back poorBar">
+        <div class="buttons">
+        	<!--ui-sref='poor.home'-->
+            <button class="button iconfont icon-back1 button-clear"  ng-click="$ionicGoBack()">返回</button>
+        </div>
+        <h1 class="title">推荐流程</h1>
+    </ion-header-bar>
+    <ion-content class="poorContent poorRecKnow poorDetail" style="background:#EEEEEE">
+        <div class="poorRecKnow-top bgwhite">
+            <div>
+                <div class="prk-t"><span></span>推荐受助人</div>
+            </div>
+            <p>
+                推荐受助人，是指推荐身边贫困人士或某些原因导致需要得带救助的人士，可以将他们引荐到生命阳光公益商城，通过该公益平台审核符合条件者
+                将进入公益受助系统，其他公益人士可对受助人的账户上进行捐助，或在生命阳光公益商城购买商品给受助人
+            </p>
+        </div>
+        <div class="poorRecKnow-top bgwhite">
+            <div>
+                <div class="prk-t prk-flow"><span></span>推荐流程</div>
+            </div>
+            <p>
+                <img src="img/poor/1.png" alt="">
+            </p>
+        </div>
+
+    </ion-content>
+    <ion-footer-bar class="rec-know-btn" ng-if="fromPage == 'both'">
+        <button ui-sref='poorson.recreason'>前去推荐受助人</button>
+    </ion-footer-bar>
+</ion-view>
+
+
+

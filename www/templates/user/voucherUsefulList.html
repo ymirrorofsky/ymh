@@ -1,0 +1,36 @@
+<ion-view view-title="可用代金券" hide-nav-bar="true">
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">可用代金券</h1>
+		<!--<div class="buttons">
+			<button class="button button-clear" ui-sref='user.balanceOutRecord'>转账记录</button>
+		</div>-->
+	</ion-header-bar>
+
+	<ion-content class="bodybg-normal voucherUsefulList">
+		<div class="voucherUsefulList_box">
+			<ul>
+				<li ng-repeat='item in info'>
+				   <div>
+				   	<span>金额：￥<em>{{item.money}}</em></span>
+				   	<b></b>
+				   	<span>{{item.name}}代金券</span>
+				   	
+				   </div>
+				   <p>有效期：{{item.time}}</p>
+				</li>
+				<!--<li >
+				   <div>
+				   	<span>￥<em></em></span>
+				   	<b></b>
+				   	<span>代金券</span>
+				   	
+				   </div>
+				   <p>当月有效</p>
+				</li>-->
+			</ul>
+		</div>
+	</ion-content>
+</ion-view>

@@ -1,0 +1,64 @@
+<ion-view view-title="报单详情" hide-nav-bar="true">
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">报单详情 </h1>
+	</ion-header-bar>
+	<ion-content class="bodybg-normal">
+		<div class="myorderinfo">
+			<ion-label></ion-label>
+			<a class="item ">
+				订单编号
+				<span class="item-note pureblack">
+			 {{orderInfo.orderId}}
+			</span>
+				<!--<i class="icon ion-ios-arrow-right"></i>-->
+			</a>
+			<!--<ion-label></ion-label>-->
+			<!--<a class="item  ">
+				{{ orderInfo.payType}}
+				<span class="item-note pureblack">
+			  {{ orderInfo.payType}}
+			</span>
+			</a>-->
+			<ion-label></ion-label>
+			<a class="item shopinfo">
+				<i class="iconfont icon-home"></i> {{ orderInfo.shop.title}}
+			</a>
+			<ion-label></ion-label>
+			<a class="item">
+				<img ng-click="shouBigImage()" src="{{orderInfo.userVoucher||'img_ad/leijishouyi.png'}}" />
+				<b>会员支付凭证</b>
+				<!--<span class="item-note pureblack"
+					style="position: relative;top:10px;line-height: 25px;">
+			 ￥{{orderInfo.goodsPrice}}
+			</span>-->
+			</a>
+			<ion-label></ion-label>
+			<a class="item">
+				订单总金额
+				<span class="item-note pureblack">
+			 {{orderInfo.orderPrice}}
+			</span>
+			</a>
+			<a class="item">
+				应付平台金额
+				<span class="item-note pureblack">
+			 {{orderInfo.shopPrice}}
+			</span>
+			</a>
+			<ion-label></ion-label>
+			<div class="yd-add-img">
+				<label>支付凭证</label>
+				<em class="iconfont icon-add" ng-click="uploadAvatar()"></em>
+				<i id="divImg"></i>
+			</div>
+			<button class="button" ng-click="sureSubmit({orderId:orderInfo.orderId})">确认</button>
+		</div>
+	</ion-content>
+	<div ng-if="bigImage" class="popover-backdrop" style="position: fixed;top: 0;left: 0;z-index: 10; width: 100%;height: 100%;background: #fff;" ng-click="hideBigImage()">
+		<img style="position: absolute;top: 10%;left: 50%;z-index: 10;display: block;margin-top: 18px;  
+         margin-left: -165px;height: 420px;width: 330px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);" src="{{orderInfo.userVoucher||'img_ad/leijishouyi.png'}}" />
+	</div>
+</ion-view>

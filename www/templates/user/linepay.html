@@ -1,0 +1,33 @@
+<ion-view view-title="支付详情" hide-nav-bar="true">
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ui-sref='tab.tcmytc'>返回</button>
+		</div>
+		<h1 class="title">支付详情</h1>
+	</ion-header-bar>
+	<ion-content class="bodybg-normal">
+		<div class="linepayshops">
+			<img src="img_ad/linepaylogo.png">
+		</div>
+		<div class="linepaylist">
+			<ul>
+				<li>
+					<span>消费金额：</span>
+					<input type="text" placeholder="请输入消费总额" ng-model="pay.linepaymoney">
+				</li>
+				<li>
+					<span>获得{{globalInfo.nounInfo.LOVE}}：</span>
+					<b>{{pay.linepaymoney*shopsinfo.shopsGiveRatio/100*shopsinfo.times  ||'0'}}</b>
+				</li>
+				<li> 
+					<span>收款商家：</span>
+					<b>{{shopsinfo.title}}</b>
+				</li>
+			</ul>
+			<div class="padding sure-btn">
+				<button class="button button-block button-calm" style="background-color: #f50;" ng-click="goodsPay()">确认支付</button>
+			</div>
+		</div>
+
+	</ion-content>
+</ion-view>

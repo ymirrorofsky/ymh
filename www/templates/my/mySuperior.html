@@ -1,0 +1,18 @@
+<ion-view view-title="我的推荐人" hide-nav-bar="true" hide-back-button="true">
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">我的推荐人</h1>
+	</ion-header-bar>
+	<ion-content class="bodybg-normal">
+		<dl ng-if='mysuperiorInfo==""'>
+			<p style="padding:10px;">你没有推荐人</p>
+		</dl>
+		<dl class="mysuperior-list" ng-if='mysuperiorInfo !=""'>
+			<!--<dt> <span>ID</span> <span>姓名</span></dt>-->
+			<dd><span>ID:{{mysuperiorInfo.uid}}</span> <span>姓名:{{mysuperiorInfo.nickname}}</span></dd>
+		</dl>
+		
+	</ion-content>
+</ion-view>

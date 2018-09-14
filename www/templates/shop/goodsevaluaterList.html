@@ -1,0 +1,46 @@
+<ion-view title="评价列表" hide-nav-bar="true" hide-back-button="true">
+	<ion-header-bar class="bar-calm header-back" style='border: none;'>
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">评价列表</h1>
+		<!--<button class=" button button-clear" style="border: none;" ui-sref='shops.evaluate({spid:spid})'>分享</button>-->
+	</ion-header-bar>
+	<ion-content class="bodybg-normal">
+		<!--<ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()"></ion-refresher>-->
+		<div class="goodsjudgelist" >
+			<div class="goodjudge" style="padding-top: 10px;">
+				<h5>产品评价({{evaluategoods.judge}})</h5>
+				<ul ng-repeat='judge in evaluategoods.judgeList'>
+					<li>{{judge.mobile}}</li>
+					<li>
+						<div class="starnum">
+							<i class="iconfont icon-favorfill" ng-if='judge.starNum=="0"'></i>
+							<i class="iconfont icon-favorfill" style="color: #f60;" ng-if='judge.starNum!="0"'></i>
+
+							<i class="iconfont icon-favorfill" ng-if='judge.starNum=="0"||judge.starNum=="1"'></i>
+							<i class="iconfont icon-favorfill" style="color: #f60;" ng-if='judge.starNum>1'></i>
+
+							<i class="iconfont icon-favorfill" ng-if='judge.starNum=="0"||judge.starNum=="1"||judge.starNum=="2"'></i>
+							<i class="iconfont icon-favorfill" style="color: #f60;" ng-if='judge.starNum>2'></i>
+
+							<i class="iconfont icon-favorfill" ng-if='judge.starNum<4'></i>
+							<i class="iconfont icon-favorfill" style="color: #f60;" ng-if='judge.starNum>3'></i>
+
+							<i class="iconfont icon-favorfill" ng-if='judge.starNum<5'></i>
+							<i class="iconfont icon-favorfill" style="color: #f60;" ng-if='judge.starNum=="5"'></i>
+						</div>
+						<span>{{judge.createtime*1000|date:"yyyy-MM-dd HH:mm:ss"}}</span>
+						<!--<span>{{judge.mobile}}</span>-->
+					</li>
+					<li>
+						<p>{{judge.message}}</p>
+					</li>
+				</ul>
+				<!--<h6 ui-sref='shops.goodsevaluaterList({goodsid:goodsdetail.id})'>查看更多评价 &nbsp;&nbsp;&nbsp;<i>></i></h6>-->
+			</div>
+		</div>
+		<!--<ion-infinite-scroll ng-if="!noMore" on-infinite="loadMore()" distance="-1%" immediate-check="false">
+		</ion-infinite-scroll>-->
+	</ion-content>
+</ion-view>

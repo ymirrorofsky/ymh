@@ -1,0 +1,104 @@
+<ion-view title="首页" hide-nav-bar="true" hide-back-button="false">
+	<ion-header-bar class="bar-calm linesearch" style='height:100px;background: #fff;color: #333;display: flex;
+    flex-direction: column;'>
+		<div class="linshop-top">
+			<div class="goback" ng-click="$ionicGoBack()">
+				<i class="iconfont ion-ios-arrow-left"></i>
+			</div>
+			<div class="searchs">
+				<i class="iconfont icon-search" ng-click="search()"></i>
+				<input type="text" placeholder="搜索商户名" ng-model="keywords" ng-change="pageInfo.getSerachList()" ng-enter="search()" ng-click='search()'>
+			</div>
+			<div ng-click="openModal()" class="tubiaos">{{curPosition.city || '定位'}}</div>
+		</div>
+		<div class="lineshop-check">
+			<a>
+				<span ng-click='choshow(1)' class="redbordown" id='1'>全部</span>
+			</a>
+			<a>
+				<span ng-click='choshow(2)' id='2'>排序</span>
+			</a>
+			<a>
+				<span ng-click='choshow(3)' id='3'>商城</span>
+			</a>
+		</div>
+	</ion-header-bar>
+	<style type="text/css">
+		.lineshop-shopslist li .bottom{display: flex;align-items: center;}
+	</style>
+	<ion-content style='top: 90px;' class='linesearchcon'>
+		<ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()"></ion-refresher>
+		<div class="common-empty" ng-if='empty'>
+			什么也没有...
+		</div>
+		<div class="lineshop-shopslist" ng-if='!empty'>
+			<ul>
+				<li ng-repeat="goods in shops.shopsList" ui-sref="shops.shopsInfo({spid:goods.id})" style='min-height: 90px;'>
+					<img ng-src="{{goods.logo || 'img/goodsLogo.png'}}">
+					<h3>
+						<span class="distance"> {{goods.distance}}</span>
+						<p ng-bind="goods.title" class="text-overflow_1"></p>
+					</h3>
+					<div class="star">
+						<span ng-if='goods.times>0'>消费{{goods.times}}次</span>
+						<p>
+							<i class="iconfont icon-favorfill" ng-if='goods.star=="0"'></i>
+							<i class="iconfont icon-favorfill" style="color: #f60;" ng-if='goods.star!="0"'></i>
+							<i class="iconfont icon-favorfill" ng-if='goods.star=="0"||goods.star=="1"'></i>
+							<i class="iconfont icon-favorfill" style="color: #f60;" ng-if='goods.star>1'></i>
+							<i class="iconfont icon-favorfill" ng-if='goods.star=="0"||goods.star=="1"||goods.star=="2"'></i>
+							<i class="iconfont icon-favorfill" style="color: #f60;" ng-if='goods.star>2'></i>
+							<i class="iconfont icon-favorfill" ng-if='goods.star<4'></i>
+							<i class="iconfont icon-favorfill" style="color: #f60;" ng-if='goods.star>3'></i>
+							<i class="iconfont icon-favorfill" ng-if='goods.star<5'></i>
+							<i class="iconfont icon-favorfill" style="color: #f60;" ng-if='goods.star=="5"'></i>
+						</p>
+					</div>
+					<div class="bottom">
+						<span>{{goods.categoryName}} |
+							<b>{{goods.street}}</b>
+						</span>
+
+						<span ng-if="goods.directsale != 1">
+							奖励{{goods.shopsGiveRatio}}{{globalInfo.nounInfo.LOVE}}
+							<!--<img src="img/lovelogo.png" style="margin-right:0;width:24px;height:24px;position:relative;z-index:5;">-->
+							<!--<em class="ng-binding">奖励{{goods.shopsGiveRatio}}{{globalInfo.nounInfo.LOVE}}</em>-->
+						</span>
+						<!--id="goodsInfo_integral"-->
+						<span   ng-if="goods.directsale == 1">
+							自营商家
+							<!--<img src="img/lovelogo.png" style="margin-right:0;width:24px;height:24px;position:relative;z-index:5;">-->
+							<!--<em class="ng-binding">自营商家</em>-->
+						</span>
+						<!--<p>满{{goods.shopsGiveRatio}}送1 <img src="img/lovelogo.png"/>  </p>-->
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="commonend-empty" ng-if="!noMore">
+			没有更多了..
+		</div>
+		<ion-infinite-scroll ng-if="noMore" on-infinite="loadMoreGoods()" distance="1%" icon="" immediate-check="false">
+		</ion-infinite-scroll>
+	</ion-content>
+	<div class="linshops-sort" ng-if='sortgoods'>
+		<ul>
+			<li>请选择</li>
+			<li ng-click="gogood(1)">离我最近</li>
+			<li ng-click="gogood(2)">全单送比例由高到低</li>
+			<li ng-click="gogood(3)">全单送比例由低到高</li>
+			<li ng-click="gogood(4)">消费次数由高到底</li>
+		</ul>
+	</div>
+	<div class="linshops-class" ng-if='classgoods'>
+		<ul>
+			<li ng-click='filtershops("")' class="red">全部</li>
+			<li ng-repeat='signle in linecateList' id='{{signle.id}}' ng-click='filtershops(signle.id,signle.title)'>{{signle.title}}</li>
+		</ul>
+	</div>
+	<div class="linshops-city" ng-if='citygoods'>
+		<ul>
+			<li ng-click='cityshops()' class="red">{{curPosition.city||'获取失败'}}</li>
+		</ul>
+	</div>
+</ion-view>

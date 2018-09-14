@@ -1,0 +1,25 @@
+<ion-view view-title='代金券' hide-nav-bar="true">
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">代金券</h1>
+	</ion-header-bar>
+    <ion-content class="cost_balance">
+            <div class="cb_img">
+                <img src="img/cost_balance_img1.png" alt="">
+            </div>
+            <!--ui-sref='user.voucherUsefulList'-->
+            <div class="cb_info flex_col_center" ui-sref='user.voucherUsefulList'>
+                <div class="cb_i_num">{{costBalance.disBalance}} 
+                	<i class="icon ion-chevron-right"></i>
+                </div>
+                <div class="cb_i_title">可用代金券</div>
+            </div>
+            <div class="cb_button" ui-sref='user.cost-balance-list'>代金券明细</div>
+            <!--<div class="cb_button" ui-sref='user.costbalanceOut'>转账</div>
+            <div class="cb_button" ui-sref='user.costbalanceOutRecord'>转账明细</div>-->
+             <div class="cb_button" ui-sref='user.costbalanceRecharge'>代金券充值</div>
+            
+    </ion-content>
+</ion-view>

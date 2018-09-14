@@ -1,0 +1,49 @@
+<ion-view view-title="申请退款" hide-nav-bar="true">
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">申请退款</h1>
+	</ion-header-bar>
+	<ion-content class="bodybg-normal exitApply">
+		<div ng-if='!applyShow'>
+		<ul class="exitApply-info">
+				<li><span>处理方式</span>
+					<div>{{applyInfo.exitType||'请选择'}} <i class="ion-chevron-down" ng-click='showtypes()'></i>
+						<div ng-if='showchos'>
+							<p ng-repeat='item in exitTypes' ng-click='choseType(item.id,item.type)'>{{item.type}}</p>
+						</div>
+					</div>
+				</li>
+				<li><span>订单金额</span>
+					<div>{{applyInfo.money}}</div>
+				</li>
+		</ul>
+		<div class="exitApply-reason">
+			<p>退款原因</p>
+			<textarea name="" rows="5" cols="" placeholder="必填" ng-model='applyInfo.reason'></textarea>
+		</div>
+		</div>
+		<div ng-if='applyShow'>
+			<ul class="exitApply-info">
+			<li><span>处理方式</span>
+				<div> {{typesName[info.back_type]}}
+				</div>
+			</li>
+			<li><span>订单金额</span>
+				<div>{{info.back_price}}</div>
+			</li>
+			<li><span>退款进度</span>
+				<div>{{statusName[info.status]}}</div>
+			</li>
+			</ul>
+			<div class="exitApply-reason">
+				<p>退款原因</p>
+				<textarea name="" rows="5" cols="" disabled="disabled">{{info.back_reason}}</textarea>
+			</div>
+		</div>
+	</ion-content>
+	<ion-footer-bar>
+		<button ng-if='!applyShow' class="button button-calm" style="width: 100%;color: #fff;background: #EC0005;" ng-click="apply()">提交申请</button>
+	</ion-footer-bar>
+</ion-view>

@@ -1,0 +1,170 @@
+<ion-view view-title="修改店铺信息" hide-nav-bar="true">
+	<div>
+		<ion-header-bar class="bar-calm header-back">
+			<div class="buttons">
+				<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+			</div>
+			<h1 class="title">修改店铺信息</h1>
+		</ion-header-bar>
+		<ion-content class="bodybg-normal">
+			<!--<div class="yd-apply-shop flex">
+				<img ng-src="{{selectType.user.avatar}}" src="img/avatar.jpg">
+				<div class="flex_1 right">
+					<p>昵称：<span>{{selectType.user.realname}}</span></p>
+					<p>手机号码：{{selectType.user.mobile}}</p>
+					<p>我的推荐人ID:{{selectType.user.relationUid || "无"}}</p>
+				</div>
+			</div>-->
+			<div class="yd-donate-count real-count s-apply-c" ng-if='showcontent=="info"'>
+				<ul>
+					<li class="flex" style="overflow: hidden;">
+						<p class="flex_1">店铺类型</p>
+						<span>{{applyInfo.leve}}</span>
+					</li>
+					<li>
+						<label>店铺名称</label>
+						<input type="text" placeholder="请输入商户名称" ng-model="applyInfo.title">
+					</li>
+					<li class="flex">
+						<p class="flex_1">店铺区域</p>
+						<span ng-bind="up.userInfo.area||'点击选择'"></span>
+						<!--<i class="iconfont icon-right"></i>-->
+					</li>
+					<li>
+						<label>所属街道</label>
+						<input type="text" maxlength="11" placeholder="请输入所属街道" ng-model="applyInfo.street">
+					</li>
+					<li>
+						<label>详细地址</label>
+						<input type="text"  placeholder="请输入详细地址" ng-model="applyInfo.address">
+					</li>
+					<li>
+						<label>分店名称</label>
+						<input type="text" placeholder="如无分店可不填" ng-model="applyInfo.branch">
+					</li>
+					<li>
+						<label>店铺电话</label>
+						<input type="text" maxlength="11"  ng-model="applyInfo.tel">
+					</li>
+					<!--<li ng-click="showShopDesc()">
+						请输入商家描述
+					</li>-->
+					<li class="flex" data-tap-disabled='true'>
+						<label>行业类型</label>
+						<!--<input type="text" maxlength="11" ng-model="applyInfo.cid" disabled="" style="background: #fff;">-->
+						<input type="text" maxlength="11"  style="background: #fff;">
+						<!--<select ng-model="applyInfo.selecedType">
+							<option ng-repeat="x in selectType.category" value="{{x.id}}">{{x.title}}</option>
+						</select>-->
+						<select ng-model="applyInfo.cid" >
+							<option selected="selected">{{applyInfo.cid}}</option>
+							<option ng-repeat="x in applyInfo.category" ng-if='applyInfo.cid!==x.title'>{{x.title}}</option>
+						</select>
+					</li>
+					<li>
+						<label>店铺让利比</label>
+						<input type="text" maxlength="11" placeholder="请输入2%—40%之间的比例" ng-model="applyInfo.shopsGiveRatio">
+					</li>
+					<!--<li class="flex" data-tap-disabled='true'>
+						<p class="flex_1">线下店铺让利比</p>
+						<select ng-model="applyInfo.selectedBili">
+							<option ng-repeat="x in selectType.rebateInfo" value="{{x.shopsRebateType}}">{{x.title}}</option>
+						</select>
+					</li>-->
+				</ul>
+			</div>
+			<div class="yd-apply-img" ng-if='showcontent=="images"'>
+				<!--<h3>上传证件照</h3>-->
+					<div class="row">
+						<div class="col photo_box">
+						<p>店铺店照</p>
+						<img ng-src="{{applyInfo.photo}}" alt=""  id="divImg01"/>
+						<em id="divImg01"></em>
+						<i class="iconfont icon-add" id="divImg1" ng-click="uploadAvatar(1)"></i>
+					</div>
+					<div class="col photo_box">
+						<p>店铺Logo</p>
+						<img ng-src="{{applyInfo.logo}}" alt=""  id="divImg02"/>
+						<!--<em id="divImg02"></em>-->
+						<i class="iconfont icon-add" id="divImg2" ng-click="uploadAvatar(2)"></i>
+					</div>
+				</div>
+				<div class="row" ng-if='shoptypes=="个人店"'>
+					<div class="col photo_box">
+						<p>法人身份证正面照</p>
+						<img ng-src="{{applyInfo.idCardThumbA}}" alt=""  id="divImg03"/>
+						<!--<em id="divImg03"></em>-->
+						<i class="iconfont icon-add" id="divImg3" ng-click="uploadAvatar(3)"></i>
+					</div>
+					<div class="col photo_box">
+						<p>法人身份证反面照</p>
+						<img ng-src="{{applyInfo.idCardThumbB}}" alt=""  id="divImg04"/>
+						<!--<em id="divImg04"></em>-->
+						<i class="iconfont icon-add" id="divImg4" ng-click="uploadAvatar(4)"></i>
+					</div>
+				</div>
+				<div class="row" ng-if='shoptypes=="个人店"'>
+					<div class="col photo_box">
+						<p>手持身份证正面照</p>
+						<em id="divImg11"></em>
+						<i class="iconfont icon-add" ng-click="uploadAvatar(11)"></i>
+					</div>
+					<!--<div class="col photo_box">
+						<p>法人身份证反面照</p>
+						<em id="divImg02"></em>
+						<i class="iconfont icon-add" id="divImg2" ng-click="uploadAvatar(2)"></i>
+					</div>-->
+				</div>
+				<!--ng-if='shoptypes!="个人店"'-->
+				<div class="row" ng-if='shoptypes!="个人店"'>
+					<div class="col photo_box">
+						<p>营业执照</p>
+						<img ng-src="{{applyInfo.businessLicence}}" alt=""  id="divImg05"/>
+						<!--<em id="divImg05"></em>-->
+						<i class="iconfont icon-add" id="divImg5" ng-click="uploadAvatar(5)"></i>
+					</div>
+					<div class="col photo_box">
+						<p>卫生许可证或食品流通证</p>
+						<img ng-src="{{applyInfo.hygieneCard}}" alt=""  id="divImg21"/>
+						<!--<em id="divImg21" ></em>-->
+						<i class="iconfont icon-add" id="divImg21" ng-click="uploadAvatar(21)"></i>
+					</div>
+				</div>
+			<div class="row" ng-if='shoptypes!="个人店"'>
+					<div class="col photo_box">
+						<p>诚信承诺书</p>
+						<img ng-src="{{applyInfo.goodFaithCard}}" alt=""  id="divImg22"/>
+						<!--<em id="divImg22"></em>-->
+						<i class="iconfont icon-add" id="divImg22" ng-click="uploadAvatar(22)"></i>
+					</div>
+					<div class="col photo_box">
+						<p>法人委托书</p>
+						<img ng-src="{{applyInfo.legalPersonCard}}" alt=""  id="divImg23"/>
+						<!--<em id="divImg23"></em>-->
+						<i class="iconfont icon-add" id="divImg23" ng-click="uploadAvatar(23)"></i>
+					</div>
+				</div>
+			
+			</div>
+		</ion-content>
+		<ion-footer-bar>
+			<button class="button button-calm"  style="width: 100%;color: #fff;background: #EC0005;" ng-click="apply()">保存修改</button>
+		</ion-footer-bar>
+	</div>
+
+	<!--商家描述-->
+	<!--<div class="applyBol" ng-if="!applyBol">
+		<ion-header-bar class="bar-calm header-back">
+			<div class="buttons">
+				<button class="button iconfont icon-back1 button-clear" ng-click="showShopDesc()">返回</button>
+			</div>
+			<h1 class="title">商家描述</h1>
+		</ion-header-bar>
+		<ion-content class="bodybg-normal">
+			<div class="yd-reject-con flex">
+				<textarea rows="10" class="flex_1" placeholder="请输入商家描述信息" ng-model="applyInfo.shopDescrip"></textarea>
+			</div>
+			<button style="background: #EC0005;color: #fff;" class="button button-block button-calm zl_btn_center" ng-click="showShopDesc();">提交</button>
+		</ion-content>
+	</div>-->
+</ion-view>

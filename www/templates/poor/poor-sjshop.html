@@ -1,0 +1,114 @@
+<ion-view view-title="商家店铺" hide-nav-bar="true">
+	<ion-header-bar class="bar-calm header-back">
+        <div class="buttons">
+            <button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+        </div>
+		<h1 class="title">商家店铺</h1>
+	</ion-header-bar>
+	<ion-content style='background: #E0E0E0;'>
+		<!--<ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()"></ion-refresher>-->
+        <div class="tabnotshop" ng-if='isshop==false'>
+        	<p>您还未开通公益店铺</p>
+        	<dl>
+        		<dt>入驻优势</dt>
+        		<dd>1.提升企业美誉度</dd>
+        		<dd>2.线下+线上多渠道拓展</dd>
+        		<dd>3.锁定人脉，跨界收益</dd>
+        		<dd>4.促销让利可获得爱心激励</dd>
+        	</dl>
+        	<dl>
+        		<dt>入驻流程</dt>
+        		<dd>①注册会员</dd>
+        		<dd>②填写相关资料，等待审核</dd>
+        		<dd>③审核通过，开通线下店铺，同时赠送线上店铺功能</dd>
+        	</dl>
+        	<h4><i class="icon ion-information-circled"></i>商家让利可获得让利爱心激励</h4>
+        </div>
+        <div ng-if='isshop==true' class="tabshop">
+        <div class="tabshop-head">
+			<img ng-src="{{shopsInfo.logo || 'img/avatar.jpg'}}">
+			<div class="flex_1 shopr">
+				<p>{{shopsInfo.title}} {{shopsInfo.leve}}</p>
+				<p>月销售额度：{{shopsInfo.salemonth}}万元</p>
+				<p >已销售：<span style="color: #EC0005;">{{shopsInfo.saled||0}}</span>万元(线上销售{{shopsInfo.onlinesale}}万元)</p>
+			</div>
+		</div>
+		<h3 class="shopstype">
+			<div ng-click='changetyps("0")'>
+				<b></b><a ng-class="{true: 'chooosetype', false: ''}[shopshow]">线上店铺 </a>
+			</div>
+			<div ng-click='changetyps("1")'><a ng-class="{true: '', false: 'chooosetype'}[shopshow]">线下店铺</a></div>
+		</h3>
+		<div class="shops-online shops-common" ng-if='shopshow==false'>
+			<dl>
+				<dt>店铺管理</dt>
+				<dd ui-sref='shops.shopsInfo({spid:shopsInfo.id})'>
+					<img src="img_ad/dianpu.png"/>
+					<p>进入店铺</p>
+				</dd>
+				<dd ui-sref='shops.addgoods'>
+					<img src="img_ad/fabu.png"/>
+					<p>发布商品</p>
+				</dd>
+				<dd ui-sref="shops.managegoods({spid:globalInfo.user.isShop})">
+					<img src="img_ad/guanli.png"/>
+					<p>商品管理</p>
+				</dd>
+				<dd class="shopcenter-type" ui-sref="shops.shoponlineorder({spid:globalInfo.user.isShop})" >
+					<img src="img_ad/dingdan.png"/>
+					<p>订单管理</p>
+				</dd>
+				<!--<dd ui-sref="shops.orderList({type:'shops',orderType:0})">
+					<i class="iconfont icon-dingdan assertive"></i>
+					<p>线上订单</p>
+				</dd>-->
+				<!--<dd ui-sref="shops.scanOrder({type:'shops',orderType:1})">
+					<i class="iconfont icon-fukuanma assertive"></i>
+					<p>扫码付款</p>
+				</dd>
+				<dd ui-sref="shops.reportOrder({type:'shops',orderType:2})">
+					<i class="iconfont icon-dingdan3 assertive"></i>
+					<p>扫码报单</p>-->
+				</dd>
+			</dl>
+		</div>
+		<div class="shops-common shops-line" ng-if='shopshow==true'>
+				<dl>
+				<dt>基础资料</dt>
+				<dd ui-sref='shops.shoplicences({shoptypes:shopsInfo.leve,showcontent:"info"})'>
+					<img src="img_ad/xinxi.png"/>
+					<p>店铺信息</p>
+				</dd>
+				<dd ui-sref='shops.shoplicences({shoptypes:shopsInfo.leve,showcontent:"images"})'>
+					<img src="img_ad/zhengzhao.png"/>
+					<p>图片证照</p>
+				</dd>
+			</dl>
+			<dl>
+				<dt>管理店铺</dt>
+				<dd ui-sref='shops.shopsInfo({spid:shopsInfo.id})'>
+					<img src="img_ad/dianpu.png"/>
+					<p>进入店铺</p>
+				</dd>
+				<dd ui-sref='shops.shoplineorder'>
+					<img src="img_ad/guanli.png"/>
+					<p>订单管理</p>
+				</dd>
+				<!--<dd ui-sref='shops.shopdetail'>
+					<img src="img_ad/shangjiaxinxi.png"/>
+					<p>商家信息</p>
+				</dd>-->
+				</dd>
+			</dl>
+		</div>
+        </div>
+		<!--<ion-infinite-scroll ng-if="noMore && curPosition.status != 1 " on-infinite="loadMoreGoods()" distance="-1%" icon="" immediate-check="false">
+		</ion-infinite-scroll>-->
+		<!--<ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()"></ion-refresher>-->
+	</ion-content>
+	<footer class="common-footer" style="background: #f50;" ng-if='isshop==false' ui-sref='user.shoptypes'>立即入驻</footer>
+	<footer class="common-footer tabshopfooter" ng-if='isshop==true'>
+	  <a ui-sref="shops.qrcode({spid:globalInfo.user.isShop})">生成二维码</a>
+	  <a ui-sref="shops.shoplinepay({spid:shopsInfo.id})">商家付款</a>	
+	</footer>
+</ion-view>

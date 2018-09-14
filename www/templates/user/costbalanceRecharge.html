@@ -1,0 +1,33 @@
+<ion-view view-title="代金券充值" hide-nav-bar="true">
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">代金券充值</h1>
+		<!--<div class="buttons">
+			<button class="button button-clear" ui-sref='user.balanceOutRecord'>转账记录</button>
+		</div>-->
+	</ion-header-bar>
+	<style type="text/css">
+		.costBalanceRecharge{
+			background: #fff;
+		}
+		.costBalanceRecharge p{
+			width: 90vw;margin: 30px auto 10px;
+		}
+		.costBalanceRecharge input{
+			width: 90vw;margin: 10px auto 30px;display: block;background: transparent;border: solid 1px #E0E0E0;padding: 0 5px;
+		}
+	</style>
+	<ion-content class="bodybg-normal costBalanceRecharge">
+		<div>
+			<p>充值数量</p>
+              <input type="text" placeholder="请输入充值数量" ng-model='info.num'/>
+		</div>
+		
+			<div class="padding sure-btn">
+				<button class="button button-block button-calm" ng-click="submit()">确定</button>
+			</div>
+	
+	</ion-content>
+</ion-view>

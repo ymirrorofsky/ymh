@@ -1,0 +1,129 @@
+<ion-view title="线上商城" hide-nav-bar="true" hide-back-button="true">
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="backto()">返回</button>
+		</div>
+		<h1 class="title">商品详情</h1>
+		<!--<div class="buttons">
+			<button class="button  button-clear" style="font-size: 14px;">分享</button>
+		</div>-->
+	</ion-header-bar>
+	<ion-content style='bottom: 55px;'>
+		<ion-slide-box delegate-handle="slideimgs" show-pager="true" does-continue='true' auto-play="true">
+			<ion-slide ng-repeat="img in goodsdetail.slide" does-continue='true'>
+				<img ng-src="{{img}}" width="100%" class="banner-img" style="width: 100vw;height: 100vw;max-height: 100vw;">
+			</ion-slide>
+		</ion-slide-box>
+		<div class="shops-detai-header" ng-if="goodsdetail.slide==''">
+			<img src="img/goodsLogo.png" style='max-height:220px'>
+		</div>
+		<div class="shops-detai-middle">
+			<div id="exchange-goods-model">
+				<dl><dt>
+				<h5 ng-bind="goodsdetail.goods_title"></h5>
+          <p>
+          	<span>¥ <i>{{goodsdetail.spe_price| number:2}}</i> </span>
+         <!-- 	<span>{{globalInfo.nounInfo.LOVE}}&nbsp;{{ goodsdetail.memberHeart}}</span>-->
+          	<!--<span>销量{{goodsdetail.sales}}</span>-->
+           </p>
+           <p ng-if='goodsdetail.mode==1'>兑换方式:{{goodsdetail.credit}}个{{globalInfo.nounInfo.LOVE}}+￥{{goodsdetail.money}}</p>
+           <!--<p ng-if='goodsdetail.mode==1'>兑换方式:{{goodsdetail.credit}}个{{globalInfo.nounInfo.LOVE}}+￥{{goodsdetail.money}}</p>-->
+		   <p ng-if='goodsdetail.mode==2'>兑换方式:{{goodsdetail.price}}({{globalInfo.nounInfo.LOVE}}可用100%)</p>
+		   <p ng-if='goodsdetail.mode==3'>兑换方式:{{globalInfo.nounInfo.LOVE}}券{{goodsdetail.heart_voucher}}</p>
+		   <p ng-if="goodsdetail.chanceday != 0">当日剩余兑换数：{{goodsdetail.memberday}}</p>
+        <!--  <h4>库存<q data-stock="1305">{{goodsdetail.total}}</q>件</h4>-->
+         <!-- <i class="iconfont icon-close" ng-click="popover.hide()"></i>-->
+          </dt>
+          <!--<dd style="border: none;background: #E0E0E0;" ng-if='goodsdetail.judge!="0"'></dd>
+					<dd class="goodjudge" ng-if='goodsdetail.judge!="0"'>
+						<h5>产品评价({{goodsdetail.judge}})</h5>
+						<ul ng-repeat='judge in goodsdetail.judgeList'>
+							<li>
+							    <div class="starnum">
+									<i class="iconfont icon-favorfill" ng-if='judge.starNum=="0"'></i>
+									<i class="iconfont icon-favorfill" style="color: #f60;" ng-if='judge.starNum!="0"'></i>
+									<i class="iconfont icon-favorfill" ng-if='judge.starNum=="0"||judge.starNum=="1"'></i>
+									<i class="iconfont icon-favorfill" style="color: #f60;" ng-if='judge.starNum>1'></i>
+									<i class="iconfont icon-favorfill" ng-if='judge.starNum=="0"||judge.starNum=="1"||judge.starNum=="2"'></i>
+									<i class="iconfont icon-favorfill" style="color: #f60;" ng-if='judge.starNum>2'></i>
+								    <i class="iconfont icon-favorfill" ng-if='judge.starNum<4'></i>
+									<i class="iconfont icon-favorfill" style="color: #f60;" ng-if='judge.starNum>3'></i>
+									<i class="iconfont icon-favorfill" ng-if='judge.starNum<5'></i>
+									<i class="iconfont icon-favorfill" style="color: #f60;" ng-if='judge.starNum=="5"'></i>
+								</div>
+								<span>{{judge.createtime*1000|date:"yyyy-MM-dd HH:mm:ss"}}</span>
+								<span>{{judge.mobile}}</span>
+							</li>
+							<li>
+								<p>{{judge.message}}</p>
+							</li>
+						</ul>
+						<h6 ui-sref='shops.goodsevaluaterList({goodsid:goodsdetail.id})'>查看更多评价 &nbsp;&nbsp;&nbsp;<i>></i></h6>
+					</dd>-->
+					<!--<dd style="border: none;background: #E0E0E0;"></dd>-->
+					<dd class="goodsinfo-desc" >
+						<p  ng-if='goodsdetail.goods_desc!=""' ng-bind="goodsdetail.goods_desc">
+						</p>
+						<!--<p> $compile("{{model}}")($scope)</p>-->
+						<p ng-if='goodsdetail.info!=""' ng-bind-html='goodsdetail.info'></p>
+						<!--<p id='goodsinfo-info'></p>-->
+					</dd>
+				</dl>
+			</div>
+		</div>
+	</ion-content>
+	<div class="exchange-goodsinfo-bottom">
+		<!--<a  ng-click='customerserve()' >
+			<i class="icon ion-headphone" style="color: #11C1F3;"></i>
+			<span>客服</span>
+		</a>
+		<a ng-click='gocollect()'>
+			<i ng-if='isCollect==0' class="icon ion-android-star-outline" style="font-size: 22px;"></i>
+			<i ng-if='isCollect==1' class="icon ion-android-star" style="font-size: 22px;color: #EC0005;"></i>
+			<span class="collectnum"  ng-if='goodsdetail.collect<1000'>收藏<b>{{goodsdetail.collect}}</b></span>
+			<span class="collectnum" ng-if='goodsdetail.collect>999'>收藏1k+
+			</span>
+		</a>-->
+		<!--<button ng-click="addCarts()">立即兑换</button>-->
+		<button class="add-sure" ng-click="buygoods()">立即兑换</button>
+	</div>
+	<!--<div style='width:100vw;height:100vh;position:fixed;background: rgba(0,0,0,0.3);top:0;left:0'  ng-if="showCart">
+		<div style="position: fixed;bottom: 5px;width: 100%;">
+			<div class="attribute-goodsname" style="background: #fff;width: 100%;" class="addcarts">
+					<img ng-src="{{goodsdetail.thumb}}" />
+					<div>
+						<p>￥
+							<span ng-if='good.price!=null&&good.price!=""&&goodPrice'>{{good.price}}</span>
+							<span ng-if='good.price==null||good.price==""||!goodPrice'>{{goodsdetail.spe_price}}</span>
+							<i class="icon ion-close-circled" ng-click="hideCart ()"></i></p>
+						<h5>库存{{good.count}}</h5>
+						<h5 ng-if="attributetype">{{goodcart.goodbute1}}{{goodcart.goodbute2}}</h5>
+						<h5 ng-if="!attributetype&&goodsdetail.attrdata!=''">选择属性</h5>
+					</div>
+				</div>
+				<div class="attribute-body" ng-if="goodsdetail.attrdata!=''">
+					<div class="attribute-common attribute1" ng-if="goodsdetail.attrdata!=[]">
+						<h5>{{goodsdetail.attr[0].attrName}}</h5>
+						<ul>
+							<li ng-repeat='item1 in goodsdetail.attr[0].data' id='item1{{$index}}' ng-class="{'selectstyle':clickstyle1==item1}" ng-click='changebute1($index,item1)'>{{item1}}</li>
+						</ul>
+					</div>
+					<div class="attribute-common attribute2" ng-if="goodsdetail.attr[1].data!=''">
+						<h5>{{goodsdetail.attr[1].attrName}}</h5>
+						<ul >
+							<li ng-repeat='item2 in goodsdetail.attr[1].data' id='item2{{$index}}' ng-class="{'selectstyle':clickstyle2==item2}" ng-click='changebute2($index,item2)'>{{item2}}</li>
+						</ul>
+					</div>
+				</div>
+				<div class="attribute-buynum">
+						<span>购买数量</span>
+						<div class="attribute-nums">
+							<i class="iconfont icon-move" ng-click="minusNum()"></i>
+							<input type="text" ng-model="buyNum">
+							<i class="iconfont icon-add" ng-click="addNum()"></i>
+						</div>
+					</div>
+		</div>
+		<button class="add-sure" ng-click="buygoods()">立即兑换</button>
+	</div>-->
+</ion-view>

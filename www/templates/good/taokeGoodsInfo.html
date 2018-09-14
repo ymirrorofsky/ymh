@@ -1,0 +1,108 @@
+<ion-view title="线上商城" hide-nav-bar="true" hide-back-button="true">
+	<ion-header-bar class="bar-calm header-back" style='background: #fff;'>
+		<div class="buttons">
+			<button style="color: #000;" class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title" style="color: #000;">商品详情</h1>
+		<!--<div class="buttons" ng-click='sharegoods()'>
+			<button class="button  button-clear" style="font-size: 14px;color: #000;">分享</button>
+		</div>-->
+	</ion-header-bar>
+	<style type="text/css">
+		.goodsinfo-footer-addCart {
+			height: 50px;
+		}
+
+		.goodsinfo-footer-buy {
+			width: 50%;
+			max-width: 50%;
+			height: 50px;
+		}
+
+		.goodsinfo-footer-buy>img {
+			width: 20px;
+			height: 20px;
+			position: relative;
+			top: -1px;
+		}
+	</style>
+	<ion-content class="ggb_goodsDetail ion_content_top_45 tao_goodsInfo">
+		<div id="gg_slide" style="margin-top: 1px;">
+			<!--<div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide" ng-repeat='item in goodsInfo.detail.more'>
+                        <img ng-src="{{item.url}}" class="img_a">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="images/tblogo.png" class="img_a">
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>-->
+			<img ng-src="{{goodsInfo.picUrl}}" />
+		</div>
+		<div class="goods-info-box">
+			<div class="flex_row_left">
+				<div class="gib_left">
+					<h3 class="">
+						<!--<img class="icon" src="{{goodsInfo.tmall==0?'images/tao.png':'images/mao.png'}}">-->
+						<span>{{goodsInfo.tmall==1?"【天猫】":"【淘宝】"}}</span>
+						{{goodsInfo.title}}
+					</h3>
+					<div class="goods-info-price">
+						<i>眼要疾，手要快！</i>
+					</div>
+				</div>
+				<div class="gib_right flex_col_center">
+					<i ng-if='goodsInfo.isCollect==0' class="icon ion-android-star-outline" ng-click="collectGoods(goodsInfo,$event)"></i>
+					<span ng-if='goodsInfo.isCollect==0'>收藏</span>
+					<i ng-if='goodsInfo.isCollect==1' class="icon ion-android-star" style="color: #EC0005;" ng-click="collectGoods(goodsInfo,$event)"></i>
+					<span ng-if='goodsInfo.isCollect==1'>已收藏</span>
+				</div>
+			</div>
+
+
+			<div class="goods-info-price">
+				<a>
+					<div>券后价</div>
+					<em>
+						<small>￥</small>{{goodsInfo.nowPrice}}
+						<b>{{goodsInfo.discountPrice}}</b>
+					</em>
+				</a>
+				<span> 月销{{goodsInfo.biz30Day}}笔</span>
+				<span>{{(goodsInfo.postFree==1)?'包邮':'快递'}}</span>
+			</div>
+		</div>
+		<!--<div class="goodsInfo-voucher-box">
+   	<img src="img_ad/voucherBg.png"/>
+   	<div class="goodsInfo-voucher">
+   		<div class="goodsInfo-voucher-left">
+   			{{goodsInfo.amount}}元{{globalInfo.nounInfo.LOVE}}
+   		</div>
+   		<div class="goodsInfo-voucher-right" ng-click="goBuy1()">
+   			前往领券
+   		</div>
+   	</div>
+   </div>-->
+		<!--<div class="p-detail-more"><span>拖动查看详情</span></div>-->
+		<div class="p-detail">
+			<h4>
+				<span>————</span> &nbsp;&nbsp;&nbsp;
+				<img src="img_ad/taoDetail.png" /> 商品介绍&nbsp;&nbsp;&nbsp;
+				<span>————</span>
+			</h4>
+			<div class="p-detail-html" id="ProductDescription" ng-bind-html='goodsInfo.itemdesc'></div>
+			<img ng-repeat='img in goodsInfo.imgs' ng-src="{{img}}" />
+		</div>
+	</ion-content>
+
+	<ion-footer>
+		<div class="goodsinfo-footer flex">
+			<div class="goodsinfo-footer-addCart" ui-sref='goods.taoCommond({goodsId:goodsInfo.id})'>复制分享口令</div>
+
+			<div class="goodsinfo-footer-buy" ng-click="goBuy1()">
+				<img src="img_ad/walletWhite.png" /> 领券购买减 ￥{{goodsInfo.amount}}</div>
+		</div>
+	</ion-footer>
+</ion-view>

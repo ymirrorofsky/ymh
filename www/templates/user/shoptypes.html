@@ -1,0 +1,25 @@
+<ion-view view-title="选择店铺类型" hide-nav-bar="true">
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">选择店铺类型</h1>
+	</ion-header-bar>
+	<ion-content class="bodybg-normal">
+		<ul class="shopstypeslist">
+			<li  ng-click='goapply("person")'>
+				<i class="ion-ios-arrow-right t_arrow_right"></i>
+					<img src="img/16.png"/>
+					<h3 ><span>个人店-</span>有商品的个人商家</h3>
+					<h5><span>入驻需提供</span>：个人身份证</h5>
+			</li>
+			<li ng-click='goapply("brand")'>
+					<i class="ion-ios-arrow-right t_arrow_right"></i>
+					<img src="img/16.png"/>
+					<h3><span>品牌店-</span><p>有营业执照的实体店铺或拥有自己品牌的商家</p></h3>
+					<h5><span>入驻需提供</span>：营业执照</h5>
+			</li>
+		</ul>
+	</ion-content>
+
+</ion-view>

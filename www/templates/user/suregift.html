@@ -1,0 +1,69 @@
+<ion-view view-title="确认礼品信息" hide-nav-bar="true" hide-back-button="true">
+
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title" ng-if='buyclothes'>确认礼品信息</h1>
+		<h1 class="title" ng-if='!buyclothes'>申请商家</h1>
+	</ion-header-bar>
+	<ion-content class="bodybg-normal" >
+		<div ng-if='!showClothes'>
+				<p style="padding: 10px 10px;margin: 0;">成为{{globalInfo.nounInfo.CDDS}}</p>
+		</div>
+		<div ng-if='showClothes'>
+         <div class="yd-add-bank" ui-sref="goods.giftAddress" >
+			<i class="ion-ios-arrow-right" style="float: right;color: #999;font-size: 16px;"></i>
+			<p style="text-align: left;">选择收货地址</p>
+		</div>
+		<ion-list  ng-if="addressinfo">
+			<ion-item class="item-avatar ">
+				<img src="img_ad/location2.png">
+				<h3><span>{{addressinfo.username}}</span> <span style="float: right;">{{addressinfo.mobile}}</span></h3>
+				<p><span>{{addressinfo.birth}}{{addressinfo.address}}</span> </p>
+				<!--<i class="icon ion-ios-arrow-right right-color"></i>-->
+			</ion-item>
+		</ion-list>
+		<div class="gift-size">
+			<!--<h5 ng-click='showsize()'>尺码 <span>查看参照表</span></h5>-->
+			<dl class="buyGoods">
+				<dd ng-repeat='item in buyGoods'>
+					<!--<ion-checkbox class='checkbox-calm'>
+						</ion-checkbox>-->
+						<div class="checkboxs" ng-click='choGoods(item.id)'>
+							<!--<img ng-src=""/>-->
+							<i ng-if='seleceId==item.id'>√</i>
+						</div>
+					<!--<input type="text" />-->
+					<img ng-src="{{item.thumb}}"/>
+					<div class="">
+						<p class="text-overflow_1">{{item.goodsName}}</p>
+					    <p class="text-overflow_2">{{item.goodsDesc}}</p>
+					</div>
+					
+				</dd>
+			</dl>
+			<!--<ul>
+				<li id='1' ng-click='chosize("1")' >S</li>
+				<li id='2' ng-click='chosize("2")' >M</li>
+				<li id='3' ng-click='chosize("3")' >L</li>
+				<li id='4' ng-click='chosize("4")' >XL</li>
+				<li id='5' ng-click='chosize("5")'>2XL</li>
+				<li id='6' ng-click='chosize("6")'>3XL</li>
+			</ul>-->
+		</div>
+		<!--<h4 style="padding: 10px;font-size: 14px;"><i class="icon ion-information-circled" style="color:#f50;margin-right: 5px;"></i>获赠礼品包邮，徽章统一配送。</h4>-->
+		
+		</div>
+		
+	</ion-content>
+   <!--<div class="sizeshow" ng-if='showsizes'>
+   	<div>
+   		<a ng-click='showfalse()'>×</a>
+   		<img src="img/closizes.png"/>
+   	</div>
+		</div>-->
+		<ion-footer>
+			<button class="button button-calm" style="width: 100%;margin-top:30px;background: #f50;position: fixed;bottom: 0;width: 100%;" ng-click="submitbuy()">前去支付</button>
+		</ion-footer>
+</ion-view>

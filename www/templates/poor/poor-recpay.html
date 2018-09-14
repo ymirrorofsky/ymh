@@ -1,0 +1,72 @@
+<ion-view view-title="我要捐钱" hide-nav-bar="true">
+    <ion-header-bar class="bar-calm header-bac45k poorBar">
+        <div class="buttons">
+            <button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+        </div>
+        <h1 class="title">我要捐钱</h1>
+    </ion-header-bar>
+    <ion-content class="poorContent poorRecPay" style="background:#EEEEEE">
+        <div class="prp-info">
+            <p>受助人: <span ng-bind="applyInfo.username">15515612523</span></p>
+            <p>收款账户: <span ng-bind="applyInfo.identity">受助人的账户</span></p>
+        </div>
+        <div class="yd-donate-count real-count s-apply-c bgwhite">
+            <ul>
+                <li>
+                    <div class="flex beanType">
+                        <!--<div>捐助金额/元：<span>1000</span></div>-->
+                        <p class="flex_1">捐助金额/元：</p>
+                        <span ng-bind="moneyMust"></span>
+                    </div>
+                </li>
+                <li>
+                    <div class="flex beanType" ng-click="showDonate()">
+                        <p class="flex_1">捐款方式：</p>
+                        <span>{{typeText|| '请选择'}}<i class="iconfont icon-right" style="color:#000"></i></span>
+                    </div>
+                </li>
+                <li>
+                    <div class="flex beanType">
+                        <p class="flex_1">您与受助人的关系</p>
+                        <span>发起人</span>
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+        <div style="padding:10px;">
+            提示:<br/> 1.完善信息后，需要给推荐的受助人账户首捐1000元进行激活。
+            <br>
+        </div>
+        <div>
+            <div class="prp-btn" ng-click="apply()">下一步</div>
+        </div>
+
+        <div class="mask" ng-if="donateModal">
+            <div class="prp-mask bgwhite">
+                <div class="prp-mask-top">
+                    <span class="prp-cancel" ng-click="showDonate(1)">取消</span>
+                    <span class="prp-sure" ng-click="showDonate(2)">确定</span>
+                </div>
+                <div class="prp-mask-bottom">
+                    <ul>
+                        <li class="bd1" ng-click="active(1)" ng-class="{'on': way == 1}">
+                            <div>方式一:捐款获5倍爱心</div>
+                            <p>受助人获得捐助金额x5倍爱心价值；捐助人获得捐助金额*2倍爱心价值</p>
+                        </li>
+                        <li class="bd1" ng-click="active(2)" ng-class="{'on': way == 2}">
+                            <div>方式二:直接捐助</div>
+                            <p>捐助款直接进入基金会账户，由基金会拨款至受助人账户</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div>
+
+        </div>
+    </ion-content>
+    <!--<ion-footer-bar class="rec-know-btn">
+        <button ui-sref='poorson.recreason'></button>
+    </ion-footer-bar>-->
+</ion-view>

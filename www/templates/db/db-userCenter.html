@@ -1,0 +1,88 @@
+<ion-view view-title="个人中心" hide-nav-bar='true'>
+    <ion-header-bar class="bar-calm">
+        <h1 class="title">个人中心</h1>
+    </ion-header-bar>
+    <ion-content class="user_center">
+        <div class="uc_header borderB10">
+            <div class="uc_h_top">
+                <!-- <div class="uc_h_setting" ui-sref='user.center'>
+                    <i class="iconfont icon-shezhi"></i>
+                </div> -->
+                <div class="uc_h_info flex_row_center">
+                    <div class="uc_h_avatar">
+                        <img ng-src="{{info.userInfo.avatar || 'img/db/avatar.jpg'}}"
+                            alt="">
+                    </div>
+                    <div class="uc_h_name flex_1">
+                        <p>昵称:{{info.userInfo.nickname || globalInfo.user.mobile}}</p>
+                        <p>可用{{globalInfo.nounInfo.LOVE}}:{{info.userInfo.heart}}</p>
+                    </div>
+                    <!-- <div class="uc_h_charge">立即充值</div> -->
+                </div>
+
+            </div>
+            <div class="uc_h_bottom flex_row_center">
+                <div class="flex_1 flex_col_center borderR1">
+                    <span>{{info.userInfo.heart}}</span>
+                    <div>可用{{globalInfo.nounInfo.LOVE}}</div>
+                </div>
+                <div class="flex_1 flex_col_center borderR1" ui-sref='dbson.userRec'>
+                    <span>
+                        <i class="iconfont icon-chongzhi"></i>
+                    </span>
+                    <div>夺宝记录</div>
+                </div>
+                <div class="flex_1 flex_col_center" ui-sref='dbson.awardRec'>
+                    <span>
+                        <i class="iconfont icon-xiaofei"></i>
+                    </span>
+                    <div>中奖记录</div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="uc_serve flex flex_wrap borderB10">
+            <div class="flex_col_center borderB1 borderR1" ui-sref='dbson.userRec'>
+                <img src="img/db/duobao.png" alt="">
+                <div>夺宝记录</div>
+            </div>
+            <div class="flex_col_center borderB1 borderR1" ui-sref='dbson.awardRec'>
+                <img src="img/db/zhongjiang.png" alt="">
+                <div>中奖记录</div>
+            </div>
+            <div class="flex_col_center borderB1 borderR1">
+                <img src="img/db/faxian.png" alt="">
+                <div>发现</div>
+            </div>
+            <div class="flex_col_center borderB1 borderR1">
+                <img src="img/db/yaoqing.png" alt="">
+                <div>邀请好友</div>
+            </div>
+            <div class="flex_col_center borderB1 borderR1">
+                <img src="img/db/jifen.png" alt="">
+                <div>积分兑换</div>
+            </div>
+ 
+            <div class="flex_col_center borderB1 borderR1">  
+                <img src="img/db/shaidan.png" alt="">
+                <div>我的晒单</div>
+            </div>
+        </div> -->
+        <div class="uc_promise">
+            <div class="uc_p_list flex_row_center">
+                <div class="flex_row_center">
+                    <img src="img/db/gongping.png" alt="">
+                    <div>公平公正公开</div>
+                </div>
+                <div class="flex_row_center">
+                    <img src="img/db/zhengping.png" alt="">
+                    <div>正品保证</div>
+                </div>
+                <div class="flex_row_center">
+                    <img src="img/db/quanyi.png" alt="">
+                    <div>权益保证</div>
+                </div>
+            </div>
+            <!-- <div class="uc_p_team">腾远科技</div> -->
+        </div>
+    </ion-content>
+</ion-view>

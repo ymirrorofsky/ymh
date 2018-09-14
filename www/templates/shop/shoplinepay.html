@@ -1,0 +1,47 @@
+<ion-view view-title="商家付款" hide-nav-bar="true">
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ui-sref='tab.tcmytc'>返回</button>
+		</div>
+		<h1 class="title">商家付款</h1>
+	</ion-header-bar>
+	<ion-content class="bodybg-normal shopslinepay" style='bottom: 50px;'>
+		<div class="shopslinepay-info">
+			<p>商家手机：{{shopsinfo.tel}} <i>{{shopsinfo.createtime| date:"yyyy-MM-dd HH:mm:ss"}}</i></p>
+			<h4>
+				<span>让利比：</span> <input type="text" ng-model="shopsinfo.shopsGiveRatio" ng-change='changebili()' />% <b>点击修改</b>
+			</h4>
+			<p><em style="color: #EC0005;">*</em>当前让利比默认为店铺让利比，点击可修改</p>
+		</div>
+		<div class="shopslinepayalllist">
+				<ul class="shopslinepay-list" id='1'>
+				<li>
+					<img src="img/colorremove.png" />
+					<span>用户手机号：</span>
+					<input type="text" maxlength='11' placeholder="请输入消费手机号" >
+				</li>
+				<li>
+					<span>消费者名称：</span>
+					<input type="text" placeholder="消费者名称"  disabled="" style="background: #fff;">
+				</li>
+				<li>
+					<span>消费金额：</span>
+					<input type="text" placeholder="请输入消费金额" >
+				</li>
+			</ul>
+		</div>
+		  <div class="shopslinepay-operate">
+		  	 <a ng-click='removeshow()'><img src="img/remove.png" alt="" /> 删除</a>
+		  	 <a ng-click='addrow()'> <img src="img/plus.png"/>增加一行</a>
+		  </div>
+			
+	</ion-content>
+	<footer class="common-footer shopslinepay-footer">
+		<div>
+			<span>累计付款</span>
+			<b>￥<em>0</em></b>
+			
+		</div>
+		<a ng-click="goodsPay()">提交订单</a>
+	</footer>
+</ion-view>

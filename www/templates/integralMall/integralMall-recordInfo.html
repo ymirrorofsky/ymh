@@ -1,0 +1,52 @@
+<ion-view title="兑换详情" hide-nav-bar="true" hide-back-button="true">
+	<ion-header-bar class="bar-calm header-back" style='border: none;'>
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">兑换详情</h1>
+	</ion-header-bar>
+
+	<ion-content class="bodybg-normal" style="padding-bottom: 20px; ">
+		<!--<ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()"></ion-refresher>-->
+		<div class="useronlineorderinfo">
+			<div class="useronlineinfo-head">
+				<p><span>兑换编号：</span> {{recordInfo.id||11}}</p>
+				<p><span>兑换时间：</span> {{recordInfo.create_time*1000|date:'yyyy-MM-dd HH:mm'}} 
+					<em ng-bind='statusName[recordInfo.status]'></em></p>
+			</div>
+			<div class="useronlineinfo-address">
+				<p><span>{{recordInfo.receiver||'冬洋'}}</span> <i>{{recordInfo.mobile}}</i></p>
+				<p><span>收货地址：</span>{{recordInfo.birth}}{{recordInfo.address}}</p>
+			</div>
+			<div class="useronlineinfo-good">
+					<div class="goodsinfo"  ui-sref='integral.goodsInfo({goodsId:recordInfo.integral_id})'>
+						<img ng-src="{{recordInfo.thumb}}" class="imgs"/>
+						<div>
+							<p>{{recordInfo.goods_title}}</p>
+							<p ng-if='recordInfo.mode==3'>{{globalInfo.nounInfo.LOVE}}券{{recordInfo.heart_voucher}}</p>
+							<p  ng-if='recordInfo.mode!=3'>兑换方式:￥{{recordInfo.money}}+{{globalInfo.nounInfo.LOVE}}{{recordInfo.credit}}</p>
+							<!--<p>￥{{recordInfo.goodsPrice}}-->
+							<!--<i>×1</i></p>-->
+						</div>
+					</div>
+			</div>
+			<div class="useronlineinfo-ditch">
+				<p><span>配送方式：</span> 
+					<b ng-if='recordInfo.express==0'>包邮</b>
+					<b ng-if='recordInfo.express!=0'>快递{{recordInfo.express}}</b> </p>
+				<p ng-if='recordInfo.delivery'><span>快递公司：{{recordInfo.delivery}}</span></p>
+				<p ng-if='recordInfo.express_id'><span>快递号：{{recordInfo.express_id}}</span></p>
+				<!--<p><span>实付款：</span> ￥{{recordInfo.payPrice||100}}</p>-->
+				<!--<p><span>成交时间：</span> {{recordInfo.createtime*1000|date:'yyyy-MM-dd HH:mm'}} </p>-->
+			</div>
+		</div>
+		<!--<ion-infinite-scroll ng-if="!noMore" on-infinite="loadMore()" distance="-1%" immediate-check="false">
+		</ion-infinite-scroll>-->
+	</ion-content>
+<div class="common-footer useronlineorderinfo-footer" style="background: #fff;border-top:solid 1px #E0E0E0 ;bottom: 0;">
+		<span  ng-if='recordInfo.status==2' ng-click='confirmRecord(recordInfo.id)'>确认收货</span>
+		 <!--<span  ng-if='recordInfo.status==0' style="color:#f00;" ng-click='confirmExchange(recordInfo.integral_id)'>兑换</span>-->
+		 <!--<span  ng-if='recordInfo.status==0' ng-click='cancel(recordInfo.id)'>取消兑换</span>-->
+		  <!-- <span  ng-if='recordInfo.orderStatus=="-1"||recordInfo.orderStatus=="4"' ng-click='delorder(recordInfo.orderId,recordInfo.id)'>删除记录</span>-->
+		</div>
+</ion-view>

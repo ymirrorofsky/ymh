@@ -1,0 +1,62 @@
+<ion-view view-title="支付订单" hide-nav-bar='true'>
+
+    <ion-header-bar class="bar-calm">
+        <div class="buttons">
+            <button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+        </div>
+        <h1 class="title">支付订单</h1>
+    </ion-header-bar>
+
+    <ion-content class="create_order">
+
+        <div class="borderB10">
+            <div class="widge_header co_info  borderB1 borderT1">
+                <div ng-repeat="item in info.list" class="flex">
+                    <div class="wc_h_title flex_1">
+                        <span class="red">({{item.onePrice}}元/人次)</span>{{item.title}}
+                    </div>
+                    <div class="wc_h_all">
+                        <span class="red">{{item.num}}</span>人次
+                    </div>
+                </div>
+            </div>
+            <div class="widge_header co_ flex borderB1">
+                <div class="wc_h_title flex_1">
+                    <span></span>
+                </div>
+                <div class="wc_h_all">
+                    商品合计:
+                    <span class="red">{{totalPrice}}{{globalInfo.nounInfo.LOVE}}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="co_payWay">
+            <div class="widge_header co_info flex borderB1 borderT1" ng-click="active('balance')">
+                <div class="wc_h_title flex_1" ng-class="{'on':payWay == 'balance'}">
+                    余额支付(余额:{{info.balance}}{{globalInfo.nounInfo.LOVE}})
+                </div>
+                <div class="wc_h_all">
+                    <span class="red">{{totalPrice}}{{globalInfo.nounInfo.LOVE}}</span>
+                </div>
+                <div class="co_checked" ng-class="{'on':payWay == 'balance'}"></div>
+            </div>
+            <div class="widge_header co_ flex borderB1" ng-click="active('weChat')">
+                <div class="wc_h_title flex_1" ng-class="{'on':payWay == 'weChat'}">
+                    微信支付
+                </div>
+                <div class="wc_h_all">
+                    <span class="red">2.00元</span>
+                </div>
+                <div class="co_checked" ng-class="{'on':payWay == 'weChat'}"></div>
+            </div>
+        </div>
+
+        <div class="co_payBtn" ng-click="submit()" ng-if="payWay == 'weChat'">
+            微信支付
+        </div>
+        <div class="co_payBtn" ng-click="submit()" ng-if="payWay == 'balance'"> 
+            余额支付
+        </div>
+    </ion-content>
+</ion-view>

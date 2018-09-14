@@ -1,0 +1,119 @@
+<ion-view title="首页" hide-nav-bar='true'>
+  <ion-header-bar class="bar-calm" align-title="center">
+      <div class="buttons">
+          <button class="button iconfont icon-back1 button-clear" ui-sref='tab.online'>返回</button>
+      </div>
+    <h1 class="title">首页</h1>
+
+  </ion-header-bar>
+  <ion-content class="tab_home">
+    <ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()"></ion-refresher>
+    <!-- 顶部导航 -->
+    <div class="slide">
+      <div class="swiper-container1" id="swiper-container1">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide" ng-repeat="item in info.banner">
+            <img ng-src="{{item.thumb}}" width="100%" class="banner-img db_img">
+          </div>
+        </div>
+
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+    <!-- 分类 -->
+    <div class="db home-nav borderB10">
+      <ul class="clearfix">
+        <li ng-repeat="nav in info.cate" ui-sref='db.goodsList({"cateId":nav.link})'>
+          <img ng-src="{{nav.thumb}}" class="db_img"/>
+          <p ng-bind="nav.name"></p>
+        </li>
+
+      </ul>
+    </div>
+
+    <!-- 最新揭晓 -->
+    <div class="last_reveal borderB10">
+      <div class="widge_header flex borderB1">
+        <div class="wc_h_title flex_1">最新揭晓</div>
+        <div class="wc_h_all" ui-sref='db.lastReveal'>
+          <img src="img/arrowright.png" alt="" class="db_img">
+        </div>
+      </div>
+      <div class="lr_data flex">
+        <section class="flex_row_center borderR1" ng-repeat='item in info.jiexiao' ui-sref="dbson.lastRevealD({periodId:item.id})">
+          <div class="lr_d_text flex_1">
+            <div class="lr_goodsName">(第{{item.periods}}期){{item.goodsName}}</div>
+           
+            <div class="lr_countdown" ng-if="item.shijiancha > 0">
+              <span class="lr_d_hour">{{item.hour || '00'}}</span>:
+              <span class="lr_d_minute">{{item.min || '00'}}</span>:
+              <span class="lr_d_second">{{item.sec || '00'}}</span>
+            </div>
+            <div class="lr_username " ng-if="item.shijiancha < 0 ">恭喜:{{item.nickname || item.mobile1}}</div>
+          </div>
+          <div class="lr_d_img">
+            <img ng-src="{{item.thumb}}"
+              alt="" class="db_img">
+          </div>
+        </section>
+        <!-- <section class="flex_row_center borderR1">
+          <div class="lr_d_text flex_1">
+            <div class="lr_goodsName">(第一期)甜品商品</div>
+            <div class="lr_username ">恭喜：天空之镜</div>
+          </div>
+          <div class="lr_d_img">
+            <img src="https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1510020207&di=afbd7ddacc1796e7081a38b59da22ae6&src=http://img.zcool.cn/community/01b3cd570b72fd32f8751b3f6a5eda.jpg"
+              alt="">
+          </div>
+        </section> -->
+      </div>
+    </div>
+
+    <!-- 商品列表 -->
+    <div class="goods_section">
+      <div class="gl_tab flex borderB1">
+        <div ng-click="active('fast')" ng-class="{'on':type == 'fast'}">最快</div>
+        <div ng-click="active('new')" ng-class="{'on':type == 'new'}">最新</div>
+        <div ng-click="active('hot')" ng-class="{'on':type == 'hot'}">最热</div>
+        <div class="flex_row_center" ng-click="active('asc')" ng-class="{'on':type == 'asc'}">价格
+          <i class="iconfont icon-shangcheng"></i>
+        </div>
+        <div class="flex_row_center" ng-click="active('desc')" ng-class="{'on':type == 'desc'}">价格
+          <i class="iconfont icon-xiajiang"></i>
+        </div>
+      </div>
+      <div class="goods_list clearFix">
+        <div class="goods_item" ui-sref='dbson.goodsInfo({goodsId:item.id})' ng-repeat="item in info.goodsList">
+          <div class="gi-img">
+            <img ng-src="{{item.thumb}}" alt="" class="db_img">
+          </div>
+          <div class="gi-name">(第{{item.periods}}期){{item.title}}</div>
+          <div class="gi-percent">开奖进度 {{item.scale}}%</div>
+          <div class="flex_row_center gi-progress">
+            <!-- <div class="gi-process"></div> -->
+            <progress class="progress" max="100" value="{{item.scale}}"></progress>
+            <!-- <div class="gi-cart"></div> -->
+            <i class="iconfont icon-gouwuchejia"  ng-click="submit('add',item.periods)"></i>
+          </div>
+
+
+        </div>
+        <!-- <div class="goods_item">
+          <div class="gi-img">
+            <img src="https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1510020207&di=afbd7ddacc1796e7081a38b59da22ae6&src=http://img.zcool.cn/community/01b3cd570b72fd32f8751b3f6a5eda.jpg"
+              alt="">
+          </div>
+          <div class="gi-name">(第三期)甜品商品</div>
+          <div class="gi-percent">开奖进度 0%</div>
+          <div class="flex_row_center gi-progress">
+            <progress class="progress" max="100" value="5"></progress>
+            <i class="iconfont icon-gouwuchejia"></i>
+          </div>
+
+
+        </div> -->
+      </div>
+    </div>
+  </ion-content>
+
+</ion-view>

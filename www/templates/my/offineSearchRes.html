@@ -1,0 +1,57 @@
+<ion-view view-title="" hide-nav-bar="true" hide-back-button="true" class="online_search">
+    <ion-content>
+        <!--<ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()"></ion-refresher>-->
+
+        <div class="bar bar-header item-input-inset" style="background: #EC0005;">
+            <i class="iconfont icon-back1" ng-click="$ionicGoBack()"></i>
+            <label class="item-input-wrapper">
+        <i class="icon ion-ios-search placeholder-icon" ng-click="goSearch()"></i>
+        <input type="search" placeholder="搜索" value="" id="offlineSearchK" ng-focus="goSearch()">
+      </label>
+            <div class="tubiao" ng-click="openModal()" ng-cloak><span class="loc"><span class="text-overflow_1 search_city">{{curPosition.city || '郑州市'}}</span></span>
+            </div>
+        </div>
+        <div class="common-empty" ng-if="orderEmpty">什么都没有</div>
+        <div class="lineshop-shopslist">
+            <ul>
+                <li ng-repeat='items in  shopsList' ui-sref="shops.shopsInfo({spid:items.id})" style="min-height:90px">
+                    <img ng-src="{{items.logo||'img/goodsLogo.png'}}">
+                    <h3>
+                        <span class="distance">{{items.distance}}</span>
+                        <p class="text-overflow_1">{{items.title}}</p>
+                    </h3>
+                    <div class="star">
+                        <span ng-if='items.times>0'>消费{{items.times}}次</span>
+                        <p>
+                            <i class="iconfont icon-favorfill" ng-if='items.star=="0"'></i>
+                            <i class="iconfont icon-favorfill" style="color: #f60;" ng-if='items.star!="0"'></i>
+                            <i class="iconfont icon-favorfill" ng-if='items.star=="0"||items.star=="1"'></i>
+                            <i class="iconfont icon-favorfill" style="color: #f60;" ng-if='items.star>1'></i>
+                            <i class="iconfont icon-favorfill" ng-if='items.star=="0"||items.star=="1"||items.star=="2"'></i>
+                            <i class="iconfont icon-favorfill" style="color: #f60;" ng-if='items.star>2'></i>
+                            <i class="iconfont icon-favorfill" ng-if='items.star<4'></i>
+                            <i class="iconfont icon-favorfill" style="color: #f60;" ng-if='items.star>3'></i>
+                            <i class="iconfont icon-favorfill" ng-if='items.star<5'></i>
+                            <i class="iconfont icon-favorfill" style="color: #f60;" ng-if='items.star=="5"'></i>
+                        </p>
+                    </div>
+                    <div class="bottom">
+                    	<p>
+                    		<span>奖励{{items.shopsGiveRatio}}{{globalInfo.nounInfo.LOVE}}</span>
+							<span>{{items.categoryName}} | <b>{{items.street}}</b></span>
+                    	</p>
+                        <!--<p>满{{items.shopsGiveRatio}}送1 <img src="img/lovelogo.png" /> </p>-->
+                        <!--id="goodsInfo_integral"-->
+                         
+                    </div>
+                </li>  
+
+
+
+      
+            </ul>
+        </div>
+        <!--<ion-infinite-scroll ng-if="!noMore " on-infinite="loadMore() " distance="1% " immediate-check="false ">
+        </ion-infinite-scroll>-->
+    </ion-content>
+</ion-view>

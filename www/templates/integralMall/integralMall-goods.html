@@ -1,0 +1,91 @@
+<ion-view view-title="" hide-nav-bar="true" hide-back-button="true" class="online_search">
+	<ion-header-bar class="bar-calm">
+		<div class="bar  item-input-inset" style="background: #EC0005;">
+			<!--<i class="iconfont icon-back1" ng-click="$ionicGoBack()"></i>-->
+			<label class="item-input-wrapper" style="margin-left: 20px;">
+        <i class="icon ion-ios-search placeholder-icon" ></i>
+        <!--ng-focus="goSearch()"-->
+        <input type="text" placeholder="搜索商品"  id='onlineSearchK' ng-model='keyeords'>
+      </label>
+			<button class="button button-clear" style="font-size: 14px;padding-right: 8px;" ng-click="goSearch()">
+        搜索
+      </button>
+		</div>
+	</ion-header-bar>
+	<ion-content>
+		<!--<ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()"></ion-refresher>-->
+		<div class="integral_goods">
+			<ul class="flex tlt">
+				<li class="flex_1" ng-click="method.show._class()">
+					<h4>
+						<span ng-bind="pageMsg.titleShow._class"></span>
+							<i class="ion-ios-arrow-down"></i></h4></li>
+				<!--<li class="flex_1 _one" ng-click="method.show._chotype()">
+					<h4>
+						<span ng-bind="pageMsg.titleShow._chotype"></span>
+							<i class="ion-ios-arrow-down"></i></h4></li>-->
+			</ul>
+			<div class="con">
+				<div class="con1" ng-if="pageMsg.bool._chotype">
+					<span class="_btn" ng-repeat="x in pageMsg.titleArr._chotype" ng-click="method.get._chotype(x.id,x.title)" ng-bind="x.title"></span>
+				</div>
+				<ul class="con2" ng-if="pageMsg.bool._class">
+					<li data-id="0" ng-click="method.get._class(0,'全部')"><span class="_btn">全部</span>
+
+					</li>
+					<li ng-repeat="y in pageMsg.titleArr._class" ng-click="method.get._class(y.id,y.title)">
+						<span class="_btn" ng-bind="y.title">
+							</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!--<h1 ng-bind="thisKeyword"></h1>-->
+		<div class="common-empty" ng-if="orderEmpty">什么都没有</div>
+		<div class="lineshop-shopslist">
+			<ul>
+				<li class="cardname" ng-repeat="goods in goodsList" ui-sref="integral.goodsInfo({goodsId:goods.id})">
+					<!--<img image-lazy-src="{{goods.thumb}}" image-lazy-loader="circles" lazy-scroll-resize="true">-->
+					<img ng-src="{{goods.thumb||'img/goodsLogo.png'}}" />
+					<h3>
+						<!--<span class="distance"> {{goods.distance}}</span>--> 
+						<p class="text-overflow_1"><em class="text-overflow_1" style="width: 65%;float:left;">{{goods.goods_title}}</em></p>
+					</h3>
+					<div class="star">
+						<!--<span ng-if='goods.times>0'>消费{{goods.times}}次</span>-->
+						<p>
+							价格:{{goods.spe_price}}
+						</p>
+					</div>
+					<div class="bottom">
+						<!--<span>{{goods.categoryName}} | <b>{{goods.street}}</b></span>-->
+						<p ng-if='goods.mode==1'>兑换方式：{{goods.credit}}个{{globalInfo.nounInfo.LOVE}}+￥{{goods.money}}</p>
+						<!--<p ng-if='goods.mode==1'>兑换方式：{{goods.credit}}个{{globalInfo.nounInfo.LOVE}}+￥{{goods.money}}</p>-->
+						<p ng-if='goods.mode==2'>兑换方式：自由组合</p>
+						<p ng-if='goods.mode==3'>兑换方式：{{globalInfo.nounInfo.LOVE}}券{{goods.heart_voucher}}</p>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<!--<div class="online-shops-list" style="padding-top: 5px;" >
+			<ul class="clearfix">
+				<li class="flex" ui-sref="integral.goodsInfo({goodsId:good.id})" ng-repeat='good in goodsList'>
+					<img class="imgs" ng-src="{{good.thumb || 'img/wuimg.png'}}">
+					<div class="info clearfix flex_1">
+						<h3 class="flex text-overflow_1">{{good.goodsName}}</h3>
+						<div class="middle">
+							<span ng-if='good.freeDelivery=="1"'>包邮</span>
+							<i ng-if='good.sales!=0'>最近销量：{{good.sales||'2'}}</i>
+						</div>
+						<div class="bottom">
+							￥{{good.spe_price||'100'}}
+							<div> <img src="img/lovebg.png" /> <em>{{good.memberHeart||'1'}}</em></div>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>-->
+		<ion-infinite-scroll ng-if="noMore" on-infinite="loadMoreGoods()" distance="1%" icon="" immediate-check="false">
+		</ion-infinite-scroll>
+	</ion-content>
+</ion-view>

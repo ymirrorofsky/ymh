@@ -1,0 +1,67 @@
+<ion-view view-title=" " hide-nav-bar="true">
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">{{globalInfo.nounInfo.BALA}} </h1>
+		<div class="buttons">
+			<button class="button  button-clear" ui-sref='user.myBank({button:"hidden"})'>银行卡</button>
+		</div>
+	</ion-header-bar>
+	<ion-content class="bodybg-normal">
+		<div class="banlanceindex">
+             <div>
+             	<p>可用{{globalInfo.nounInfo.BALA}}</p>
+             	<h4><span>￥<b>{{balance.balance}}</b></span>
+             		<em ng-click='rechargeshow()' ng-if='showrecharge'>充值</em>
+             		<!--<em ui-sref='user.balanceOut'>转出</em>-->
+             		
+             		</h4>
+             	<h6 ng-if="sureshop">
+             		待解冻金额：{{balance.ice||0}} 
+             		<img src="img/colquestionmark.png"/ ng-click='showiceinfo()'>
+             		<!--<a ui-sref='user.icebalance'>转出<i class="icon ion-ios-arrow-right"></i><a>-->
+             	</h6>
+             </div>
+             <ul>
+             	<li  ng-click="goWithdraw()">
+             		<b></b>
+             		<i class="iconfont icon-jilu"></i>
+             		<span>提现</span>
+             	</li>
+             	<li ui-sref='user.baladetailList'>
+             		<i class="iconfont icon-jilu"></i>
+             		<span>账户明细</span>
+             	</li>
+             </ul>
+             <!--<h5>线下转账</h5>-->
+			</div>
+			  <!--<ion-label></ion-label>-->
+	</ion-content>
+	 	<div class="balarecharge" ng-if='rechargeshows'>
+	<!--<div class="balarechargeuser">
+		<p>账号：$rootScope.globalInfo.user.uid</p>
+		<p>充值ID：{{}}</p>
+	</div>-->
+	<div class="rechargemoney">
+		<p><input type="text"  placeholder="请输入整数" ng-model='rechargenum'/></p>
+		<!--<p><em>注</em>：请输入整百整十数</p>-->
+	</div>
+	<div class="rechargetype">
+		<a ng-click='rechargecreat("Z0",rechargenum)'  ng-if='showchoose!="alipay"'><span style="background: #2e9618;">微信</span></a>
+		<a ng-click='rechargecreat("A0",rechargenum)'  ng-if='showchoose!="wechat"'><span style="background: #00aaee;">支付宝</span></a>
+	</div>
+			  <!--<ion-label></ion-label>-->
+	</div>
+	<div class="balanceiceinfo" ng-if='showbalice'>
+		  <div>
+		  	<h5><img src="img_ad/deleteout.png" ng-click='showiceinfo()' />
+		  		<span>冻结说明</span></h5>
+		  		<ul>
+		  			<li>线上商家销售商品，需从销售额内扣除<em>店铺保证金{{balance.blocked}}元</em>，关闭店铺时会进行解冻。 </li>
+		  			<!--<li>店铺保证金</li>-->
+		  		</ul>
+		  </div>
+	</div>
+</ion-view>
+

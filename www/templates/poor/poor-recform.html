@@ -1,0 +1,120 @@
+<ion-view view-title="推荐受赠者" hide-nav-bar="true">
+    <ion-header-bar class="bar-calm header-back poorBar">
+        <div class="buttons">
+            <button class="button iconfont icon-back1 button-clear" ui-sref='poorson.recreason'>返回</button>
+        </div>
+        <h1 class="title">推荐受赠者</h1>
+        <div class="buttons">
+            <button class="button button-clear" ui-sref='poorson.recknow({"fromPage":"recform"})'>推荐流程</button>
+        </div>
+    </ion-header-bar>
+    <ion-content class="poorContent poorRecForm">
+        <div class="prf-info">
+            <div class="flex" ui-sref='poorson.recreason'>
+                <div>致贫原因:</div>
+                <div class="flex_1 tealr">{{poorReason[applyInfo.because]}}<i class="icon ion-chevron-right" style="font-size: 1em;margin-left:5px;"></i></div>
+            </div>
+            <div class="flex prf-type">
+                <div>推荐对象：</div>
+                <div class="relative" style="margin-right:5px;">
+                    <input id="item1" type="radio" name="item1" value="2" ng-model="applyInfo.choose">
+                    <label for="item1"></label>
+                    <span>推荐个人</span>
+                </div>
+                <div class="relative">
+                    <input id="item2" type="radio" name="item2" value="1" checked ng-model="applyInfo.choose">
+                    <label for="item2"></label>
+                    <span>推荐群体</span>
+                </div>
+            </div>
+
+            <div class="yd-donate-count real-count s-apply-c" style="padding:0;border-bottom:none">
+                <ul>
+                    <li style="margin:0;border-bottom:none">
+                        <label class="must">受赠者账号</label>
+                        <input type="text" placeholder="填写11位手机号,系统会自动生成账号" ng-model="applyInfo.identity">
+                        <span>此号用于在平台的注册并接受资助的账户</span>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="yd-donate-count real-count s-apply-c" style="border-bottom:4px solid #eee">
+            <div class="prf_title">基础资料</div>
+            <ul>
+                <li>
+                    <label class="must">真实姓名</label>
+                    <input type="text" placeholder="请输入真实姓名" ng-model="applyInfo.username">
+                </li>
+                <li>
+                    <label class="must">身份证号码</label>
+                    <input type="text" placeholder="请输入18位身份证号码" ng-model="applyInfo.IDCard">
+                </li>
+                <li>
+                    <label class="must">联系电话</label>
+                    <input type="text" placeholder="请输入您的联系电话" ng-model="applyInfo.mobile">
+                </li>
+                <li class="flex" ng-click="areaShow(1)">
+                    <p class="flex_1 must">家庭住址/居住地址</p>
+                    <span ng-bind="applyInfo.home_birth ||'点击选择'"></span>
+                    <i class="iconfont icon-right"></i>
+                </li>
+                <li>
+                    <label class="must">详细地址</label>
+                    <input type="text" maxlength="20" placeholder="请输入详细家庭地址/居住地址" ng-model="applyInfo.home_address">
+                </li>
+                <li class="flex" ng-click="areaShow(2)">
+                    <p class="flex_1 must">收货地址</p>
+                    <span ng-bind="applyInfo.receive_birth || '点击选择'"></span>
+                    <i class="iconfont icon-right"></i>
+                </li>
+                <li>
+                    <label class="must">收货详细地址</label>
+                    <input type="text" maxlength="20" placeholder="请输入接受捐助品的详细地址" ng-model="applyInfo.receive_address">
+                </li>
+                <li style="border-bottom:none">
+                    <div class="must">状态描述</div>
+                    <textarea class="prf-textarea" name="" id="" placeholder="请描写受灾的基本情况，包括受灾时间，受灾地点" ng-model="applyInfo.info"></textarea>
+                </li>
+
+
+            </ul>
+        </div>
+        <div class="yd-apply-img ptf-apply-img" style="padding:0;color:#777777;border-bottom:4px solid #eee">
+            <div class="prf_title">资料图片</div>
+            <div class="ptf-photo-group">
+                <div class="ptf-photo" ng-click="uploadAvatar(1)">
+                    <!--<em id="divImg01" ng-click="uploadAvatar(1)"></em>-->
+                    <img src="img/poor/add.png" />
+                    <p>上传手拿身份证</p>
+                    <em id="divImg02" ng-if="applyInfo.thumb"></em>
+                </div>
+                <div class="ptf-photo" ng-click="uploadAvatar(2)">
+                    <img src="img/poor/add.png" />
+                    <p>上传图片</p>
+                </div>
+
+                <div class="ptf-photo uploadPic" ng-repeat="x in applyInfo.thumbs track by $index">
+                    <i ng-click="deletePic($index)">x</i>
+                    <img ng-src="{{x}}" alt="pic">
+                </div>
+            </div>
+
+            <div class="prf-photo-tip">上传图片，会提高筹款效果，建议上传真实，完整的现场拍照等。</div>
+        </div>
+        <div style="text-align:left;background:#eee;padding:10px 10px 20px 10px;font-size:12px;">
+            <div style="margin-bottom:5px;">
+                <div class="agree"><i ng-class="agree == true ? 'ion-android-checkbox' : 'ion-android-checkbox-outline-blank'" ng-click="authAgree()"
+                        style="font-size:19px;margin-right:5px;color:#ec0005;position:relative;top:1px;"></i>确认即表示同意<span class="positive"
+                        ng-click="showShopAgreement()">《发起人承若书》</span></div>
+            </div>
+            <div>
+                发起人承诺：所提交的文字与图片资料完全真实，无任何虚构事实及隐瞒事实，如有不实，愿承担全部法律责任
+            </div>
+        </div>
+
+    </ion-content>
+    <ion-footer-bar class="rec-know-btn">
+        <button ng-click="apply()">下一步，激活受助人账号</button>
+    </ion-footer-bar>
+</ion-view>

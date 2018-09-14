@@ -1,0 +1,63 @@
+<ion-view view-title="爱心商城" hide-nav-bar="true">
+    <ion-header-bar class="bar-calm header-back poorBar">
+        <!--<div class="buttons">
+            <button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+        </div>-->
+        <h1 class="title">爱心商城</h1>
+    </ion-header-bar>
+    <ion-content class="poorContent poorShop" style="background:#EEEEEE">
+        
+        <div ui-view></div>
+        <ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()"></ion-refresher>
+        
+        <div class="plist-more" ng-if="!reciName" ui-sref="poorson.list({fromPage:'good'})" style="background:#af0e11;color:white;font-size:15px;box-shadow:0 2px 5px #850B0D inset;">点击选择受助人<i class="icon ion-chevron-right" style="font-size: 1em;"></i></div>
+        <div class="plist-more" ng-if="reciName" ui-sref="poorson.list({fromPage:'good'})" style="background:#af0e11;color:white;font-size:15px;box-shadow:0 2px 5px #850B0D inset;">受赠人:{{reciName}}&nbsp;&nbsp;{{reciMobile}}<i class="icon ion-chevron-right" style="font-size: 1em;"></i></div>
+        <div class="swiper-container" style="width:100%">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide" style="padding:0">
+                    <img src="http://img.zcool.cn/community/01c70757c000b50000012e7e3b1d40.jpg@900w_1l_2o_100sh.jpg" alt="">
+                </div>
+                <div class="swiper-slide" style="padding:0">
+                    <img src="http://img.zcool.cn/community/01c70757c000b50000012e7e3b1d40.jpg@900w_1l_2o_100sh.jpg" alt="">
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+        <div class="common-empty" ng-if="orderEmpty">什么也没有...</div>
+           
+        <div class="poor-donate-goods bgwhite">
+            <div class="plist-title flex">
+                <div class="plist-title-left">推荐捐助商品</div>
+            </div>
+            <div class="donate-goods-list">
+                <div class="donate-goods-list-item " ng-class="{'noborderright': (($index+1) % 2 == 0)}" ng-repeat="item in info" ui-sref="poorson.gooddetail({'id':item.id})">
+                    <div class="img">
+                        <img ng-src="{{item.thumb || 'img/goodsLogo.png'}}" alt="">
+                    </div>
+                    <div class="text-overflow_1" ng-bind="item.goodsName">东北大米</div>
+                    <div class="flex">
+                        <div class="g-money" ng-bind="item.spe_price | currency:'￥'">76</div>
+                        <div class="g-love"><i ng-bind="item.memberHeart | number:4"></i><span></span></div>
+                    </div>
+                    <div class="express">
+                        <span class="{'on' :　item.freeDelivery == 1}">包邮</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <ion-infinite-scroll ng-if="!noMore" on-infinite="loadMore()" distance="1%" immediate-check="false">
+        </ion-infinite-scroll>
+    </ion-content>
+    <div class="bottom-tab flex">
+        <div class="flex_1" ui-sref='poorson.goodcate'>
+            <img src="img/poor/i-cate.png" alt="">
+        </div>
+        <div class="flex_1" ui-sref='poorson.goodsear'>
+            <img src="img/poor/i-sear.png" alt="">
+        </div>
+        <div class="flex_1" ui-sref='poorson.cart'>
+            <img src="img/poor/i-shop.png" alt="">
+        </div>
+    </div>
+</ion-view>

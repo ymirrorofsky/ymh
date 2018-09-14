@@ -1,0 +1,83 @@
+<ion-view title="购物车" hide-nav-bar="true" hide-back-button="false">
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">购物车</h1>
+		<div class="buttons">
+			<span id='editdel' class="button  button-clear"  ng-click='editAdel()'>编辑</span>
+		</div>
+	</ion-header-bar>
+	<ion-content style='bottom: 55px;'>
+		<!--<ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()"></ion-refresher>-->
+		<div class="common-empty" ng-if='orderEmpty'>
+			什么也没有！...
+		</div>
+		<div ng-if='!orderEmpty'>
+			<dl class="cart-list" ng-repeat='items in cartlist'>
+				<dt id='p{{items.spid}}' class="shopchose" ng-click='changeshop(items.spid)'>
+				 <ion-checkbox class='checkbox-tcbj' style='z-index:-1;position: absolute;'></ion-checkbox>
+				<span> {{items.title}}</span></dt>
+				<dd ng-repeat='item in items.goods' id='p{{item.id}}'>
+					<div ng-click='changegoods(item.id,item.goodsPrice)'>
+						<ion-checkbox style='z-index:-1;position: absolute;' class='checkbox-tcbj'>
+						</ion-checkbox>
+						<img ng-src='{{item.thumb}}' alt="" />
+					</div>
+					<div class="cart-goodsinfo">
+						<h5>{{item.goodsName}}</h5>
+						<p><span ng-repeat='butes in item.goodsField'>{{butes}}</span></p>
+						<p>￥<b>{{item.goodsPrice}}</b></p>
+						<div class="carts-num">
+							<i class="iconfont icon-move" ng-click="minusNum(item.id,item.goodsPrice)"></i>
+							<!-- value="{{item.goodsNum}}"-->
+							<input type="text"  ng-model='item.goodsNum'    ng-focus='changeAlertBox(item.id,items.spid,item.goodsNum)' style="background: #fff;">
+							<i class="iconfont icon-add" ng-click="addNum(item.id,item.goodsPrice)"></i>
+						</div>
+					</div>
+				</dd>
+				<dt class="shopsmon">小计 ￥<input style="display: inline-block;padding: 0;background: #fff;" type="text"  value="0.00" disabled="disabled" /></dt>
+			</dl>
+		</div>
+		<!--<ion-infinite-scroll ng-if="noMore && curPosition.status != 1 " on-infinite="loadMoreGoods()" distance="-1%" icon="" immediate-check="false">
+		</ion-infinite-scroll>-->
+	</ion-content>
+	<div class="cart-bottom" ng-if='!orderEmpty'>
+		<div class="allChoose">
+			<ion-checkbox  ng-click='changeall()' class='checkbox-tcbj'>
+			</ion-checkbox>
+			<!--<label class="checkbox checkbox-calm">  
+                        <input type="checkbox"  /> 
+                    </label>-->
+			<span>全选</span>
+		</div>
+		<span class="totMoney">
+				<b>总金额：</b>￥{{allMon| number : 2}}
+		</span>
+		<div class="cart-settlement">
+			<a class='calculate ' ng-click="buyGoods()" ng-if='settlement'>结算</a>
+			<a class='del ' ng-click="delGoods()" ng-if='del'>删除</a>
+		</div>
+	</div>
+	<div class="alertBox" ng-if='showAlertBox'>
+		<div>
+			<p>修改购买数量</p>
+			<div class="alertBox-cartsnum">
+					<i class="iconfont icon-move" ng-click="alertMinusNum()"></i>
+							<!--ng-model='item.goodsNum'-->
+							<!--ng-keyup='changebuyNum(item.id,items.spid,item.goodsNum)'-->
+							<input type="text"    value="{{alertInfo.num||1}}"  style="background: #fff;">
+							<i class="iconfont icon-add" ng-click="alertAddNum()"></i>
+				</div>
+				<div class="alertBox-bottom">
+					<button ng-click='hideAlertBox()'>
+						取消
+					</button>
+					<button ng-click='changebuyNum()'>
+						确定
+					</button>
+				</div>
+		</div>
+		
+	</div>
+</ion-view>

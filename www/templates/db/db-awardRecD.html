@@ -1,0 +1,126 @@
+<ion-view title="中奖记录" hide-hav-bar="true">
+
+    <ion-header-bar class="bar-calm">
+        <h1 class="title">中奖记录</h1>
+    </ion-header-bar>
+    <ion-content class="award_rec_detail award_rec db_user_rec" style="background:#F7F7F7">
+
+        <div class="ard_status">
+            <div class="ard_s_title">商品状态</div>
+            <div class="ard_s_info">
+                <div class="flex ard_s_goods gray">
+                    <div>获得商品</div>
+                    <div class="flex_1 textRight">2017-11-01 08:40</div>
+                </div>
+                <div class="flex ard_s_addressSured gray" ng-if="info.info.status !=3" ng-class="{'gray':info.info.status > 3}">
+                    <div>确认收货地址</div>
+                    <div class="flex_1 textRight">{{info.info.confirmtime * 1000 | date:'yyyy-MM-dd HH:mm'}}</div>
+                </div>
+                <div class="ard_s_address" ng-if="info.info.status == 3">
+                    <div class="ard_s_a_title red">确认收货地址</div>
+                    <div class="ard_s_a_no" ng-if="!info.defaultAddress.username">
+                        <p class="gray">您还没有收货地址</p>
+                        <div class="ard_s_a_add" ng-click="chooseAdd()">填写地址</div>
+                    </div>
+                    <div class="ard_s_a_yes" ng-if="info.defaultAddress.username">
+                        <p class="gray flex">
+                            <span class="flex_1">{{info.defaultAddress.username}}</span>
+                            <span>{{info.defaultAddress.mobile}}</span>
+                        </p>
+                        <p class="gray">{{info.defaultAddress.birth}}{{info.defaultAddress.address}}</p>
+                        <div class="flex_row_center">
+                            <div class="flex_col_center">
+                                <div class="ard_s_a_sure ard_s_a_add" ng-click="sureAddress()">确认地址</div>
+                                <div class="ard_s_a_replace ard_s_a_add" ng-click="chooseAdd()">使用其他</div>
+                            </div>
+                            <textarea name="" id="" cols="30" rows="10" ng-model="info.defaultAddress.comment"></textarea>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="flex" ng-class="{'gray':info.info.status >= 5,'orange':info.info.status == 4}">
+                    <div class="flex_1">商品派发</div>
+                    <div ng-if="info.info.status >= 5">{{info.info.sendtime * 1000 | date:'yyyy-MM-dd HH:mm'}}</div>
+                    <div ng-if="info.info.status == 4">请等待</div>
+                </div>
+                <div class="ard_s_receive flex" ng-class="{'gray':info.info.status >= 6}">
+                    <div class="flex_1">确认收货</div>
+                    <div class="ard_s_r_sure" ng-click="sureReceive()" ng-if="info.info.status == 5">确认收货</div>
+                    <div ng-if="info.info.status >= 6">{{info.info.taketime * 1000 | date:'yyyy-MM-dd HH:mm'}}</div>
+                </div>
+                <div>
+                    <div>已签收</div>
+                    <div ng-if="info.info.status == 6"></div>
+                </div>
+            </div>
+
+        </div>
+        <div class="ard_delivery" ng-if="info.info.status == 5">
+            <div>物流公司:{{info.info.express}}</div>
+            <div class="flex">
+                <div class="flex_1">运单号码:{{info.info.expressn}}</div>
+                <div class="ard_s_a_add">物流信息</div>
+            </div>
+
+        </div>
+        <div class="ard_address" ng-if="info.info.status > 3 ">
+            <div class="ard_goodsTitle">
+                收货信息
+            </div>
+            <div class="ard_a_info">
+                <p class="flex">
+                    <span class="flex_1">{{info.info.realname}}</span>
+                    <span>{{info.info.mobile}}</span>
+                </p>
+                <div>{{info.info.address}}</div>
+            </div>
+
+
+        </div>
+
+
+        <div class="dur_list clearFix" style="background:#fff;">
+            <div class="ard_goodsTitle">
+                商品信息
+            </div>
+            <div class="dur_item goods_item flex borderB1">
+                <div class="gi-img " ui-serf='dbson.goodsInfo({goodsId:item.goodsId})'>
+                    <img ng-src="{{info.goods.thumb}}" alt="" class="db_img">
+                </div>
+                <div class="flex_1">
+                    <div class="gi-name">{{info.goods.title}}</div>
+                    <div class="award_total gray">
+                        <span>总需 : </span>{{info.info.zong_codes}}人次</div>
+                    <div class="award_num gray">
+                        <span>期号 : </span>{{info.info.period_number}}</div>
+                    <div class="award_num">
+                        <span>幸运号码 : </span>
+                        <span class="red">{{info.info.code}}</span>
+                    </div>
+                    <div class="award_current">
+                        <span>本期参与 : </span>{{info.info.partakes}}人次
+
+                    </div>
+                    <div class="award_time">
+                        <span>揭晓时间 : </span>{{info.info.endtime * 1000 | date:'yyyy-MM-dd HH:mm'}}
+                    </div>
+                    <div class="ar_status">
+                        <span>商品状态 : </span>
+                        <span class="green">{{awardStatus[info.info.status]}}</span>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+        </div>
+        
+    </ion-content>
+</ion-view>
+
+
+
+
+<!-- '1进行中，2待揭晓，3已揭晓，4待发货，5已发货，6已完成，7已晒单', -->

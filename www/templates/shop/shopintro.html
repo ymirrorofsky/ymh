@@ -1,0 +1,30 @@
+<ion-view view-title="企业简介" hide-nav-bar="true">
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">企业简介 </h1>
+	</ion-header-bar>
+	<ion-content class="bodybg-normal shopintroduce">
+		<h5>文字简介</h5>
+		<textarea name="" rows="" cols="" placeholder="请在此处填写企业的简介，如成立时间、注册资本、企业文化、经营范围、特色商品。"></textarea>
+		<h5>图片展示(<span>最多展示两张</span>)</h5>
+		<div class="yd-apply-img">
+				<h3>立即上传</h3>
+				<div class="row">
+					<div class="col photo_box">
+						<p>展示图片1</p>
+						<em id="divImg01"></em>
+						<i class="iconfont icon-add" ng-click="uploadAvatar(1)"></i>
+					</div>
+					<div class="col photo_box">
+						<p>展示图片2</p>
+						<em id="divImg02"></em>
+						<i class="iconfont icon-add" id="divImg2" ng-click="uploadAvatar(2)"></i>
+					</div>
+				</div>
+		</div>
+	</ion-content>
+	<footer class="common-footer">保存</footer>
+</ion-view>
+

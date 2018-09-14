@@ -1,0 +1,71 @@
+<ion-view title="发起众筹" hide-nav-bar="true" hide-back-button="true">
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">发起众筹</h1>
+	</ion-header-bar>
+	<ion-content class='cfprojectapply bodybg-normal'>
+		<dl class="cfprojectapply-top">
+			<dt class="flexG">
+				<span class="flexG-0">众筹</span>
+				<i class="flexG-1" ng-click='showdesc()'>筹款说明</i>
+			</dt>
+			<dd class="flexG">
+				<span class="flexG-0">目标金额</span>
+				<input class="flexG-1" type="text" placeholder="填写目标金额" ng-model='applyInfo.money' />
+				<span class="flexG-0">元</span>
+			</dd>
+			<dd class="flexG">
+				<span class="flexG-0">资金用途</span>
+				<input class="flexG-1" type="text" placeholder="发布后不可编辑" ng-model='applyInfo.purpose' />
+				<!--<span class="flexG-0">元</span>-->
+			</dd>
+			<dd class="flexG">
+				<span class="flexG-0">截止日期</span>
+				<b class="flexG-0" ng-if="applyInfo.days==''">{{newTimes| date:'yyyy-MM-dd HH:mm:ss'}}</b>
+				<b class="flexG-0" ng-if="applyInfo.days!=''">{{applyInfo.time | date:'yyyy-MM-dd HH:mm:ss'}}</b>
+				<div><span class="flexG-0">众筹时间：</span> 
+					<input class="flexG-0" type="text" placeholder="输入众筹时间"   ng-change='changeDays()' ng-model='applyInfo.days'/>天</div>
+			</dd>
+			<!--<dd  class="flexG">
+				<span  class="flexG-0">设为隐私项目</span>
+				<span  class="flexG-1">开启后不会被搜索到</span>
+				<span  class="flexG-0">共10天</span>
+			</dd>-->
+		</dl>
+		<div class="cfprojectapply-center">
+			<input type="text" placeholder="填写项目标题" ng-model='applyInfo.title' />
+			<textarea name="" rows="5"  placeholder="项目描述" ng-model='applyInfo.desc'></textarea>
+		</div>
+		<div class="cfprojectapply-end">
+					<div ng-repeat='item in applyInfo.imgs'>
+						<b ng-click='deleteimg($index)'>×</b>
+					<img src="{{item||'img/1.png'}}"/>
+					</div>
+					<!--<div >
+						<b ng-click='deleteimg($index)'>×</b>
+					<img src="img/1.png"/>
+					</div>-->
+					<div ng-click='uploadAvatar()'>
+						<p>上传图片</p>
+						<em id="divImg01"></em>
+						<i class="iconfont icon-add" ng-click="uploadAvatar(1)"></i>
+					</div>
+					
+				<p class="cfprojectapply-endremarks">请上传清晰的图片，最多4张</p>
+				</div>
+	</ion-content>
+	<div class="cfbtn-commonbottom">
+		<!--<button >保存</button>-->
+		<button ng-click='apply()'>提交</button>
+	</div>
+	<div class="cfprojectapply-showdesc" ng-if='showDesc'>
+		<div >
+			<h4>众筹项目说明</h4>
+		    <p ng-bind-html='itemDesc'></p>
+		    <button ng-click='showdesc()'>知道了</button>
+		</div>
+		
+	</div>
+</ion-view>

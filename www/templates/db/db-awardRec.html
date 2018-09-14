@@ -1,0 +1,50 @@
+<ion-view title="中奖记录" hide-nav-bar='true'>
+
+    <ion-header-bar class="bar-calm">
+        <div class="buttons">
+            <button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+        </div>
+        <h1 class="title">
+            中奖记录
+        </h1>
+    </ion-header-bar>
+    <ion-content class="award_rec db_user_rec">
+        <ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()"></ion-refresher>
+        <div class="dur_list">
+
+            <div class="dur_item goods_item flex borderB1" ui-sref='dbson.awardRecD({id:item.id})' ng-repeat="item in list">
+                <div class="gi-img " ng-click="goGoodsInfo(item.goodsid,$event)">
+                    <img ng-src="{{item.thumb}}" alt="" class="db_img">
+                </div>
+                <div class="flex_1">
+                    <div class="gi-name">{{item.title}}</div>
+                    <div class="award_total gray">
+                        <span>总需 : </span>{{item.zong_codes}}人次</div>
+                    <div class="award_num gray">
+                        <span>期号 : </span>{{item.period_number}}</div>
+                    <div class="award_num">
+                        <span>幸运号码 : </span>
+                        <span class="red">{{item.code}}</span>
+                    </div>
+                    <div class="award_current">
+                        <span>本期参与 : </span>{{item.partakes}}人次
+
+                    </div>
+                    <div class="award_time">
+                        <span>揭晓时间 : </span>{{item.endtime * 1000 | date:'yyyy-MM-dd HH:mm:ss'}}
+                    </div>
+                    <div class="ar_status">
+                        <span>商品状态 : </span>
+                        <span class="green">{{awardStatus[item.status]}}</span>
+                    </div>
+                </div>
+                <div class="ar_arrowright flex_row_center">
+                    <img src="img/db/arrowright.png" alt="" class="db_img">
+                </div>
+
+            </div>
+
+        </div>
+        <ion-infinite-scroll ng-if="!noMore" on-infinite="loadMore()" distance="1%" icon="" immediate-check="false"></ion-infinite-scroll>
+    </ion-content>
+</ion-view>

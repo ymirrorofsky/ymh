@@ -1,0 +1,50 @@
+<ion-view view-title="捐助排行榜" hide-nav-bar="true">
+    <ion-header-bar class="bar-calm header-back poorBar">
+        <div class="buttons">
+            <button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+        </div>
+        <!-- <h1 class="flex pdd-title title">
+            <div class="pdd-tab" ng-click="active(1)" ng-class="{'on': type == 1}">捐钱明细</div>
+            <div class="pdd-tab" ng-click="active(2)" ng-class="{'on': type == 2}">捐物明细</div>
+        </h1> -->
+        <h1 class="title" >捐助排行榜明细</h1>
+    </ion-header-bar>
+    <ion-content class="poorContent poorDonateDetail" style="background:#EEEEEE">
+        <ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()"></ion-refresher>
+        <div class="common-empty" ng-if="orderEmpty"></div>
+        <div ng-repeat="item in info">
+            <div class="pdd-time">{{item.createtime*1000 |  date:'yyyy'}}</div>
+            <div class="pdd-info bgwhite">
+                <div class="pdd-info-one flex">
+                    <p class="flex_1">捐助人: <span>{{item.mobile}}</span></p>
+                    <p>捐助金额: <span style="color:#ec0005">{{item.giveNum}}</span>元</p>
+                </div>
+                <div class="pdd-info-two flex">
+                    <p class="flex_1">受助人: <span>{{item.recName}}</span></p>
+                    <p>受助账号: <span>{{item.tMobile}}</span></p>
+                </div>
+                <div class="pdd-info-three">{{item.createtime | date:'MM-dd'}}</div>
+            </div>
+        </div>
+        <!--捐物明细  -->
+        <div ng-if="type == 2">
+            <div class="pdd-time">2017年07月</div>
+            <div class="pdd-info bgwhite">
+                <div class="pdd-info-one flex">
+                    <p class="flex_1">捐助人: <span>18200000340</span></p>
+                    <p>物资价值: <span style="color:#ec0005">2</span>元</p>
+                </div>
+                <p>物资名称: <span>上衣</span></p>
+                <div class="pdd-info-two flex">
+                    <p class="flex_1">受助人: <span>王曦</span></p>
+                    <p>受助账号: <span>182000059</span></p>
+                </div>
+                <div class="pdd-info-three">07/12</div>
+            </div>
+        </div>
+        <!--捐物明细  -->
+        <ion-infinite-scroll ng-if="!noMore" on-infinite="loadMore()" distance="1%" immediate-check="false">
+        </ion-infinite-scroll>
+    </ion-content>
+
+</ion-view>

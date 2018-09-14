@@ -1,0 +1,32 @@
+<ion-view view-title="{{globalInfo.nounInfo.CDSZ}}" hide-nav-bar="true">
+
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">{{globalInfo.nounInfo.CDSZ}}</h1>
+	</ion-header-bar>
+	<ion-content class="bodybg-normal chuandishizhe">
+		<div class="chuandishizhebg">
+				<img src="img/chuandishizhebg.png" alt="" />
+		</div>
+		<h5><span>有效期：永久有效</span><b>已开通：<em>{{chuandiinfo.sum}}</em>人</b></h5>
+          <dl>
+          	<dt> <i class="icon ion-android-bookmark"></i>为什么要成为{{globalInfo.nounInfo.CDSZ}}？</dt>
+          	<dd>1.参与公益事业，提升个人荣誉;</dd>
+          	<dd>2.平台根据{{globalInfo.nounInfo.CDSZ}}分享的成果，进行<em>{{chuandiinfo.firstMessenger}}%</em>的{{globalInfo.nounInfo.LOVE}}激励。如分享给他人在平台消费<em>1000元</em>，激励{{0.1*chuandiinfo.firstMessenger}}颗{{globalInfo.nounInfo.LOVE}}激励，相当于<em>{{10*chuandiinfo.firstMessenger}}元</em>。</dd>
+          </dl>
+          <dl>
+          	<dt> <i class="icon ion-android-share"></i>如何成为{{globalInfo.nounInfo.CDSZ}}？</dt>
+          	<dd>1.本人在平台内<em>一次性</em>消费<em>{{chuandiinfo.costchuan}}元</em>以上;</dd>
+          	<!--<dd>2.分享<em>{{chuandiinfo.perchuan}}人</em>以上成为平台{{globalInfo.nounInfo.CDSZ}};</dd>-->
+          </dl>
+          <!--<dl>
+          	<dt> <i class="icon ion-android-favorite"></i>提示</dt>
+          	<dd>选择以上<em>任一方式</em>即可获取{{globalInfo.nounInfo.CDSZ}}身份</dd>
+          </dl>-->
+	</ion-content>
+  <footer class='common-footer chuandishizhefooter'>
+  	<a ui-sref='tab.online'>去消费</a><a ui-sref='user.shareregsiter'>去分享</a>
+  </footer>
+</ion-view>

@@ -1,0 +1,40 @@
+<ion-view view-title=" " hide-nav-bar="true">
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">我的股权</h1>
+		<!--<div class="buttons">
+			<button class="button  button-clear" ui-sref='user.myBank({button:"hidden"})'>银行卡</button>
+		</div>-->
+	</ion-header-bar>
+	<ion-content class="bodybg-normal stockright">
+	  <img class="stockrightlogo" src="img/stocklogo.png"/>
+			  <!--<ion-label></ion-label>-->
+			<div class="stocktop">
+			  	<h5><img src="img/colstock.png"/>
+			  	 <span>我的股权(<em ui-sref='my.stockrightdetail'>股权明细</em>)</span>
+			  	</h5>
+			  	<p><big>{{stockinfo.stock||0}}</big>股</p>
+			  </div>
+			  <div class="stockapply">
+			  	<a ng-click='applystock()'>申请股权</a>
+			  	<p>当前兑换比例：<span>1股 = {{stockinfo.prop}}{{globalInfo.nounInfo.LOVE}}</span></p>
+			  </div>
+	</ion-content>
+	<!--<div class="balanceiceinfo"  ng-click='rechargeshow()'>
+		  <div>
+		  	{{globalInfo.nounInfo.LOVE}}不足，不能兑换股权！
+		  </div>
+	</div>-->
+	<div class="stockagreeapply" ng-if='showagree==1'>
+	<ul>
+		<li><span>申请股数：</span>
+				<input type="text" name="" id="" value="" placeholder="限整百兑换" ng-model='stockapply.nums' />
+			</li>
+			<li ng-click='stocksure()'>确定兑换</li>
+	</ul>
+	</div>
+	
+</ion-view>
+

@@ -1,0 +1,54 @@
+
+<ion-view view-title="分润级" hide-nav-bar="true">
+
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">分润级</h1>
+	</ion-header-bar>
+	<ion-content class=" profitRatio">
+	     <div class="profitRatio_box">
+	     	<table width="90vw" >
+	     		<tr><th width="20%">分润级</th>
+	     			<th width="40%">30天总收益</th>
+	     			<th width="40%">总利润70%</th>
+	     		</tr>
+	     		<tr><td width="20%">V1</td>
+	     			<td width="40%">即日起向前30天不足{{ratioList.level_1.sy}}</td>
+	     			<!--<td width="40%">加权利润{{ratioList.level_1.rate}}%</td>-->
+	     			<td width="40%">加权利润10%</td>
+	     			
+	     		</tr>
+	     		<tr><td>V2</td>
+	     			<td>即日起向前30天满{{ratioList.level_2.sy}}</td>
+	     			<!--<td>加权利润{{ratioList.level_2.rate}}%</td>-->
+	     			<td>加权利润12%</td>
+	     			
+	     		</tr>
+	     		<tr><td>V3</td>
+	     			<td>即日起向前30天满{{ratioList.level_3.sy}}</td>
+	     			<!--<td>加权利润{{ratioList.level_3.rate}}%</td>-->
+	     			<td>加权利润14%</td>
+	     			
+	     		</tr>
+	     		<tr><td>V4</td>
+	     			<td>即日起向前30天满{{ratioList.level_4.sy}}</td>
+	     			<!--<td>加权利润{{ratioList.level_4.rate}}%</td>-->
+	     			<td>加权利润16%</td>
+	     			
+	     		</tr>
+	     		<tr><td>V5</td>
+	     			<td>即日起向前30天满{{ratioList.level_5.sy}}</td>
+	     			<!--<td>加权利润{{ratioList.level_5.rate}}%</td>-->
+	     			<td>加权利润18%</td>
+	     		</tr>
+	     	</table>
+	     </div>
+	     <div class="profitRatio_remark">
+	     	<h4>备注：</h4>
+	     	<p>收益指的是通过消费、销售、推广、服务等获得{{globalInfo.nounInfo.LOVE}}及余额的总和。比如，2018年8月15日分润，则从8月15日起向前30天内的以上收益。</p>
+	     </div>
+	</ion-content>
+
+</ion-view>

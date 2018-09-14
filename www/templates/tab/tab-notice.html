@@ -1,0 +1,208 @@
+<ion-view title="公告" hide-nav-bar="true" hide-back-button="true" hide-nav-bar="true">
+
+	<ion-header-bar class="bar-calm headmall-type" style='height: 70px;background: transparent;'>
+		<div class="mall-type">
+			<h5><a ng-click="scan()"><i class="iconfont  icon-saoyisao"></i></a>
+				<!--<a ng-click="showMsg()">
+			<i class="iconfont icon-alarm "></i>
+		</a>-->
+		<a ng-click="showMsg()" style="position: relative;">
+		<button class="button iconfont icon-alarm button-clear " ></button>
+			<span class="yd-xtmsgNum " ng-if="globalInfo.noticeNum!=''"></span>
+		</a>
+			</h5>
+			<ion-tabs class="tabs-icon-top tabs-color-active-calm">
+				<ion-tab title="首页" ui-sref='tab.notice'>
+				</ion-tab>
+				<ion-tab title="线上商城" ui-sref='tab.online'>
+				</ion-tab>
+				<ion-tab title="线下商城" ui-sref='tab.home'>
+				</ion-tab>
+				<ion-tab title="公益商城" ui-sref='poor.home'>
+				</ion-tab>
+
+				<ion-tab title="优惠专区" ui-sref='integralMall.home'>
+
+				</ion-tab>
+			</ion-tabs>
+		</div>
+		<!--<div class="bar bar-header bar-calm">-->
+		<!--<h1 class="twocode"> 
+			 <a style="font-size: 16px;">公益</a>
+			</h1>-->
+		<!--</div>-->
+	</ion-header-bar>
+
+	<ion-content style='top: 70px;' class='iosuse'>
+		<!--<ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()"></ion-refresher>-->
+		<p style="background: #F0F0F0;height:60px;padding: 5px 0;">
+			<img style="width: 100%;height: 60px;" src="{{acticeimg.thumb}}" ui-sref='articles.indexactiveInfo({cid:acticeimg.cid})' />
+		</p>
+		<div class="swiper-container swiper-container-horizontal" style="width:100%;">
+			<div class="swiper-wrapper" style="transform: translate3d(-6471px, 0px, 0px); transition-duration: 0ms;">
+				<div class="swiper-slide">
+					<div class="sande_intro sande_rela">
+						<div class="intro_top">
+							<div class="sande_intro_title">{{globalInfo.nounInfo.SCMC}}</div>
+						</div>
+						<div class="intro_other" style="text-align: center;margin-top: 20px;" >
+							<h2  style="color:red;">{{banner.index.heartnum||' '}}</h2>
+							<p ng-if='banner.index.heartnum!=""' style="color:white;">可激励{{globalInfo.nounInfo.LOVE||' '}}</p>
+						</div>
+						<div class="intro_middle">
+							<img src="img/lovebg.png"/>
+							<p><span ng-bind="today"></span>{{globalInfo.nounInfo.LOVE}}指数</p>
+							<div ng-bind="banner.index.heart"></div>
+						</div>
+						<div class="intro_bottom">
+							<ul class="clearfix">
+								<li style="border-right:1px solid #eee">
+									<div>
+										<p>公益商家</p>
+										<span ng-bind="banner.index.shopsNum|| 0"></span>家
+									</div>
+								</li>
+								<li>
+									<div>
+										<p>{{globalInfo.nounInfo.AXSZ}}</p>
+										<span ng-bind="banner.index.heartMan || 0"></span>个
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="swiper-slide">
+					<div class="sande_love">
+						<div class="title">拥有<span>{{globalInfo.nounInfo.LOVE}}</span>排行TOP200</div>
+						<div class="yd-shops-ranking">
+							<ul>
+								<li class="flex" ng-repeat="item in banner.heart">
+									<i ng-bind="$index+1" ng-class="{'first': $index<3}" ng-if="$index < 3"></i>
+									<i ng-if="$index > 2" style="visibility:hidden"></i>
+									<p class="text-overflow_1 flex_1" ng-bind="item.mobile"></p>
+									<p class="text-overflow_1 flex_1" ng-bind="item.area"></p>
+									<span class="flex_1" ng-bind="item.heartNum"></span>个
+								</li>
+							</ul>
+						</div>
+						<div class="more" ui-sref='my.bannerrank({type:"heart",total:200})'>查看更多</div>
+					</div>
+				</div>
+				<div class="swiper-slide">
+					<div class="sande_area sande_rela sande_fontwhite">
+						<div class="title">近30天<span>地区销售额</span>排行榜</div>
+						<div class="yd-shops-ranking">
+							<ul>
+								<li class="flex" ng-repeat="item in banner.sale">
+									<i ng-bind="$index+1" ng-class="{'first': $index<3}" ng-if="$index < 3"></i>
+									<i ng-if="$index > 2" style="visibility:hidden"></i>
+									<p class="text-overflow_1 flex_1" ng-bind="item.birth"></p>
+									<span class="flex_1" ng-bind="item.money | number:2"></span>元
+								</li>
+							</ul>
+						</div>
+						<div class="more" ui-sref='my.bannerrank({type:"sale",total:50})'>查看更多</div>
+					</div>
+				</div>
+				<div class="swiper-slide">
+					<div class="sande_cost sande_rela">
+						<div class="title">近30天<span>消费</span>排行TOP100</div>
+						<div class="yd-shops-ranking">
+							<ul>
+								<li class="flex" ng-repeat="item in banner.cons">
+									<i ng-bind="$index+1" ng-class="{'first': $index<3}" ng-if="$index < 3"></i>
+									<i ng-if="$index > 2" style="visibility:hidden"></i>
+									<p class="text-overflow_1 flex_1" ng-bind="item.mobile"></p>
+									<span class="flex_1" ng-bind="item.money | number:2"></span>元
+								</li>
+							</ul>
+						</div>
+						<div class="more">累计消费：<span ng-bind="banner.index.cons_total"></span>元</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="index-notice" style="margin-top:10px;">
+			<div class="notice-tit">
+				<span>公告</span></div>
+			<div class="notice-list" ui-sref='user.newsactive({type:"notice"})'>
+				<marquee  scrollamount='25' align="top" scrolldelay="800" loop="-1" behavior="scroll" direction="up" height="45" vspace="0">
+					<div ng-repeat='item in noticelist'> <i class="fr">{{item.createtime}}</i><i class="icon"></i>
+						<p class="text-overflow_1">{{item.title}}</p>
+					</div>
+
+				</marquee>
+			</div>
+		</div>
+		<div class="homeindex-shops-list">
+			<!--ng-click='gotoshoprole()'-->
+			<h5>平台角色类型  <a ui-sref='shops.shopsRoleMap'>角色分布图  <img src="img/arrowright.png"/></a></h5>
+			<ul>
+				<li>
+					<a ng-if="globalInfo.user.isShop == 0" ui-sref="tab.shop">去开店</a>
+					<a ng-if="globalInfo.user.isShop != 0" ui-sref="tab.shop">进入店铺</a>
+					<img style="width: 50px;height: 50px;margin-top: 15px;float: left;" ng-src='img/indexshop.png'>
+					<div class="info clearfix flex_1">
+						<h3 class="flex text-overflow_1">平台商家 </h3>
+						<p>入驻商家，进行活动销售</p>
+						<!--<div class="middle">
+								<span>入驻商家，进行活动销售</span>
+							</div>-->
+					</div>
+
+				</li>
+				<li>
+					<a style="float: right;" ng-if="globalInfo.user.isAmbass&&globalInfo.user.isAmbass !=2" ui-sref='user.aixinshize'>已加入</a>
+					<a style="float: right;" ng-if="!globalInfo.user.isAmbass||globalInfo.user.isAmbass == 2" ui-sref='user.aixinshize'>立即加入</a>
+					<img style="width: 50px;height: 50px;margin-top: 15px;float: left;" ng-src='img/indexuser.png'>
+					<div class="info clearfix flex_1">
+						<div class="info-fal">
+							<h3 class="flex text-overflow_1">{{globalInfo.nounInfo.AXSZ}} </h3>
+							<p>免费注册成为{{globalInfo.nounInfo.AXSZ}}，消费就在做公益，同时参与{{globalInfo.nounInfo.LOVE}}激励</p>
+
+						</div>
+					</div>
+				</li>
+				<li>
+					<a style="float: right;" ng-if="globalInfo.user.isAmbass !=3&&globalInfo.user.isAmbass !=1" ui-sref='user.chuandishizhe'>立即加入</a>
+					<a style="float: right;" ng-if="globalInfo.user.isAmbass ==3||globalInfo.user.isAmbass ==1" ui-sref='user.chuandishizhe'>已加入</a>
+					<img style="width: 50px;height: 50px;margin-top: 15px;float: left;" ng-src='img/indexshare.png'>
+					<div class="info clearfix flex_1">
+						<div class="info-fal">
+							<h3 class="flex text-overflow_1">{{globalInfo.nounInfo.CDSZ}}</h3>
+							<p>分享平台给身边的人，可以获得分享激励</p>
+						</div>
+					</div>
+				</li>
+				<li>
+					<a style="float: right;" ng-if="globalInfo.user.isAmbass != 1" ui-sref='user.ambassadordelivery'>立即加入</a>
+					<a style="float: right;" ng-if="globalInfo.user.isAmbass== 1" ui-sref='user.ambassadordelivery'>已加入</a>
+					<img style="width: 50px;height: 50px;margin-top: 15px;float: left;" ng-src='img/indexdashi.png'>
+					<div class="info clearfix flex_1">
+						<div class="info-fal">
+							<h3 class="flex text-overflow_1">{{globalInfo.nounInfo.CDDS}} </h3>
+							<p>多种{{globalInfo.nounInfo.LOVE}}激励，分享双重激励+认证商家双倍补贴+推荐商家收益</p>
+						</div>
+					</div>
+				</li>
+				<li>
+					<a style="float: right;" ui-sref='user.loveunion' ng-if="globalInfo.user.agenttype!= 1">立即申请</a>
+					<a style="float: right;" ui-sref='user.loveunion' ng-if="globalInfo.user.agenttype== 1">已加入</a>
+					<img style="width: 50px;height: 50px;margin-top: 15px;float: left;" ng-src='img/indexunion.png'>
+					<div class="info clearfix flex_1">
+						<div class="info-fal">
+							<h3 class="flex text-overflow_1">{{globalInfo.nounInfo.AXLM}} </h3>
+							<p>由区域或行业的{{globalInfo.nounInfo.CDDS}}组成的公益宣传的推广联盟</p>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<!--<ion-infinite-scroll ng-if="noMore && curPosition.status != 1 " on-infinite="loadMoreGoods()" distance="-1%" icon="" immediate-check="false">
+		</ion-infinite-scroll>-->
+		<!--<ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()"></ion-refresher>-->
+	</ion-content>
+
+</ion-view>

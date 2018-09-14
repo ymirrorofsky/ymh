@@ -1,0 +1,72 @@
+<ion-view view-title="消息" hide-nav-bar='true'>
+
+  <ion-header-bar class="bar-calm">
+    <h1 class="title">商品列表</h1>
+  </ion-header-bar>
+
+  <ion-content class="tab_goodsList">
+    <!-- 头部搜索 -->
+    <div class="tg-search flex">
+      <div class="tg-input flex_row_center flex_1">
+        <i class="iconfont icon-sousuo"></i>
+        <input type="text" class="flex_1" placeholder="请输入关键字" ng-model="search.keywords">
+      </div>
+      <div class="tg-btn" ng-click="goSearch()">
+        搜索
+      </div>
+    </div>
+    <!-- 商品切换 -->
+    <div class="gl_tab flex borderB1">
+      <div ng-click="active('fast')" ng-class="{'on':type == 'fast'}">最快</div>
+      <div ng-click="active('new')" ng-class="{'on':type == 'new'}">最新</div>
+      <div ng-click="active('hot')" ng-class="{'on':type == 'hot'}">最热</div>
+      <div class="flex_row_center"  ng-click="active('asc')" ng-class="{'on':type == 'asc'}">价格
+        <i class="iconfont icon-shangcheng"></i>
+      </div>
+      <div class="flex_row_center" ng-click="active('desc')" ng-class="{'on':type == 'desc'}">价格
+        <i class="iconfont icon-xiajiang"></i>
+      </div>
+    </div>
+    <!-- 商品分类 -->
+    <div class="gl_section clearFix">
+      <div class="gl_cate floatL">
+        <div ng-click="getCate('')" ng-class="{'on':cateId == '' }">全部</div>
+        <div ng-repeat="item in info.categorys" ng-click="getCate(item.id)" ng-class="{'on':cateId == item.id }">{{item.name}}</div>
+      </div>
+      <div class="goods_list clearFix floatR">
+        <div class="goods_item"  ng-repeat="item in info.goodsList" ui-sref='dbson.goodsInfo({goodsId:item.id})'>
+          <div class="gi-img">
+            <img ng-src="{{item.thumb}}" class="db_img" alt="">
+          </div>
+          <div class="gi-name">(第{{item.periods}}期){{item.title}}</div>
+          <!-- <div class="gi-percent">开奖进度 0%</div> -->
+          <div class="gi_total">总需{{item.zong_codes}} </div>
+          <div class="flex_row_center gi-progress">
+            <!-- <div class="gi-process"></div> -->
+            <progress class="progress" max="100" value="{{item.scale}}"></progress>
+            <!-- <div class="gi-cart"></div> -->
+            <i class="iconfont icon-gouwuchejia" ng-click="submit('add',item.period_number)"></i>
+          </div>
+          <div class="gi_total">剩余{{item.shengyu_codes}}</div>
+
+        </div>
+        <!-- <div class="goods_item">
+          <div class="gi-img">
+            <img src="https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1510020207&di=afbd7ddacc1796e7081a38b59da22ae6&src=http://img.zcool.cn/community/01b3cd570b72fd32f8751b3f6a5eda.jpg"
+              alt="">
+          </div>
+          <div class="gi-name">(第三期)甜品商品</div>
+          <div class="gi_total">总需</div>
+          <div class="flex_row_center gi-progress">    
+            <progress class="progress" max="100" value="5"></progress>
+            <i class="iconfont icon-gouwuchejia"></i>
+          </div>
+          <div class="gi_total">剩余</div>
+        </div> -->
+      </div>
+
+    </div>
+
+    <!-- 商品列表 -->
+  </ion-content>
+</ion-view>

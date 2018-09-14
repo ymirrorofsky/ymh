@@ -1,0 +1,62 @@
+<ion-modal-view>
+    <ion-header-bar class="bar-calm header-bac45k poorBar">
+        <div class="buttons">
+            <button class="button iconfont icon-back1 button-clear" ng-click="checkGood.hide()">返回</button>
+        </div>
+        <h1 class="title">确认订单</h1>
+    </ion-header-bar>
+    <ion-content class="poorContent poorDonatePay" style="background:#EEEEEE">
+        <!--<dl class="cart-list" >
+            <dt id='p{{items.spid}}' class="shopchose">
+                <span> 腾远科技</span></dt>
+            <dd  id='p{{item.id}}'>
+                <div ng-click='changegoods(item.id,item.goodsPrice)'>
+                    <img ng-src='{{item.thumb}}' alt="" />
+                </div>
+                <div class="cart-goodsinfo">
+                    <h5>啦啦</h5>
+                    <p><span ng-repeat='butes in item.goodsField'>红色</span></p>
+                    <p>￥<b>25</b></p>
+                    <div class="carts-num">
+                        <i class="iconfont icon-move" ng-click="minusNum(item.id,item.goodsPrice)"></i>
+                        <input type="text" value="{{item.goodsNum}}">
+                        <i class="iconfont icon-add" ng-click="addNum(item.id,item.goodsPrice)"></i>
+                    </div>
+                </div>
+            </dd>
+        </dl>-->
+        <div class="online-shops-list" ng-if="type != 6&&!orderEmpty">
+            <ul class="clearfix">
+                <div ng-repeat="shop in info.orderinfo" style="border-bottom:5px solid #eee">
+                    <div style="padding:10px;border-bottom:1px solid #eee">{{shop.title}}</div>
+                    <li class="flex" ng-repeat="good in shop.goods">
+                        <img class="imgs" ng-src="{{good.thumb || 'img/wuimg.png'}}">
+                        <div class="info clearfix flex_1">
+                            <h3 class="flex text-overflow_1">{{good.goodsName}}</h3>
+                            <!--<div class="middle">
+                                <span ng-if='goods.freeDelivery=="0"'>包邮</span>
+                                <span ng-if='goods.level=="2"'>品牌店</span>
+                            </div>-->
+                            <div>   <span>待获</span> <div class="g-love" style="display:inline-block;top:0"><i>{{good.memberHeart}}</i><span></span></div></div>
+                         
+                            <div style="position:absolute;bottom:0;width:100%">
+                                <div class="g-money" style="float:left">{{good.goodsPrice | currency:'￥'}}</div>
+                                <div style="float:right">X{{good.goodsNum}}</div>
+                            </div>
+                            <!--<div class="bottom">
+
+                            <span>￥{{goods.spe_price}}</span>
+                            <i> <img src="img/aixinzhi.png"/> <em>{{goods.memberHeart}}</em></i>
+                        </div>-->
+
+                        </div>
+                    </li>
+                </div>
+
+            </ul>
+
+
+        </div>
+    </ion-content>
+
+</ion-modal-view>

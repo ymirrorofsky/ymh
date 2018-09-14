@@ -1,0 +1,120 @@
+<ion-view hide-nav-bar='true'>
+    <ion-header-bar class="bar-calm">
+        <div class="buttons">
+            <button class="button iconfont icon-back1 button-clear" ui-sref='tab.rank'>返回</button>
+        </div>
+        <h1 class="title">平台角色介绍</h1>
+        <div class="buttons">
+            <button class="button button-clear" ui-sref='shops.shopsRoleMap'>角色分布图</button>
+        </div>
+    </ion-header-bar>
+    <ion-content>
+        <div class="role">
+            <div class="role_shop">
+                <div class="role_img">
+                    <img src="img/role_shop.png" alt="">
+                    <div class="role_img_info">
+                        <p class="emphasis">引客聚客客带客</p>
+                        <p class="emphasis">让生意多来回头客</p>
+                        <!--<p>聚拢人心 互通天下</p>-->
+                    </div>
+                </div>
+                <div class="role info  flex_row_center">
+                    <div class="role_i_content">入住商家让生意更好做</div>
+                    <div class="role_i_go" ng-if="globalInfo.user.isShop == 0" ui-sref="shops.shop">去开店</div>
+                    <div class="role_i_go" ng-if="globalInfo.user.isShop != 0" ui-sref="shops.shop">进入店铺</div>
+                </div>
+            </div>
+            <div class="role_credit">
+                <div class="role_img">
+                    <img src="img/role_credit.png" alt="">
+                    <div class="role_img_info">
+                        <p class="emphasis">消费赚{{globalInfo.nounInfo.LOVE}}</p>
+                        <p class="emphasis">天天享分红</p>
+                        <!--<p>聚拢人心 互通天下</p>-->
+                    </div>
+                </div>
+                <div class="role_info flex_row_center">
+                    <div class="role_i_content">免费注册会员奖励100{{globalInfo.nounInfo.LOVE}}，消费满99元参与分红。</div>
+                    <div class="role_i_go" ng-if="globalInfo.user.isAmbass&&globalInfo.user.isAmbass !=2" ui-sref='user.aixinshize'>已加入</div>
+                    <div class="role_i_go" ng-if="!globalInfo.user.isAmbass||globalInfo.user.isAmbass == 2" ui-sref='user.aixinshize'>立即加入</div>
+                </div>
+            </div>
+            <!--<div class="deliverUser">
+                <div class="role_img">
+                    <img src="img/role_deliverUser.png" alt="">
+                    <div class="role_img_info">
+                            <p class="emphasis">{{globalInfo.nounInfo.CDSZ}}</p>
+                            <p class="emphasis">分享奖励</p>
+                            <p>聚拢人心 互通天下</p>
+                        </div>
+                </div>
+                <div class="role info flex_row_center">
+                    <div class="role_i_content">分享平台给身边的人，可以获得分享激励</div>
+                    <div class="role_i_go" ng-if="globalInfo.user.isAmbass !=3&&globalInfo.user.isAmbass !=1" ui-sref='user.chuandishizhe'>立即加入</div>
+                    <div class="role_i_go" ng-if="globalInfo.user.isAmbass ==3||globalInfo.user.isAmbass ==1" ui-sref='user.chuandishizhe'>已加入</div>
+                </div>
+            </div>-->
+
+            <!--创客-->
+            <div class="deliverSenior">
+                <div class="role_img">
+                    <img src="img/role_deliverSenior.png" alt="">
+                    <div class="role_img_info">
+                        <p class="emphasis">带着梦，向前冲</p>
+                        <p class="emphasis">不要怕，放轻松</p>
+                        <p>创客</p>
+                    </div>
+                </div>
+                <div class="role info flex_row_center">
+                    <div class="role_i_content">推荐会员，推荐店铺，推荐代理，推荐创客四重福利奖励</div>
+                    <div class="role_i_go" ng-if="globalInfo.user.isAmbass != 1" ui-sref='user.ambassadordelivery'>立即加入</div>
+                    <div class="role_i_go" ng-if="globalInfo.user.isAmbass== 1" ui-sref='user.ambassadordelivery'>已加入</div>
+                </div>
+            </div>
+            <!--亿业联盟-->
+            <!--<div class="loveUnion">
+                <div class="role_img">
+                    <img src="img/role_loveUnion.png" alt="">
+                    <div class="role_img_info">
+                        <p class="emphasis">千城万店亿业联盟</p>
+                        <p class="emphasis">和合共生亿业共赢</p>
+                        <p>聚拢人心 互通天下</p>
+                    </div>
+                </div>
+                <div class="role info flex_row_center">
+                    <div class="role_i_content">由优质商家组成 店铺联盟，由优质创客组成创客联盟共享区域收益</div>
+                    <div class="role_i_go" ui-sref='user.loveunion' ng-if="globalInfo.user.agenttype!= 1">立即申请</div>
+                    <div class="role_i_go" ui-sref='user.loveunion' ng-if="globalInfo.user.agenttype== 1">已加入</div>
+                </div>
+            </div>-->
+            <!--代理申请-->
+
+            <div class="agent">
+                <div class="role_img">
+                    <img src="img/role_loveUnion.png" alt="">
+                    <div class="role_img_info">
+                        <p class="emphasis">团结就是力量</p>
+                        <p class="emphasis">合伙就是天下</p>
+                        <!--<p>聚拢人心 互通天下</p>-->
+                    </div>
+                </div>
+                <div class="role info flex_row_center">
+                    <div class="role_i_content">申请联合代理，享受区域最大蛋糕</div>
+                    <div class="role_i_go" ui-sref='user.agentApply'  ng-if="globalInfo.user.isAmbass== 1" >立即申请</div>
+                
+           
+                </div>
+            </div>
+        </div>
+    </ion-content>
+    <!-- <ion-header-bar class="bar-calm header-back">
+            <div class="buttons">
+                <button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+            </div>
+            <h1 class="title">提现申请</h1>
+            <div class="buttons">
+                <button class="button button-clear" ui-sref="user.repoList">提现记录</button>
+            </div>
+        </ion-header-bar> -->
+</ion-view>

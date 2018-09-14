@@ -1,0 +1,48 @@
+<ion-view title="店铺位置" hide-nav-bar="true" hide-back-button="true">
+
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ui-sref='tab.tcmytc'>返回</button>
+		</div>
+		<h1 class="title">店铺位置</h1>
+		<!--<div class="buttons">
+			<button class="button button-clear iconfont ion-android-navigate" ng-click="showAddress(locationInfo.locationUrl)"> 导航</button>
+		</div>-->
+
+	</ion-header-bar>
+<style type="text/css">
+	#shopPickPosition {
+	width: 100%;
+	height: 100%;
+	font-family: "微软雅黑";
+	 width:100%;position: relative;
+    min-height:767px;
+}
+.shopPickPositionInfo{
+	height: 50px;display: flex;align-items: center;
+}
+.shopPickPositionInfo input{
+	flex-grow: 1;padding-left: 10px;
+}
+.shopPickPositionInfo button{
+	width: 50px;border: solid 1px #E0E0E0;background: transparent;height: 30px;margin-right: 8px;
+}
+.shopPickPositionInfo{
+	border-bottom: solid 1px #999;padding-left: 10px;
+}
+</style>
+	<ion-content>
+		<div class="shopPickPositionInfo">
+			<input type="text" ng-model='curPosition.address' placeholder="输入地址"/>
+			<button ng-click='searchAddress(curPosition.address)'>搜索</button>
+			<button ng-click='sureAddress(curPosition.address)'>确定</button>
+		</div>
+<p class="shopPickPositionInfo">可拖动地图标记改变位置</p>
+		
+		<!--<div id='locationNav' ng-click="showAddress(locationInfo.locationUrl)">去这里</div>-->
+		<div id="shopPickPosition">
+			
+		</div>
+
+	</ion-content>
+</ion-view>

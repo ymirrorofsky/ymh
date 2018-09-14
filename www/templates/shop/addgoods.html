@@ -1,0 +1,31 @@
+<ion-view title="发布商品" hide-nav-bar="true" hide-back-button="true">
+
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">发布商品</h1>
+	</ion-header-bar>
+	<ion-content class="bodybg-normal shopaddgoods">
+		<h4>
+			<p><i class="icon ion-ios-information-outline"></i>发布商品请登录商家后台(请使用<span>浏览器</span>访问)</p>
+			<p>{{shopinfo.link}}</p>
+		</h4>
+		<h6>
+			<p>登录<span>账号</span>：注册的账号</p>
+			<p>初始<span>密码</span>：{{shopinfo.password}}</p>
+			<p>初始密码修改后失效</p>
+			<p>客服热线：{{shopinfo.mobile}}</p>
+		</h6>
+		<dl>
+			<dt>商家 <span>后台发布</span>商品的好处 <!--<b>商品审核规则 <i class="icon ion-ios-arrow-right"></i> </b>--> </dt>
+			<dd><em>1.</em><span>提升</span>商家店铺装修整体<span>形象</span>； </dd>
+			<dd><em>2.</em>商家后台发布商品功能更完善，能更好的完善商品信息，有助于商品<span>销量的提升</span>；</dd>
+			<dd><em>3.</em>相关操作详见商家后台<span>发布商品流程指引说明</span>。</dd>
+		</dl>
+	</ion-content>
+	<footer class="common-footer" >
+		<a href="tel:{{shopinfo.mobile}}"></a>
+		联系客服 {{shopinfo.mobile}}
+	</footer>
+</ion-view>

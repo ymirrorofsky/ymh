@@ -1,0 +1,55 @@
+<ion-view title="项目" hide-nav-bar="true" hide-back-button="true">
+
+    <ion-header-bar class="bar-calm header-back">
+        <div class="buttons">
+            <button class="button iconfont icon-back1 button-clear" ui-sref="cf.my">返回</button>
+        </div>
+        <h1 class="title">项目</h1>
+    </ion-header-bar>
+    	 <div class="cfcommon-top flex">
+            <div class=" flex_1" ng-class="{'on': type == 'success'}" ng-click="getteamP('success')">
+                <div>已成功</div>
+                <b></b>
+            </div>
+            <div class=" flex_1" ng-class="{'on': type == 'ing'}" ng-click="getteamP('ing')">
+                <div>进行中</div>
+                <b></b>
+            </div>
+            <div class=" flex_1" ng-class="{'on': type == 'fail'}" ng-click="getteamP('fail')">
+                <div>已失败</div>
+            </div>
+       </div>
+    <ion-content class='myprojectlist '>
+        <!--<ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()"></ion-refresher>-->
+        <div class="common-empty" ng-if="empty">
+        	没有了...
+        </div>
+<ul  ng-if='relation=="my"&&!empty'>
+	<li class="flexG"  ng-repeat='item in itemList' ui-sref='cdF.cf-myprojectinfo({itemId:item.id})'>
+		<img class="flexG-0" src="{{item.thumb||'img/1.png'}}" alt="" />
+		<div class="flexG flexG-1">
+		<h4 class="text-overflow_1">{{item.CName}}</h4>
+		<h5 ng-if='item.status==1'>{{item.endtime}}</h5>
+		<h5 ng-if='item.status!=1'>{{statusName[item.status]}}</h5>
+		<p>{{item.createtime}}</p>
+		</div>
+		<i class="ion-chevron-right flexG-0"></i>
+	</li>
+</ul>
+<ul  ng-if='relation!="my"&&!empty'>
+	<li class="flexG"  ng-repeat='item in itemList' ui-sref='cdF.cf-myprojectinfo({itemId:item.Sid})'>
+		<img class="flexG-0" src="img/1.png" alt="" />
+		<div class="flexG flexG-1">
+		<h4 class="text-overflow_1">{{item.CName}}</h4>
+		<h5>{{item.endtime}}</h5>
+		<h5 ng-if='item.status==0'>{{item.endtime}}</h5>
+		<p>{{item.createtime}}</p>
+		</div>
+		<i class="ion-chevron-right flexG-0"></i>
+	</li>
+</ul>
+
+        <ion-infinite-scroll ng-if="noMore" on-infinite="loadMore()" distance="1%" immediate-check="false">
+        </ion-infinite-scroll>
+    </ion-content>
+</ion-view>

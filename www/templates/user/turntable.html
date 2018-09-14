@@ -1,0 +1,36 @@
+<ion-view view-title="转盘抽奖" hide-nav-bar="true">
+
+    <ion-header-bar class="bar-calm header-back">
+        <div class="buttons">
+            <button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+        </div>
+        <h1 class="title">转盘抽奖</h1>
+        <div class="buttons">
+            <button class="button button-clear" ui-sref="user.turntableAward">中奖记录</button>
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="bodybg-normal  turntable" >
+            <div class="turntable_wrapper">
+                <div class="turntable_title">{{config.title}}</div>
+                <div >
+                        <div class="turntable_avaliable">有效期 : <span ng-if="config.begin_time">{{config.begin_time*1000 | date:'yyyy-MM-dd HH:mm' || 0}}</span> - <span ng-if="config.end_time">{{config.end_time*1000 | date:'yyyy-MM-dd HH:mm'  || 0}}</span> </div>
+                        <div class="turntable_avaliable">抽奖次数 : <span >每人一天可抽{{config.times}}</span>次</div>
+                        <div class="turntable_avaliable" ng-if="config.xiaohao == 0"> 消耗余额 : <span >每次抽奖消耗{{config.onceNum}}</span> 余额</div>
+                        <div class="turntable_avaliable" ng-if="config.xiaohao == 1"> 消耗{{globalInfo.nounInfo.LOVE}}: <span >每次抽奖消耗{{config.onceNum}}</span>{{globalInfo.nounInfo.LOVE}}</div>
+                </div>
+              
+            <section id="turntable" class="gb-turntable">
+                <div class="gb-turntable-container" id="gb-turntable-container">
+                    <canvas class="gb-turntable-canvas" id="myCanvas" width="300" height="300px">抱歉！浏览器不支持。</canvas>
+                </div>
+
+                <span class="gb-turntable-btn" href="javascript:;" ng-click="getPrize()" id="gb-turntable-btn">抽奖</span>
+            </section>
+
+            <div class="yd-donate-text padding" id="turntable_intro"></div> 
+        </div>   
+
+    </ion-content>
+
+</ion-view>

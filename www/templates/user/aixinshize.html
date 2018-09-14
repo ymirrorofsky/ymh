@@ -1,0 +1,28 @@
+<ion-view view-title="{{globalInfo.nounInfo.AXSZ}}" hide-nav-bar="true">
+
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">{{globalInfo.nounInfo.AXSZ}}</h1>
+	</ion-header-bar>
+	<ion-content class="bodybg-normal aixinshizhe">
+		<div class="ambassadorlogo">
+				<img src="img/aixinshizhebg.png" alt="" />
+			<!-- <p>{{ambassador.ambassMoney}}</p>-->
+		</div>
+		<h5><span>有效期：一年</span><b>已开通：{{shizheinfo}}人</b></h5>
+          <dl>
+          	<dt><i class="icon ion-android-bookmark"></i>为什么要做{{globalInfo.nounInfo.AXSZ}}？</dt>
+          	<dd>免费注册成为{{globalInfo.nounInfo.AXSZ}}，在{{globalInfo.nounInfo.SCMC}}消费的同时就在做公益，在获得商品的同时还能享受{{globalInfo.nounInfo.LOVE}}激励</dt>
+          </dl>
+	</ion-content>
+  <footer class='common-footer aixinshizhefooter'>
+  	<b ng-click='sharefriend()'>
+  		<i class="icon ion-android-share-alt"></i>
+  		分享</b>
+  	<a ui-sref='tab.home' >线下商城</a>
+  	<a ui-sref="tab.online" style="background: #f09465;">线上商城</a>
+  	
+  </footer>
+</ion-view>

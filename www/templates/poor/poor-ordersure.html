@@ -1,0 +1,81 @@
+<ion-view view-title="确认订单" hide-nav-bar="true">
+    <ion-header-bar class="bar-calm header-bac45k poorBar">
+        <div class="buttons">
+            <button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+        </div>
+        <h1 class="title">确认订单</h1>
+    </ion-header-bar>
+    <ion-content class="poorContent poorDonatePay" style="background:#EEEEEE">
+        <div class="yd-donate-count real-count s-apply-c bgwhite" style="border-bottom:4px solid #eee">
+            <div class="prp-info flex">
+                <div class="flex_1">
+                    <p>受助人: <span ng-bind="info.addressinfo.username || '苟德志'">15515612523</span></p>
+                    <p>收款账户: <span ng-bind="info.addressinfo.mobile || '15515612523'"></span></p>
+                    <p>收货地址: <span ng-bind="info.addressinfo.address || '四川市 巴中县 回林乡五马村'"></span></p>
+                </div>
+
+            </div>
+            <ul>
+                <li class="flex">
+                    <div class="flex_1">应付金额: ￥<span style="font-size:20px;color:#000" ng-bind="info.total"></span></div>
+                    <div>共 <span ng-bind="goodNum">2</span> 件</div>
+                    <div style='color:#ec0005;margin-left:10px;' ng-click="openCheck()">查看商品</div>
+                </li>
+                <li ng-click="showRelation = !showRelation">
+                    <div class="flex beanType">
+                        <p class="flex_1">您与受助人的关系</p>
+                        <span style="color:#ec0005">{{relationInfo.title || '请选择'}}<i class="iconfont icon-unfold" ng-if="showRelation"></i><i class="iconfont icon-right" ng-if="!showRelation"></i></span>
+                    </div>
+                    <div class="bean" ng-if="showRelation">
+                        <p ng-click="relationType(item.id,item.title)" ng-repeat="item in relation">{{item.title}}</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="flex pdf-hidename ">
+                        <div>匿名购买：</div>
+                        <div style="margin-right:5px;" ng-click="isHide()">
+                            <span class="hide" ng-if="hide == 1"></span><span ng-if="hide == 0"></span>匿名购买
+
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <textarea placeholder="给ta鼓励留言，50字以内" maxlength="50" id="leaveMes" style="width:100%;min-height:100px;" ng-model="poor.leaveMes" ></textarea>
+                </li>
+            </ul>
+        </div>
+        <div style="padding:10px;">
+            <!--提示-->
+        </div>
+        <div ng-click="cartgoodsPay()">
+            <div class="prp-btn">支付</div>
+        </div>
+
+        <div class="mask" ng-if="donateModal">
+            <div class="prp-mask bgwhite">
+                <div class="prp-mask-top">
+                    <span class="prp-cancel" ng-click="showDonate(1)">取消</span>
+                    <span class="prp-sure" ng-click="showDonate(2)">确定</span>
+                </div>
+                <div class="prp-mask-bottom">
+                    <ul>
+                        <li class="bd1" ng-click="active(1)" ng-class="{'on': type == 1}">
+                            <div>方式一:捐款或5被爱心</div>
+                            <p>收到反馈垃圾啊收到了客服减肥的开始方式打开了</p>
+                        </li>
+                        <li class="bd1" ng-click="active(2)" ng-class="{'on': type == 2}">
+                            <div>方式一:捐款或5被爱心</div>
+                            <p>收到反馈垃圾啊收到了客服减肥的开始方式打开了</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div>
+
+        </div>
+    </ion-content>
+    <!--<ion-footer-bar class="rec-know-btn">
+        <button ui-sref='poorson.recreason'></button>
+    </ion-footer-bar>-->
+</ion-view>

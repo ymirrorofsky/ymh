@@ -1,0 +1,32 @@
+<ion-view view-title="等待审核" hide-nav-bar="true">
+		<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ui-sref="tab.tcmytc">返回</button>
+		</div>
+		<h1 class="title">申请拒绝</h1>
+		<!--<div class="refresh" ng-click="checks()">
+			<i class="ion-refresh"></i>
+		</div>-->
+	</ion-header-bar>
+<!--<ion-header-bar class='bar-calm'>
+	<div class="t_headers">
+		<div class="t_back" ng-click="$ionicGoBack()">
+			<i class="ion-ios-arrow-left"></i>
+			<span>返回</span>
+		</div>
+		<h1>等待审核</h1>
+		<div class="refresh" ng-click="checks()">
+			<i class="ion-refresh"></i>
+		</div>
+	</div>
+</ion-header-bar>-->
+<ion-content overflow-scroll="false">
+	<div class="h_check_box">
+		<div class="check_img">
+			<img ng-src="{{'img/wait.png'}}"  alt="">
+		</div>
+		<h3>{{info || '申请被拒绝'}}</h3>
+	</div>  
+</ion-content>
+  <footer class="common-footer" ui-sref='user.shoptypes({reapply:"againapply"})' >请重新申请</footer>
+</ion-view>

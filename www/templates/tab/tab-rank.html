@@ -1,0 +1,118 @@
+<ion-view view-title="拆红包" hide-nav-bar="true">
+	<ion-header-bar class="bar-calm header-my">
+		<h1 class="title">拆红包</h1>
+	</ion-header-bar>
+	<ion-content class="rank" style="top:45px;">
+		<div class="rank_zhishu flex_col_center">
+			<div class="rank_z_title"><span>分润</span>指数</div>
+			<div class="rank_z_num" ng-bind="banner.index.heart"></div>
+			<div class="rank_historyData">我的30日收益（{{banner.index.profit||0}}）</div>
+		</div>
+		<div class="rank_statistics flex_row_center">
+			<div class="rank_s_shops flex_col_center">
+				<div class="rank_s_title">公益商家</div>
+				<div class="rank_s_num" ng-bind="banner.index.shopsNum|| 0">37001</div>
+			</div>
+			<div class="rank_s_user flex_col_center">
+				<div class="rank_s_title" ng-bind="globalInfo.nounInfo.AXSZ">爱心使者</div>
+				<div class="rank_s_num" ng-bind="banner.index.heartMan || 0">1733311</div>
+			</div>
+		</div>
+		<div class="index-notice borderT10 borderB10">
+			<div class="notice-tit">
+				<span>公告</span></div>
+			<div class="notice-list" ui-sref='user.newsactive({type:"notice"})'>
+				<marquee scrollamount='25' align="absmiddle" scrolldelay="800" loop="-1" behavior="scroll" direction="up" height="45" vspace="0">
+					<div ng-repeat='item in noticelist'> <i class="fr">{{item.createtime}}</i><i class="icon"></i>
+						<p class="text-overflow_1">{{item.title}}</p>
+					</div>
+				</marquee>
+			</div>
+		</div>
+		<!--<div class="rank_row_one flex_row_center">
+            <div class="rank_r_o_one area"  ui-sref='my.bannerrank'>
+                <div>
+                    <div class="rank_r_o_title">当月销售排行</div>
+                    <div class="rank_r_o_rank">排行TOP前200 <img src="img/arrowright.png" alt=""></div>
+                </div>
+                <div class='rank_r_o_img'>
+                    <img src="img/rank_area.png" alt="">
+                </div>
+            </div>
+            <div class="rank_r_o_one shop"  ui-sref='my.bannerrank'>
+                <div>
+                    <div class="rank_r_o_title">品牌商家新增排行</div>
+                    <div class="rank_r_o_rank">排行TOP前200 <img src="img/arrowright.png" alt=""></div>
+                </div>
+                <div class='rank_r_o_img'>
+                    <img src="img/rank_shop.png" alt="">
+                </div>
+            </div>
+
+        </div>
+        <div class="rank_row_one flex_row_center">
+            <div class="rank_r_o_one flex_row_center" ui-sref='my.bannerrank({type:"heart",total:200})'>
+                <div>
+                    <div class="rank_r_o_title">{{globalInfo.nounInfo.LOVE }}排行榜</div>
+                    <div class="rank_r_o_rank">排行TOP前200 <img src="img/arrowright.png" alt=""></div>
+                </div>
+                <div class='rank_r_o_img'>
+                    <img src="img/rank_love.png" alt="">
+                </div>
+            </div>
+            <div class="rank_r_o_one flex_row_center"  ui-sref='my.bannerrank({type:"sale",total:50})'> 
+                <div>
+                    <div class="rank_r_o_title">当月地区销售</div>
+                    <div class="rank_r_o_rank">排行TOP前200 <img src="img/arrowright.png" alt=""></div>
+                </div>
+                <div class='rank_r_o_img'>
+                    <img src="img/rank_love.png" alt="">
+                </div>
+            </div>
+
+        </div>-->
+		<ul class="ranBox_index">
+			<li>
+				<img src="img_ad/crownV4.png" />
+				<h5>V5</h5>
+				<p> <img src="img_ad/indexChange.png"/>当前指数： </p>
+				<span>{{banner.indexList.level_5.zs3}}</span>
+			</li>
+			<li>
+				<img src="img_ad/crownV2.png" />
+				<h5>V4</h5>
+				<p> <img src="img_ad/indexChange.png"/>当前指数： </p>
+				<span>{{banner.indexList.level_4.zs3}}</span>
+			</li>
+			<li>
+				<img src="img_ad/crownV3.png" />
+				<h5>V3</h5>
+				<p> <img src="img_ad/indexChange.png"/>当前指数： </p>
+				<span>{{banner.indexList.level_3.zs3}}</span>
+			</li>
+			<li>
+				<img src="img_ad/crownV2.png" />
+				<h5>V2</h5>
+				<p> <img src="img_ad/indexChange.png"/>当前指数： </p>
+				<span>{{banner.indexList.level_2.zs3}}</span>
+			</li>
+			<li>
+				<img src="img_ad/crownV1.png" />
+				<h5>V1</h5>
+				<p> <img src="img_ad/indexChange.png"/>当前指数： </p>
+				<span>{{banner.indexList.level_1.zs3}}</span>
+			</li>
+			<li>
+				<img src="img_ad/indexUp.png" />
+				<h5>指数提升</h5>
+				<p ui-sref='user.profitRatio({"list":banner.indexList})'>详情... <i class="icon ion-ios-help-outline"></i>   </p>
+			</li>
+		</ul>
+		<div class="homeindex-shops-list borderB10" ui-sref='user.role'>
+			<h5>平台角色类型  <a>角色介绍  <img src="img/arrowright.png"/></a></h5>
+
+		</div>
+
+	</ion-content>
+
+</ion-view>

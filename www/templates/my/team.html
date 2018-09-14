@@ -1,0 +1,51 @@
+<ion-view title="我的团队" hide-nav-bar="true" hide-back-button="true">
+
+    <ion-header-bar class="bar-calm header-back">
+        <div class="buttons">
+            <button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+        </div>
+        <h1 class="title">{{globalInfo.nounInfo.AXSZ}}</h1>
+    </ion-header-bar>
+
+    <ion-content class='heart_passer'>
+        <!--<ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()"></ion-refresher>-->
+        <div class="heart_passer_top flex">
+            <div class="top_one flex_1" ng-class="{'on': type == 1}" ng-click="getteamP(1)">
+                <div class="img">
+                    <img src="img/onePerson.png" />
+                </div>
+                <div>一度使者</div>
+                <!--<p><span>56</span>人</p>-->
+            </div>
+            <div class="top_two flex_1" ng-class="{'on': type == 2}" ng-click="getteamP(2)">
+                <div class="img">
+                    <img src="img/twoPperson.png" />
+                </div>
+                <div>二度使者</div>
+                <!--<p><span>54</span>人</p>-->
+            </div>
+        </div>
+        <!--<div class="heart_passer_middle">
+            2017-06
+        </div>-->
+          <div class="common-empty" ng-if="orderEmpty && type == 1">您还没有一度使者</div>
+          <div class="common-empty" ng-if="orderEmpty && type == 2">您还没有二度使者</div>
+        <div class="heart_passer_bottom flex" ng-repeat='item in teamInfo'>
+            <div class="bottom_left">
+                <img  ng-src="{{item.avatar||'img/headimg.jpg'}}" alt="avatar">
+            </div>
+            <div class="bottom_middle">
+                <div class="bottom_middle_name" style="width:auto;">{{item.nickname}}</div>
+                <div style="text-align: left;" class="bottom_middle_role" ng-bind='statusName[item.isAmbass]'></div>
+            </div>
+            <div class="bottom_right flex_1">
+                <div class="bottom_right_mobile">{{item.mobile}}</div>
+                <div class="bottom_right_time">加入时间<span>{{item.createtime*1000|date:"yyyy-MM-dd HH:mm"}}</span></div>
+            </div>
+        </div>
+
+
+        <!--<ion-infinite-scroll ng-if="!noMore" on-infinite="loadMore()" distance="1%" immediate-check="false">
+        </ion-infinite-scroll>-->
+    </ion-content>
+</ion-view>

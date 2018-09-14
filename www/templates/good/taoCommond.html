@@ -1,0 +1,49 @@
+<ion-view title="淘口令" hide-nav-bar="true" hide-back-button="true">
+	<ion-header-bar class="bar-calm header-back" style='background: #fff;'>
+		<div class="buttons">
+			<button style="color: #000;" class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title" style="color: #000;">淘口令</h1>
+		<!--<div class="buttons" ng-click='sharegoods()'>
+			<button class="button  button-clear" style="font-size: 14px;color: #000;">分享</button>
+		</div>-->
+	</ion-header-bar>
+    <ion-content class=" ion_content_top_45 taoCommond">
+     <div class="taoCommond-box">
+                    <h3>{{linkInfo.goods_title}}</h3>
+       <div class="taoCommond-info">
+       	<p>【在售价】{{linkInfo.discountPrice}}元</p>
+       	<p>【券后价】{{linkInfo.nowPrice}}元</p>
+       	<p>···········</p>
+       	<p>复制这条信息，</p>
+       	<p>{{linkInfo.tao_str}}，打开【手机淘宝】即可查看</p>
+       	<!--<p ng-bind-html='taoLink'></p>-->
+       </div>
+
+   </div>
+   <div class="taoCommond-imgs">
+            <img ng-src="{{linkInfo.imgUrl}}"/>
+        </div>
+    </ion-content>
+
+    <ion-footer>
+        <div class="goodsinfo-footer flex">
+            <!--<div class="goodsinfo-footer-cart widget borderR1" ui-sref='ggb.cart'>
+                <text class='cartNum' ng-if='cartNum!=0'>{{cartNum}}</text>
+                <i class='iconfont icon-gouwuche'></i>
+                <div class="classname">购物车</div>
+            </div>-->
+
+            <!--<div class="goodsinfo-footer-collect widget borderR1" ng-if="collected" ng-click='cancelCollect()'>
+                <i class='iconfont icon-yishoucangstar' style="color:#DD2726"></i>
+                <div class="classname">已收藏</div>
+            </div>
+            <div class="goodsinfo-footer-collect widget borderR1" ng-if="!collected" ng-click='goCollect()'>
+                <i class='iconfont icon-shoucangstar'></i>
+                <div class="classname">收藏</div>
+            </div>-->
+            <div class="goodsinfo-footer-addCart" ng-click="copyLink()">复制淘口令</div>
+        </div>
+    </ion-footer>
+
+</ion-view>

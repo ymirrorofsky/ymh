@@ -1,0 +1,21 @@
+<!--
+Create tabs with an icon and label, using the tabs-positive style.
+Each tab's child <ion-nav-view> directive will have its own
+navigation history that also transitions its views in and out.
+-->
+<!--<link href="../css/ionic.app.css" rel="stylesheet">-->
+
+<ion-tabs class="tabs-icon-top tabs-color-active-calm">
+    <ion-tab class='iconfont home' title="首页" icon-off="poorbar-home-off home" icon-on="poorbar-home-on home" href="#/cf/home">
+        <ion-nav-view name="cf-home"></ion-nav-view>
+    </ion-tab>
+    <ion-tab class='iconfont shop' title="发起" icon-off="poorbar-shop-off shop" icon-on="poorbar-shop-on shop" href="#/cf/cf-projectapply">
+        <ion-nav-view name="cf-projectapply"></ion-nav-view>
+    </ion-tab>
+    <!--<ion-tab class='iconfont donate' title="消息" icon-off="poorbar-donate-off donate" icon-on="poorbar-donate-on donate" href="#/cf/news">
+        <ion-nav-view name="cf-news"></ion-nav-view>
+    </ion-tab>-->
+    <ion-tab class='iconfont' title="我的" icon-off="ion-person" icon-on="ion-person" href="#/cf/my">
+        <ion-nav-view name="cf-my"></ion-nav-view>
+    </ion-tab>
+</ion-tabs>

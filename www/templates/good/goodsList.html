@@ -1,0 +1,30 @@
+<ion-view title="商品分类" hide-nav-bar="true" hide-back-button="true">
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">商品分类</h1>
+	</ion-header-bar>
+
+	<ion-content class='good-autoheight'>
+		<div class="goodsList">
+			<ul class="goodsList-classify">
+				<li ng-click='getClassify()' class="clickchange">全部</li>
+				<!--<li ng-class="{true: 'clickchange', false: ''}[cateStyle== 'clickchange']" ng-click='getClassify({id:null})'  id="{{spid}}">11</li>-->
+				
+				<li ng-repeat='single in classfyList' id="p{{single.id}}" ng-click='getClassify({id:single.id})'>{{single.title}}</li>
+			</ul>
+			<ul class="goodsList-lists">
+				<li ng-repeat='item in goodsList' ui-sref="goods.goodsInfo({id:item.id})">
+					<img ng-src='{{item.thumb}}'>
+					<h5>{{item.goodsName}}</h5>
+					<p>{{item.goodsDesc}}</p>
+					<span>{{item.spe_price}}</span></li>
+			</ul>
+		</div>
+		<!--<div ng-if='goods.tit' class="">
+			
+		</div>-->
+	</ion-content>
+
+</ion-view>

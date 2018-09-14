@@ -1,0 +1,42 @@
+<ion-view view-title="历史数据" hide-nav-bar="true">
+    <ion-header-bar class="bar-calm header-my">
+        <div class="buttons">
+            <button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+        </div>
+        <h1 class="title">历史数据</h1>
+    </ion-header-bar>
+    <ion-content class="history_data">
+        <div class="hd_list">
+            <div class="hd_item" ui-sref='user.historyDataD({type:"1",title:"近日剩余利润"})'>
+                <img src="img/money_icon.png" alt="">
+                <div class="hd_i_name">近日剩余利润</div>
+                <div class="hd_i_num">{{info.residue || 0}}</div>
+            </div>
+            <div class="hd_item" ui-sref='user.historyDataD({type:"2",title:"近日的分润使用"})'>
+                <img src="img/money_icon.png" alt="">
+                <div class="hd_i_name">近日的分润使用</div>
+                <div class="hd_i_num">{{info.used || 0}}</div>
+            </div>
+            <div class="hd_item" ui-sref='user.historyDataD({type:"3",title:"近日的{{globalInfo.nounInfo.LOVE}}总额"})'>
+                <img src="img/money_icon.png" alt="">
+                <div class="hd_i_name">近日的{{globalInfo.nounInfo.LOVE}}总额</div>
+                <div class="hd_i_num">{{info.heart || 0}}</div>
+            </div>
+            <div class="hd_item" ui-sref='user.historyDataD({type:"4",title:"近日的分润指数"})'>
+                <img src="img/money_icon.png" alt="">
+                <div class="hd_i_name">近日的平台指数</div>
+                <div class="hd_i_num">{{info.index || 0}}</div>
+            </div>
+            <div class="hd_item" ui-sref='user.historyDataD({type:"5",title:"近日系数均线"})'>
+                <img src="img/money_icon.png" alt="">
+                <div class="hd_i_name">近日系数均线</div>
+                <div class="hd_i_num">{{info.avg || 0}}</div>
+            </div>
+            <!--<div class="hd_item" ui-sref='user.historyDataD({type:"3",title:"近日的积分总额"})'>
+                <div class="hd_i_name">未来预计收益</div>
+                <div class="hd_i_num">{{info.title || 0}}</div>
+            </div>-->
+        </div>
+    </ion-content>
+
+</ion-view>

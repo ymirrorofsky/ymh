@@ -1,0 +1,87 @@
+<ion-view title="代理中心" hide-nav-bar="true" hide-back-button="true">
+
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ui-sref="tab.tcmytc">返回</button>
+		</div>
+		<h1 class="title">代理中心</h1>
+	</ion-header-bar>
+	<style type="text/css">
+		.loves-info li{
+			height: 50px;line-height: 50px;
+		}
+	</style>
+	<ion-content class="bodybg-normal agent_center my_upgrade">
+		<!--<div style="background:url('img/my_header_bg.png')">
+			<div class="t_user_message flex" ui-sref="user.center " style="background: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;">
+				<div class="img" style="margin-right:0">
+					<img ng-src="{{globalInfo.user.avatar||'img/headimg.jpg'}}">
+				</div>
+				<div class="flex_1 txt" style="height:auto">
+					<h2 class="text-overflow_1" ng-style="{ 'margin-bottom' : globalInfo.data.cityBirth !='' ? '5px' : '10px'} ">{{levelName[info.leve]}}</h2>
+				</div>
+			</div>
+			<div class="my-header">
+				<div ui-sref='user.agentBalanceList({level:"1",levelClass:"balance"})' '>				
+					<img src="img/my_header_balance.png" />
+					<span>余额				
+					</span>
+					<span style="font-size: 20px;">{{info.balance || 0}}</span>
+				</div>
+				<div ui-sref='user.agentBalanceList({level: "1",levelClass: "heart"}) ''>
+					<img src="img/my_header_love.png" />
+					<span>{{globalInfo.nounInfo.LOVE}}
+					</span>
+					<span style="font-size: 20px;">{{info.heart || 0}}</span>
+				</div>
+			</div>
+			<ul class="loves-info">
+				<li ui-sref='user.repo({from:"agent"})'>代理余额提现<span><i class="icon ion-ios-arrow-right"></i></span> </li>
+			</ul>
+		</div>-->
+
+
+
+		<div style="background:url('img/my_header_bg.png');    margin-bottom: 10px;" ng-repeat="item in list">
+			<div class="t_user_message flex"  style="background: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;">
+				<div class="img" style="margin-right:0">
+					<img ng-src="{{globalInfo.user.avatar||'img/headimg.jpg'}}">
+				</div>
+				<div class="flex_1 txt" style="height:auto">
+					<h2 class="text-overflow_1" ng-style="{ 'margin-bottom' : globalInfo.data.cityBirth !='' ? '5px' : '10px'} ">{{item.name}}</h2>
+				</div>
+			</div>
+			<div class="my-header">
+				<div ui-sref='user.agentBalanceList({level:"1",levelClass:"balance",agentId:item.id})' '>				
+					<img src="img/my_header_balance.png" />
+					<span>余额				
+					</span>
+					<span style="font-size: 20px;">{{item.balance || 0}}</span>
+				</div>
+				<div ui-sref='user.agentBalanceList({level: "1",levelClass: "heart",agentId:item.id}) ''>
+					<img src="img/my_header_love.png" />
+					<span>{{globalInfo.nounInfo.LOVE}}
+					</span>
+					<span style="font-size: 20px;">{{item.heart || 0}}</span>
+				</div>
+			</div>
+			<ul class="loves-info">
+				<li ui-sref='user.historyData'>历史数据<span><i class="icon ion-ios-arrow-right"></i></span> </li>
+			</ul>
+		</div>
+
+
+
+
+	
+
+	</ion-content>
+</ion-view>

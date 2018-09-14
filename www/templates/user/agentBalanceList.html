@@ -1,0 +1,59 @@
+<ion-view view-title="赠品券" hide-nav-bar="true">
+    <ion-header-bar class="bar-calm header-back">
+        <div class="buttons">
+            <button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+        </div>
+        <h1 class="title" ng-if="levelClass == 'balance'">余额明细</h1>
+        <h1 class="title" ng-if="levelClass == 'heart'">{{globalInfo.nounInfo.LOVE}}明细</h1>
+
+        <div class="buttons">
+            <button class="button button-clear" ui-sref='user.repo({from:"agent",agentId:agentId})' ng-if="levelClass == 'balance'">余额提现</button>
+        </div>
+    </ion-header-bar>
+    <ion-content class="bodybg-normal  balancedetail">
+        <ion-refresher pulling-text="下拉刷新.." on-refresh="doRefresh()"></ion-refresher>
+
+        <!--<div class="wi_list">
+            <div class="heart_passer_bottom" ng-repeat="item in list">
+                <div class="bottom_middle">
+                    <div class="bottom_middle_name" style="width: auto;">
+                        <span ng-if="levelClass == 'balance'">余额</span>
+                        <span ng-if="levelClass == 'heart'">{{globalInfo.nounInfo.LOVE}}</span>
+                        <span style="color:red">{{item.num}}
+                        </span>
+                        <div style="float: right;font-size:10px;">{{item.createtime*1000|date:"yyyy-MM-dd HH:mm"}}</div>
+
+                    </div>
+                </div>
+                <div class="bottom_right" style="position: relative;padding-left: 40px;display: flex">
+                    <div style="text-align: left;flex-grow: 1" class="bottom_middle_role" >
+                        <span style="position: absolute;left: 0;">来源：</span>
+                        <span>{{item.remark}}</span>
+                    </div>
+                    <div style="text-align: left;" class="bottom_middle_role">
+                        <span>余额:</span>
+                        <span>{{item.all_num}}</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>-->
+
+  	<dl>
+				<dd style="display: flex;align-items: center;" ng-repeat="item in list">
+				<div class="flexG_1">
+					<h5 ng-bind-html='item.remark'></h5>
+				<b>{{item.createtime*1000| date:"MM-dd HH:mm:ss"}}</b>
+				</div>
+				<div class="flexG_0" style="text-align: right;">
+					<p >{{item.num}}</p>
+				<!--<p ng-if="item.paymentsType ==2">-{{item.num}}</p>-->
+				<b ng-if='item.all_num>0'>{{(levelClass == 'balance')?'当前余额':'当前{{globalInfo.nounInfo.LOVE}}'}}:{{item.all_num||0}}</b>
+				</div>
+			</dd>
+			</dl>
+
+
+        <ion-infinite-scroll ng-if="!noMore" on-infinite="loadMore()" distance="1%" icon="" immediate-check="false"></ion-infinite-scroll>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,84 @@
+<!--<link href="../../css/ionic.app.css" rel="stylesheet">-->
+<ion-view view-title="订单" hide-nav-bar="true" hide-back-button="true">
+
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ui-sref='poor.my'>返回</button>
+		</div>
+		<h1 class="title">订单列表 </h1>
+	</ion-header-bar>
+	<ion-content>
+		<!--<ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()"></ion-refresher>-->
+		<div class="my-order orderlist-head">
+			<div class="order-type">
+				<a ng-class="{'clickthis':ordertype=='0'}" ng-click='chooseorder("0")'>线上订单</a>
+				<a ng-class="{'clickthis':ordertype=='1'}" ng-click='chooseorder("1")'>线下订单</a>
+			</div>
+			<ul class="clearfix" ng-if='ordertype=="0"'>
+				<li id="porder9" ng-click="getNew(9)"><i class="iconfont icon-jilu"></i><span class="red">全部</span></li>
+				<li id="porder0" ng-click="getNew(0)"><i class="iconfont icon-pay"><sup ng-if="pageInfo.orderNumOne > 0" ng-bind="pageInfo.orderNumOne"></sup></i><span>待付款</span></li>
+				<li id="porder1" ng-click="getNew(1)"><i class="iconfont icon-send"><sup ng-if="pageInfo.orderNumTwo > 0" ng-bind="pageInfo.orderNumTwo"></sup></i><span>待发货</span></li>
+				<li id="porder2" ng-click="getNew(2)"><i class="iconfont icon-deliver"><sup ng-if="pageInfo.orderNumThree > 0" ng-bind="pageInfo.orderNumThree"></sup></i><span>待收货</span></li>
+				<li id="porder3" ng-click="getNew(3)"><i class="iconfont icon-community"><sup ng-if="pageInfo.orderNumFour > 0" ng-bind="pageInfo.orderNumFour"></sup></i><span>待评价</span></li>
+			</ul>
+		</div>
+		<div class="common-empty" ng-if="orderEmpty">什么也没有...</div>
+		<div class="order-list" ng-if='ordertype=="0"'>
+			<div class="user-order-list">
+				<dl ng-repeat="singles in goodslist">
+					<dt id='p{{singles.spid}}' class="shopchose" ui-sref='goods.onlineshops({spid:singles.spid})'>
+				    <span style="color: #EC0005;">{{singles.shopName}} <i class="icon ion-ios-arrow-right"></i></span>
+				      <b>{{singles.createtime*1000 | date:"yyyy-MM-dd HH:mm:ss" }}</b>
+						</dt>
+					<dd class="myorderList" ng-repeat='items in singles.goods'>
+						<a ng-click='filtersT({id:singles.id,ordertype:singles.orderType})'>
+							<img ng-src="{{items.thumb||'img_ad/smfk1.jpg'}}">
+							<div class="myorder-right">
+								<p>{{items.goodsName}}</p>
+								<p>{{items.field}}</p>
+								<h5>￥{{items.goodsPrice}} <i>×{{items.goodsNum}}</i></h5>
+							</div>
+						</a>
+						<div class="end">
+						</div>
+					</dd>
+					<dt><span>共{{singles.goods.length}}件商品 </span> &nbsp;&nbsp;<span> 运费：￥{{singles.express}}</span>&nbsp; &nbsp;<span>实付：<em style="color: #EC0005;">￥{{singles.payPrice}}</em></span></dt>
+					<dt>
+							<span style="color: #EC0005;" ng-bind="statusName[singles.orderStatus]"></span>
+							<b ui-sref='goods.onlinepay({payid:singles.orderId})' class="tinct{{singles.orderStatus}}" ng-if='singles.orderStatus=="0"'>付款</b>
+							<b class="tinct{{singles.orderStatus}}" ng-if='singles.orderStatus=="3"'  ui-sref='shops.evaluate({orderid:singles.orderId})'>评价</b>
+							<b style="color: #EC0005;" class="tinct{{singles.orderStatus}}" ng-if='singles.orderStatus=="2"' ng-click='confirmorder(singles.orderId,singles.id)'>确认收货</b>
+							<b  ng-if='singles.orderStatus=="0"' ng-click='cancel(singles.orderId,singles.id)'>取消订单</b>
+							<b class="tinct{{singles.orderStatus}}" ng-if='singles.orderStatus=="-1"||singles.orderStatus=="4"' ng-click='delorder(singles.orderId,singles.id)'>删除订单</b>
+						</dt>
+				</dl>
+			</div>
+			<!--<div class="order-btn clearfix">
+           <span class="cancel"  ng-click="delete(list.orderId)">删除订单</span>
+            <span class="pay" ng-click="payment(list.payType,list.orderId)">立即支付</span>
+            <span class="cancel" ng-click="cancel(list.orderId)">取消订单</span>
+          </div>-->
+		</div>
+		<div class="order-list" ng-if='ordertype=="1"'>
+			<div class="user-lineorder-list">
+				<dl ng-repeat="singles in goodslist">
+					<dt id='p{{singles.spid}}' class="shopchose" ui-sref='shops.shopsInfo({spid:singles.spid})'>
+				    <span>{{singles.shopName||'商家名字'}} </span>
+				      <b ng-bind="statusName[singles.orderStatus]"></b>
+						</dt>
+					<dd ng-click='filtersT({id:singles.id,ordertype:singles.orderType})'>
+						<p>付款金额：<span style="color: #EC0005;">{{singles.payPrice}}</span></p>
+						<h5>付款人：{{singles.mobile}} <i>{{singles.createtime*1000 | date:"yyyy-MM-dd HH:mm" }}</i></h5>
+					</dd>
+					<dt>
+						<b ui-sref='goods.onlinepay({payid:singles.orderId})' class="tinct{{singles.orderStatus}}" ng-if='singles.orderStatus=="0"'>付款</b>
+						<b  ng-if='singles.orderStatus=="0"' ng-click='cancel(singles.orderId,singles.id)'>取消订单</b>
+						<b class="tinct{{singles.orderStatus}}" ng-if='singles.orderStatus=="-1"||singles.orderStatus=="1"' ng-click='delorder(singles.orderId,singles.id)'>删除订单</b>
+						
+						</dt>
+				</dl>
+			</div>
+		</div>
+		<ion-infinite-scroll ng-if="pageMsg.loadMore" on-infinite="method.loadMore()" distance="1%" icon="" immediate-check="false"></ion-infinite-scroll>
+	</ion-content>
+</ion-view>

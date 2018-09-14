@@ -1,0 +1,128 @@
+<ion-view view-title="{{globalInfo.nounInfo.LOVE}}商城" hide-nav-bar="true" hide-back-button="true">
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ui-sref='tab.online'>返回</button>
+		</div>
+
+		<h1 class="title">优惠专区 </h1>
+		<!--<h1 class="title">{{globalInfo.nounInfo.LOVE}}商城 </h1>-->
+	</ion-header-bar>
+	<ion-content  lazy-scroll>
+		<ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()"></ion-refresher>
+		<!--<div class="ydgy-header">
+			<div class="top flex">
+				<div class="flex_1 search">
+					<i class="iconfont icon-search" ng-click="search()"></i>
+					<input type="text" placeholder="搜索商户名" ng-model="keywords" ng-change="pageInfo.getSerachList()" ng-enter="goSearch()" ng-focus='goSearch()'>
+				</div>
+			</div>
+		</div>-->
+		<ion-slide-box delegate-handle="slideimgs" show-pager="true" auto-play="true" >
+			<ion-slide ng-repeat="focus in pageData.focusListData" >
+				<a ui-sref='integral.goodsInfo({goodsId:focus.goods_id})'><img ng-src="{{focus.thumb}}" width="100%" class="banner-img"></a>
+			</ion-slide>
+		</ion-slide-box>
+		<ul class="integral-entrance">
+			<li>我的{{globalInfo.nounInfo.LOVE}}({{lovesinfo.red_integral + lovesinfo.white_integral}})</li>
+			<!--<li>我的{{globalInfo.nounInfo.LOVE}}({{lovesinfo.lovesnum}})</li>-->
+			<li ng-if='lovesshow==1' ui-sref='integral.voucherList({issplit:lovesinfo.open_merge})'>{{globalInfo.nounInfo.LOVE}}券({{lovesinfo.loveVoucher}})</li>
+			<li ng-if='lovesshow!=1' ui-sref='integralMall.lists'>兑换记录</li>
+		</ul>
+		<div class="home-nav">  
+			<ion-slide-box delegate-handle="nav" show-pager="false" ng-if='pageData.navList.length<11'>
+			<ion-slide ng-repeat='item in pageData.navList'>
+			<ul class="clearfix box">
+				<li ng-repeat="nav in item" ui-sref='integralMall.goods({cid:nav.cid,title:nav.title})'>
+					<img image-lazy-src="{{nav.thumb}}" image-lazy-loader="circles" lazy-scroll-resize="true" image-lazy-loader="circles" />
+					<p ng-bind="nav.title"></p>
+				</li>
+			</ul>
+			</ion-slide >
+			<!--<ion-slide >
+			<ul class="clearfix box">
+				<li ng-repeat="nav2 in pageData.navListadd" ui-sref='shops.linelocations({cid:nav2.cid,title:nav2.title})'>
+					<img image-lazy-src="{{nav2.thumb}}" image-lazy-loader="circles" lazy-scroll-resize="true" image-lazy-loader="circles" />
+					<img ng-src="{{nav2.thumb}}"/>
+					<p ng-bind="nav2.title"></p>
+				</li>
+				<li ui-sref='shops.shopallcate()'>
+					<img ng-src="img/shopcatelogo.png" />
+					<p>全部分类</p>
+				</li>
+			</ul>
+			</ion-slide>-->
+		</ion-slide-box>
+		<ion-slide-box delegate-handle="nav" show-pager="true" ng-if='pageData.navList.length>10'>
+			<ion-slide>
+			<ul class="clearfix box">
+				<li ng-repeat="nav in pageData.navList" ui-sref='integralMall.goods({cid:nav.id,title:nav.title})'>
+					<img image-lazy-src="{{nav.thumb}}" image-lazy-loader="circles" lazy-scroll-resize="true" image-lazy-loader="circles" />
+					<p ng-bind="nav.title"></p>
+				</li>
+			</ul>
+			</ion-slide >
+		</ion-slide-box>
+		</div>
+		<div class="home-shops-list">
+			<h4> <i class="iconfont icon-shangjia"></i> 推荐商品 </h4>
+			<div class="lineshop-shopslist">
+				<ul>
+					<li class="cardname" ng-repeat="goods in remGoodsList" ui-sref="integral.goodsInfo({goodsId:goods.id})">
+						<!--<img image-lazy-src="{{goods.thumb}}" image-lazy-loader="circles" lazy-scroll-resize="true">-->
+						<img ng-src="{{goods.thumb}}"/>
+						<h3>
+						<!--<span class="distance"> {{goods.distance}}</span>--> 
+						<p class="text-overflow_1"><em class="text-overflow_1" style="width: 65%;float:left;">{{goods.title}}</em></p>
+					</h3>
+						<div class="star">
+							<!--<span ng-if='goods.times>0'>消费{{goods.times}}次</span>-->
+							<p>
+								价格:{{goods.price}}
+							</p>
+						</div>
+						<div class="bottom">
+							<!--<span>{{goods.categoryName}} | <b>{{goods.street}}</b></span>-->
+							
+							<p ng-if='goods.mode==1'>兑换方式:{{goods.credit}}个{{globalInfo.nounInfo.LOVE}}+￥{{goods.money}}</p>
+							<!--<p ng-if='goods.mode==1'>兑换方式：{{goods.credit}}个{{globalInfo.nounInfo.LOVE}}+￥{{goods.money}}</p>-->
+							<p ng-if='goods.mode==2'>兑换方式:{{globalInfo.nounInfo.LOVE}}和钱自由组合</p>
+							<p ng-if='goods.mode==3'>兑换方式：{{globalInfo.nounInfo.LOVE}}券{{goods.heart_voucher}}</p>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="home-shops-list">
+			<h4 ng-click='seemore()'> <i class="iconfont icon-shangjia"></i>商品列表 <a style="float: right;" >更多 ></a></h4>
+			<div class="lineshop-shopslist">
+				<ul>
+					<li class="cardname" ng-repeat="goods in goodsList" ui-sref="integral.goodsInfo({goodsId:goods.id})">
+						<!--<img image-lazy-src="{{goods.thumb}}" image-lazy-loader="circles" lazy-scroll-resize="true">-->
+						<img ng-src="{{goods.thumb}}" />
+						<h3>
+						<!--<span class="distance"> {{goods.distance}}</span>--> 
+						<p class="text-overflow_1"><em class="text-overflow_1" style="width: 65%;float:left;">{{goods.title}}</em></p>
+					</h3>
+						<div class="star">
+							<!--<span ng-if='goods.times>0'>消费{{goods.times}}次</span>-->
+							<p>
+				价格:{{goods.price}}
+							</p>
+						</div>
+						<div class="bottom">
+							<!--<span>{{goods.categoryName}} | <b>{{goods.street}}</b></span>-->
+							<!--<p ng-if='goods.mode==1'>兑换方式：{{goods.credit}}个{{globalInfo.nounInfo.LOVE}}+￥{{goods.money}}</p>-->
+							<p ng-if='goods.mode==1'>兑换方式：{{goods.credit}}个{{globalInfo.nounInfo.LOVE}}+￥{{goods.money}}</p>
+							<p ng-if='goods.mode==2'>兑换方式：有{{globalInfo.nounInfo.LOVE}}即可</p>
+							<p ng-if='goods.mode==3'>兑换方式：{{globalInfo.nounInfo.LOVE}}券{{goods.heart_voucher}}</p>
+						</div>
+					</li>
+				</ul>  
+			</div>
+		</div>
+
+		<ion-infinite-scroll ng-if="noMore" on-infinite="loadMoreGoods()" distance="1%" icon="" immediate-check="false">
+		</ion-infinite-scroll>
+	</ion-content>
+
+</ion-view>

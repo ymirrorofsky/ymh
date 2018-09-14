@@ -1,0 +1,34 @@
+<ion-view title="商家二维码" hide-nav-bar="true" hide-back-button="true">
+
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">商家二维码</h1>
+	</ion-header-bar>
+	<ion-content>
+		<div class="zlz-my-header flex padding">
+			<img ng-src="{{shopsinfo.logo || 'img/headimg.jpg'}}" style="border-radius: 50%;">
+			<div class="flex_1 user-share">
+				<h3 class="text-overflow_1" style="margin-top: 15px;">{{shopsinfo.title}}</h3>
+				<span class="text-overflow_1" style="margin-top: 15px;">{{shopsinfo.birthInfo}}</span>
+			</div>
+		</div>
+		<div class="share-qcode">
+			<!--<h5>请先扫码下边的推荐码！</h5>-->
+			<img style="width: 100%;" ng-src="{{shopQrcode.url}}" />
+			<h5 style="background: #fff;margin: 0;color: #333;font-size: 13px;">此二维码用于面对面扫码付款</h5>
+		</div>
+		
+			<!--<div class="yd-shop-qrcode">
+				<h3 class="positive" ng-bind="shopQrcode.message"></h3>
+				<img ng-src="{{shopQrcode.url}}">
+			</div>-->
+		<div class="shops-loginInfo" ng-if = 'shopQrcode.status.isShopHidden == 1'>
+			<h3>商家登录信息</h3>
+			<p>商家登录地址：{{shopQrcode.shopInfo.loginUrl}}</p>
+			<p>登录账号：{{shopQrcode.shopInfo.username}}</p>
+			<p>登录密码：{{shopQrcode.shopInfo.password}}</p>
+		</div>
+	</ion-content>
+</ion-view>

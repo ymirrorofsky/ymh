@@ -1,0 +1,62 @@
+<ion-view title="夺宝记录" hide-nav-bar="true">
+
+    <ion-header-bar class="bar-calm">
+            <div class="buttons">
+                    <button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+                </div>
+        <h1 class="title">夺宝记录</h1>
+    </ion-header-bar>
+    <ion-content class="db_user_rec">
+        <ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()"></ion-refresher>
+        <div class="goods_section dur_list_tab">
+            <div class="gl_tab flex borderB1">
+                <div ng-click="active('0')" ng-class="{'on':status == '0'}" class="">全部</div>
+                <div ng-click="active('1')" ng-class="{'on':status == '1'}" class="dlt_ing">进行中</div>
+                <div ng-click="active('3')" ng-class="{'on':status == '3'}" class="borderR1">已揭晓</div>
+            </div>
+        </div>
+
+        <div class="common-empty" ng-if="orderEmpty">什么也没有...</div>
+
+        <div class="dur_list" ng-if="!orderEmpty">
+            <div class="dur_item goods_item flex borderB1" ng-repeat="item in list">
+                <div class="gi-img " ui-serf='dbson.goodsInfo({goodsId:item.goodsId})'>
+                    <img ng-src="{{item.thumb}}" alt="" class="db_img">
+                </div>
+                <div>
+                    <div class="gi-name">(第{{item.periods}}期){{item.title}}</div>
+                    <div class="award_total gray">
+                        <span>总需 : </span>{{item.zong_codes}}</div>
+                    <div class="award_num gray">
+                        <span>期号 : </span>{{item.period_number}}</div>
+                    <div class="award_name gray" ng-if="timestamp > item.endtime" >
+                        <span>获得者 : </span>{{item.nickname || item.mobile1}}
+                    </div>
+                    <div class="award_name gray" ng-if="!item.endtime">
+                        <span>获得者 : </span>待揭晓
+                    </div>
+                    <!-- <div class="award_amount">
+                        <span>参与人次 : </span>2</div> -->
+                    <div class="award_num gray">
+                        <span>幸运号码 : </span>{{item.code || '待揭晓'}}</div>
+                    <div class="award_time gray" ng-if="item.endtime">
+                        <span>揭晓时间 : </span>{{item.endtime *1000 | date:'yyyy-MM-dd HH:mm:ss'}}
+                    </div>
+                    <div class="award_time gray" ng-if="!item.endtime">
+                        <span>揭晓时间 : </span>待揭晓
+                    </div>
+                    <div class="award_current">
+                        <span>本期参与 : </span>{{item.count}}人次
+                        <span class="blue" ng-click="myCode(item.count,item.finalCode,item.title)">查看我的号码</span>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+        </div>
+        <ion-infinite-scroll ng-if="!noMore" on-infinite="loadMore()" distance="1%" icon="" immediate-check="false"></ion-infinite-scroll>
+    </ion-content>
+</ion-view>

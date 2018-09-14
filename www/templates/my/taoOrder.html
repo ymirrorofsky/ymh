@@ -1,0 +1,47 @@
+<!--<link href="../../css/ionic.app.css" rel="stylesheet">-->
+<ion-view view-title="推广订单" hide-nav-bar="true" hide-back-button="true">
+
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ui-sref='tab.tcmytc'>返回</button>
+		</div>
+		<h1 class="title">推广订单 </h1>
+	</ion-header-bar>
+	<ion-content>
+		<ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()"></ion-refresher>
+		<div class="taoorderlist-head">
+			<ul class="clearfix">
+				<li id="porder0" ng-click="getNew(0)"><i class="iconfont icon-jilu"></i><span class="red">全部</span></li>
+				<li id="porder1" ng-click="getNew(1)"><i class="iconfont icon-pay"><sup ng-if="pageInfo.orderNumOne > 0" ng-bind="pageInfo.orderNumOne"></sup></i><span>已付款</span></li>
+				<li id="porder2" ng-click="getNew(2)"><i class="iconfont icon-send"><sup ng-if="pageInfo.orderNumTwo > 0" ng-bind="pageInfo.orderNumTwo"></sup></i><span>已结算</span></li>
+				<li id="porder3" ng-click="getNew(3)"><i class="iconfont icon-deliver"><sup ng-if="pageInfo.orderNumThree > 0" ng-bind="pageInfo.orderNumThree"></sup></i><span>已失效</span></li>
+			</ul>
+		</div>
+		<div class="common-empty" ng-if="orderEmpty">什么也没有...</div>
+		<div class="taoorder-list" ng-if="!orderEmpty">
+			<div class="tao_order_list">
+				<dl >
+					<dd  ng-repeat='items in goodslist'>
+							<img class="imgs" ng-src="{{items.img}}">
+							<div class="myorder-right">
+								<p class="text-overflow_1">{{items.goodsName}}</p>
+								<h5>
+									<span>{{items.createTime}}</span>
+								</span>
+									<span>{{items.jsTime}}</span>
+								</h5>
+								<p class="orderNum">{{items.orderNo}}  <em ng-click='copy(items.orderNo)'>复制</em> </p>
+								<h6>
+									<em >{{items.payMoney}}</em>	
+									<i>{{items.text}}</i>
+								</h6>
+							</div>
+						<div class="end">
+						</div>
+					</dd>
+				</dl>
+				</div>
+			</div>
+			<ion-infinite-scroll ng-if="noMore" on-infinite="loadMore()" distance="1%" icon="" immediate-check="false"></ion-infinite-scroll>
+	</ion-content>
+</ion-view>

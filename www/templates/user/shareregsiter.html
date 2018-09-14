@@ -1,0 +1,65 @@
+<ion-view view-title="分享注册" hide-nav-bar="true">
+
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">分享注册</h1>
+	</ion-header-bar>
+	<ion-content class="bodybg-normal shareregister">
+		<div class="ambassadorlogo">
+			<img src="img/shareregsiterbg.png" alt="" />
+			<!-- <p>{{ambassador.ambassMoney}}</p>-->
+		</div>
+		<dl>
+			<dt><img class="img" src="img/aixinshizhe.png" />{{globalInfo.nounInfo.AXSZ}}收益：</dt>
+			<dd style="padding: 0 10px 0 35px;"> 1、推荐会员奖励50+50赠品券</dd>
+			<dd style="padding: 0 10px 0 35px;"> 2、推荐店铺奖励500+500赠品券</dd>
+			<dd style="padding: 0 10px 0 35px;"> 3、推荐代理奖励5000+5000赠品券</dd>
+
+
+
+			<dt><img class="img" src="img/colorshare.png" />{{globalInfo.nounInfo.CDSZ}}权益：</dt>
+			<dd style="padding: 0 10px 0 35px;"> 1、推荐会员在店铺消费按让利奖励20%{{globalInfo.nounInfo.LOVE}}</dd>
+			<dd style="padding: 0 10px 0 35px;"> 2、推荐会员在自营消费按消费金额奖励10%加速分润到余额</dd>
+			<dd style="padding: 0 10px 0 35px;"> 3、推荐店铺销售按让利奖励20%{{globalInfo.nounInfo.LOVE}}</dd>   
+			<dd style="padding: 0 10px 0 35px;"> 4、推荐代理按区域收益奖励20%{{globalInfo.nounInfo.LOVE}}</dd>   
+			<dd style="padding: 0 10px 0 35px;"> 5、近30天内，每推荐创客1人享受分润指数加速10%</dd>   
+			<!--<dt class="show"><img src="img/arrowright.png" alt="" ng-class="{'show':opens}" ng-click='changeshow()' />
+				<img class="img" src="img/chuandi.png" />{{globalInfo.nounInfo.CDDS}}分享收益：
+			</dt>
+			<dd ng-if='opens'>
+				<p>1.享有分享直接客户消费<em>{{regsiterinfo.firstMessengertwo}}</em>{{globalInfo.nounInfo.LOVE}}激励，如消费1000元，可获得<em>{{0.1*regsiterinfo.firstMessengertwo| number:2}}</em>个{{globalInfo.nounInfo.LOVE}}。</p>
+				<p>2.享有分享简介客户消费<em>{{regsiterinfo.secondMessenger}}%</em>{{globalInfo.nounInfo.LOVE}}激励，如消费1000元，可获得<em>{{0.1*regsiterinfo.secondMessenger | number:2}}</em>个{{globalInfo.nounInfo.LOVE}}。</p>
+				<p>3.享有推荐商家入驻后，其销售额<em>{{regsiterinfo.shopsToShops}}%</em>{{globalInfo.nounInfo.LOVE}}激励，如消费1000元，可获得<em>{{regsiterinfo.shopsToShops}}</em>个{{globalInfo.nounInfo.LOVE}}。</p>
+				<p>4.如果自身是商家，可以申请成为认证商家，享受让利<em>2倍</em>补贴。</p>
+			</dd>-->
+		</dl>
+	</ion-content>
+	<footer class='common-footer' ng-click='sharefriend()'>
+		<!--<b ng-click='sharefriend()'>
+  		<i class="icon ion-android-share-alt"></i>
+  		分享</b>
+  	<a ui-sref='tab.home' >线下商城</a>
+  	<a ui-sref="tab.online" style="background: #f09465;">线上商城</a>-->
+		立即邀请好友
+	</footer>
+	<div class="sharetype" ng-if='showtype'>
+		<div>
+			<a ng-click='buttontype(0)'>
+				<i><img src="img/wechatyou.png" alt="" /></i>
+				<span>好友</span>
+			</a>
+			<a ng-click='buttontype(1)'>
+				<i><img src="img/wechatquan.png" alt="" /></i>
+				<span>朋友圈</span></a>
+			<!--<a ng-click='buttontype(2)'>
+				<i><img src="img/qqLogo.png" alt="" /></i>
+				<span>QQ好友</span></a>
+			<a ng-click='buttontype(3)'>
+				<i><img src="img/qqZone.png" alt="" /></i>
+				<span>空间</span></a>-->
+		</div>
+		<h4 ng-click='buttontype("none")'>取消分享</h4>
+	</div>
+</ion-view>

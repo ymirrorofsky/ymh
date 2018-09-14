@@ -1,0 +1,31 @@
+<ion-view view-title="最新揭晓" hide-nav-bar='true'>
+    <ion-header-bar class="bar-calm">
+      <h1 class="title">最新揭晓</h1>
+    </ion-header-bar>
+    <ion-content class="last_reveal">
+      <ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()"></ion-refresher>
+      <div class="common-empty" ng-if="orderEmpty">什么也没有...</div>
+      <div class="goods_list clearFix" ng-if="!orderEmpty">
+
+        <div class="goods_item borderB1 borderR1" ng-repeat="item in list" ui-sref="dbson.lastRevealD({periodId:item.id})">
+            <div class="gi-img">
+              <img ng-src="{{item.thumb}}"
+                alt="" class="db_img">
+            </div>
+            <div class="gi-name">(第{{item.periods}}期){{item.title}}</div>
+            <div class="award_name">
+              <span>获得者 : </span>{{item.nickname || item.mobile1}}</div>
+            <div class="award_amount">
+              <span>参与人次 : </span>{{item.partakes}}</div>
+            <div class="award_num">
+              <span>幸运号码 : </span>{{item.code}}</div>
+            <div class="award_time">
+              <span>揭晓时间 : </span>{{item.endtime * 1000| date:'yyyy-MM-dd HH:mm'}}</div>
+    
+    
+    
+          </div>
+      </div>
+      <ion-infinite-scroll ng-if="!noMore" on-infinite="loadMore()" distance="1%" icon="" immediate-check="false"></ion-infinite-scroll>
+    </ion-content>
+  </ion-view>

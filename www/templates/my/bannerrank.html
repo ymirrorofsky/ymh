@@ -1,0 +1,34 @@
+<ion-view view-title="bannerRank" hide-nav-bar="true">
+    <ion-header-bar class="bar-calm header-back">
+        <div class="buttons">
+            <button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+        </div>
+        <h1 class="title" ng-bind='title'></h1>
+    </ion-header-bar>
+    <ion-content class="bodybg-normal rank" >
+        <ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()"></ion-refresher>
+        <div class="banner-ranking" ng-if="type =='heart'">
+            <ul>
+                <li class="flex " ng-repeat="item in list " >
+                    <i ng-bind="$index+1 " ng-class="{ 'first': $index<3} "></i>
+
+                    <!--<i ng-class="{ 'first': $index<3} " ng-if="$index> 2" style="visibility:hidden"></i>-->
+            <p class="text-overflow_1 flex_1" ng-bind="item.mobile">15603815316</p>
+            <p class="text-overflow_1 flex_1" ng-bind="item.area">贵阳市</p>
+            <span class="flex_1" ng-bind="item.heartNum">12</span>个
+            </li>
+            </ul>
+        </div>
+        <div class="banner-ranking" ng-if="type == 'sale' ">
+            <ul>
+                <li class="flex " ng-repeat="item in list ">
+                    <i ng-bind="$index+1 " ng-class="{ 'first': $index<3} "></i>
+                    <p class="text-overflow_1 flex_1 " ng-bind="item.birth ">无</p>
+                    <span class="flex_1 " ng-bind="item.money ">12</span>元
+                </li>
+            </ul>
+        </div>
+        	<ion-infinite-scroll ng-if="!noMore " on-infinite="loadMore() " distance="1% " immediate-check="false ">
+		</ion-infinite-scroll>
+    </ion-content>
+</ion-view>

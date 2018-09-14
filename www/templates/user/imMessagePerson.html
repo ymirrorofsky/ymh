@@ -1,0 +1,102 @@
+<ion-view view-title="消息对话" hide-nav-bar="true">
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">{{username}}</h1>
+	</ion-header-bar>
+	<ion-content class="bodybg-normal has-footer" has-bouncing="true">
+		<ion-refresher  on-refresh="doLoad()">
+				</ion-refresher>
+	<!--<div class="imperson-messageBox">-->
+		<!--<div class="imperson-messageListBox">-->				
+				<ul class='imperson-messageListBox-ul'>
+					<li ng-repeat='item in info.infoList' ng-class='item.from.username==username?"left":""'>
+						<img ng-src='{{item.from.avatarThumbPath||"img/headimg.jpg"}}'  />
+						<span>{{item.text}}</span>
+					</li>
+					<!--<li >
+						<img src="img/avatar.jpg"  />
+						<span>
+							<img src="img/chatRight.png"/>
+							数据搜你就是</span>
+						
+					</li>
+					<li class="left">
+						<img src="img/avatar.jpg"  />
+						<span>
+							<img src="img/chatLeft.png"/>
+							dc对对对</span>
+					</li>
+					<li >
+						<img src="img/avatar.jpg"  />
+						<span>	<img src="img/chatRight.png"/>数据搜你就是</span>
+						
+					</li>
+					<li class="left">
+						<img src="img/avatar.jpg"  />
+						<span>dc对对对</span>
+					</li>
+					<li >
+						<img src="img/avatar.jpg"  />
+						<span>
+							<img src="img/chatRight.png"/>
+							数据搜你就是</span>
+						
+					</li>
+					<li class="left">
+						<img src="img/avatar.jpg"  />
+						<span>
+							<img src="img/chatLeft.png"/>
+							dc对对对</span>
+					</li>
+					<li >
+						<img src="img/avatar.jpg"  />
+						<span>	<img src="img/chatRight.png"/>数据搜你就是</span>
+						
+					</li>
+					<li class="left">
+						<img src="img/avatar.jpg"  />
+						<span>dc对对对</span>
+					</li>
+					<li >
+						<img src="img/avatar.jpg"  />
+						<span>
+							<img src="img/chatRight.png"/>
+							数据搜你就是</span>
+						
+					</li>
+					<li class="left">
+						<img src="img/avatar.jpg"  />
+						<span>
+							<img src="img/chatLeft.png"/>
+							dc对对对</span>
+					</li>
+					<li >
+						<img src="img/avatar.jpg"  />
+						<span>	<img src="img/chatRight.png"/>数据搜你就是</span>
+						
+					</li>
+					<li class="left">
+						<img src="img/avatar.jpg"  />
+						<span>dc对对对</span>
+					</li>-->
+					<!--<li><textarea name="" ng-model='info.message' rows="" cols=""></textarea></li>-->
+				</ul>
+			<!--</ion-scroll>-->
+		<!--</div>-->
+		
+	<!--</div>-->
+   
+	</ion-content>
+   <ion-footer-bar class="bar-stable item-input-inset message-footer" keyboard-attach>
+           <div class="imperson-inpuBox">
+			<input name="" ng-model='info.message' placeholder="发送消息"/>
+			<button ng-click='contactIm()'>发送</button>
+		</div>
+
+        </ion-footer-bar>
+	<!--<ion-footer-bar>
+		<button class="button button-calm"  ng-click="logout()" style="width: 100%;background:#EC0005;">安全退出</button>
+	</ion-footer-bar>-->
+</ion-view>

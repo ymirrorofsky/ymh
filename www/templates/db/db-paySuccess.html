@@ -1,0 +1,24 @@
+<ion-view view-title="支付结果" hide-nav-bar='true'>
+
+    <ion-header-bar class="bar-calm">
+        <div class="buttons">
+            <button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+        </div>
+        <h1 class="title">支付结果</h1>
+    </ion-header-bar>
+
+    <ion-content class="pay_success">
+
+        <div class="ps_title borderB1">支付结果</div>
+        <div class="ps_tip">
+            
+            <p>恭喜您，参与成功!</p>
+            <p>请等待系统为您揭晓!</p>
+          </div> 
+        <div class="ps_btns flex borderB1">
+            <div class="ps_b_goOn" ui-sref='db.goodsList'>继续夺宝</div>
+            <div class="ps_b_goRec" ui-sref='dbson.userRec'>查看夺宝记录</div>
+        </div>
+
+    </ion-content>
+</ion-view>

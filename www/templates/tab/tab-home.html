@@ -1,0 +1,141 @@
+<ion-view title="首页" hide-nav-bar="true" hide-back-button="true">
+	<ion-header-bar class="bar-calm index-head flexG" style='background: #EC0005;'>
+		<div class="tubiao" ng-click="openModal()" ng-cloak>
+			<!--<i class="iconfont ion-location">{{curPosition.city || '定位'}}</i>-->
+			<span class="text-overflow_1" style="top: 0;">{{ymhPosition.city || '定位'}}</span>
+		</div>
+		<div class="flexG_1 search">
+			<i class="iconfont icon-search" ng-click="search()"></i>
+			<input class="flexG_1" type="text" placeholder="搜索商品/商铺" ng-model="keywords" ng-change="pageInfo.getSerachList()" ng-enter="search()"
+			 ng-focus='goSearch()'>
+		</div>
+		<!--此处按钮事件未添加-->
+		<div class="mesg" ui-sref="user.myMessage">
+			<i class="iconfont icon-alarm tubiao-r"></i>
+			<span class="num" ng-if="globalInfo.noticeNum > 0"></span>
+		</div>
+		<!--<div class="mall-type">
+			<h5>
+				<a ng-click="showMsg()" class="right" style="position: relative;">
+		<button class="button iconfont icon-alarm button-clear " ></button>
+			<span class="yd-xtmsgNum " ng-if="globalInfo.noticeNum>0"></span>
+		</a>
+				
+				<em>线下商城</em>
+		<a ng-click="scan()" class="left"><i class="iconfont  icon-saoyisao"></i></a>
+		</h5>
+		</div>-->
+	</ion-header-bar>
+	<ion-content class='iosuse tab-ion-content'>
+		<!--<ion-content style='top: 70px;' class='iosuse' lazy-scroll>-->
+		<ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()"></ion-refresher>
+		<!--<div class="ydgy-header">
+			<div class="top flex">
+				<div class="tubiao" ng-click="openModal()" ng-cloak><span class="loc"><span class="text-overflow_1">{{curPosition.city || '定位'}}</span><i class="iconfont ion-location"></i></span>
+				</div>
+				<div class="flex_1 search">
+					<i class="iconfont icon-search" ng-click="search()"></i>
+					<input type="text" placeholder="搜索商户名" ng-model="keywords" ng-change="pageInfo.getSerachList()" ng-enter="goSearch()" ng-focus='goSearch()'>
+				</div>
+				<div class="mesg" ng-click="scan()">
+					<i class="iconfont tubiao-r icon-saoyisao"></i>
+					<p>扫一扫</p>
+				</div>
+				<div class="mesg" ui-sref="user.myMessage">
+					<i class="iconfont icon-alarm tubiao-r"></i>
+					<span class="num" ng-if="globalInfo.noticeNum > 0"></span>
+				</div>
+			</div>
+		</div>-->
+		<ion-slide-box delegate-handle="slideimgs" show-pager="true" auto-play="true" does-continue='true'>
+			<ion-slide ng-repeat="focus in pageData.focusListData" class='box' does-continue='true'>
+				<!--<a ng-href="{{focus.link}}"><img ng-src="{{focus.thumb}}" width="100%" class="banner-img"></a>-->
+				<a ui-sref='shops.shopsInfo({spid:focus.spid})'>
+					<img ng-src="{{focus.thumb}}" width="100%" class="banner-img">
+				</a>
+			</ion-slide>
+		</ion-slide-box>
+		<div class="home-nav">
+			<ul class="clearfix">
+				<li ng-repeat="nav in pageData.navList" ui-sref='shops.linelocations({cid:nav.cid,title:nav.title})'>
+					<img ng-src="{{nav.thumb}}" />
+					<p ng-bind="nav.title"></p>
+				</li>
+				<li ui-sref='shops.shopallcate()'>
+					<img ng-src="img/shopcatelogo.png" />
+					<p>全部分类</p>
+				</li>
+				<!--<li ng-repeat="nav in pageData.navList" ng-click="toUrl(nav.id)">-->
+				<!--&lt;!&ndash;<img ng-src="{{nav.thumb}}"/>&ndash;&gt;-->
+				<!--<img ng-src="img/banner.png"/>-->
+				<!--<p ng-bind="nav.title"></p>-->
+				<!--</li>-->
+			</ul>
+		</div>
+		<div class="home-shops-list">
+			<h4 ng-click='seemore()'>
+				<i class="iconfont icon-shangjia"></i> 附近商家
+				<a style="float: right;font-size: 12px;">更多 ></a>
+			</h4>
+			<div class="lineshop-shopslist">
+				<ul>
+					<li class="cardname" ng-repeat="goods in shops.shopsList" ui-sref="shops.shopsInfo({spid:goods.id})">
+						<img ng-src="{{goods.logo||'img/goodsLogo.png'}}">
+						<h3>
+							<span class="distance"> {{goods.distance}}</span>
+							<p class="text-overflow_1">
+								<em class="text-overflow_1" style="width: 65%;float:left;">{{goods.title}}</em>
+								<i ng-if='goods.leve==2'>品牌店</i>
+							</p>
+						</h3>
+						<div class="star">
+							<span ng-if='goods.times>0'>消费{{goods.times}}次</span>
+							<p>
+								<i class="iconfont icon-favorfill" ng-if='goods.star=="0"'></i>
+								<i class="iconfont icon-favorfill" style="color: #f60;" ng-if='goods.star!="0"'></i>
+								<i class="iconfont icon-favorfill" ng-if='goods.star=="0"||goods.star=="1"'></i>
+								<i class="iconfont icon-favorfill" style="color: #f60;" ng-if='goods.star>1'></i>
+								<i class="iconfont icon-favorfill" ng-if='goods.star=="0"||goods.star=="1"||goods.star=="2"'></i>
+								<i class="iconfont icon-favorfill" style="color: #f60;" ng-if='goods.star>2'></i>
+								<i class="iconfont icon-favorfill" ng-if='goods.star<4'></i>
+								<i class="iconfont icon-favorfill" style="color: #f60;" ng-if='goods.star>3'></i>
+								<i class="iconfont icon-favorfill" ng-if='goods.star<5'></i>
+								<i class="iconfont icon-favorfill" style="color: #f60;" ng-if='goods.star=="5"'></i>
+							</p>
+						</div>
+						<div class="bottom">
+							<!--<span>{{goods.categoryName}} |
+								<b>{{goods.street}}</b>
+							</span>-->
+							<p>
+								<!--满{{goods.shopsGiveRatio}}送1 -->
+								<!--<img src="img/lovelogo.png"/> -->
+								<!--id="goodsInfo_integral"-->
+								<span   ng-if="goods.directsale != 1">
+									奖励{{goods.shopsGiveRatio}}{{globalInfo.nounInfo.LOVE}}
+									<!--<img src="img/lovelogo.png" style="margin-right:0;width:24px;height:24px;position:relative;z-index:5;">-->
+									<!--<em class="ng-binding">奖励{{goods.shopsGiveRatio}}{{globalInfo.nounInfo.LOVE}}</em>-->
+								</span>
+								<span  ng-if="goods.directsale == 1">
+									<!--<img src="img/lovelogo.png" style="margin-right:0;width:24px;height:24px;position:relative;z-index:5;">-->
+									<em class="ng-binding">自营商家</em>
+								</span>
+                               <span>{{goods.categoryName}} |
+								<b>{{goods.street}}</b>
+							</span>
+							<!--id="goodsInfo_integral"--> 
+								
+							</p>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="commonend-empty" ng-if="!noMore">
+			没有更多了..
+		</div>
+		<ion-infinite-scroll ng-if="noMore" on-infinite="loadMoreGoods()" distance="1%" icon="" immediate-check="false">
+		</ion-infinite-scroll>
+	</ion-content>
+
+</ion-view>

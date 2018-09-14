@@ -1,0 +1,223 @@
+<ion-view title="线上首页" hide-nav-bar="true" hide-back-button="true">
+	<ion-header-bar class="bar-calm index-head flexG" style='background: #EC0005;'>
+		<div class="tubiao " ui-sref='goods.online-goodscate'>
+			<i class="iconfont ion-navicon-round"></i>
+			<span class="loc"> 分类</span>
+		</div>
+		<div class="flexG_1 search">
+			<i class="iconfont icon-search" ng-click="search()"></i>
+			<input class="flexG_1" type="text" placeholder="搜索商品/商铺" ng-model="keywords" ng-change="pageInfo.getSerachList()" ng-enter="goSearch()"
+			    ng-focus='goSearch()'>
+		</div>
+		<div class="cart" ui-sref="goods.goodscart">
+			<i class="icon ion-ios-cart-outline"></i>
+		</div>
+		<!--此处按钮事件未添加-->
+		<div class="mesg" ui-sref="user.myMessage">
+			<i class="iconfont icon-alarm tubiao-r"></i>
+			<span class="num" ng-if="globalInfo.noticeNum > 0"></span>
+		</div>
+	</ion-header-bar>
+	<ion-content class='iosuse tab-ion-content tab_online tab_online_one' lazy-scroll on-scroll="onScroll()" delegate-handle="content-scroll"
+	 overflow-scroll="true"  >
+		<ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()"></ion-refresher>
+		<div class="online-top" id="online-top">
+			<div class="slide_container">
+				<ion-slide-box delegate-handle="slideimgs" show-pager="true" does-continue='true'>
+					<ion-slide class='box' ng-repeat="item in shops.slide" does-continue='true'>
+						<a ui-sref='goods.onlineshops({spid:item.spid})'>
+							<!--image-lazy-src="{{item.thumb}}" image-lazy-loader="heart" -->
+							<img width="100%" class="banner-img" ng-src='{{item.thumb}}'>
+						</a>
+					</ion-slide>
+				</ion-slide-box>
+			</div>
+			<div class="online-nav">
+				<ul class="clearfix">
+					<li ng-click='goqianDao()'>
+						<img src="img/fenlei.png" />
+						<p>每日签到</p>
+					</li>
+					<li ui-sref='my.recommend'>
+						<img src="img/category_icon.png" />
+						<p>邀请码</p>
+					</li>
+					<li ui-sref='goods.activegoodslist({types:"direct"})'>
+						<img src="img/jifen.png" />
+						<p>自营商城</p>
+					</li>
+					<li ui-sref='goods.acrossGoodsList'>
+						<img src="img/ziying.png" />
+						<p>跨境电商</p>
+					</li>
+					<li ui-sref='integralMall.home'>
+						<img src="img/duihuan.png" />
+						<p>优惠专区</p>
+					</li>
+				</ul>
+			</div>
+			<!-- 线上商城公告 -->
+			<div class="notice_wrapper">
+				<div class="notice_info flex" ui-sref='user.newsactive'>
+					<div class="notice_i_img">
+						<img src="img/toutiao.png" alt="">
+					</div>
+					<div class="notice_i_cnt flex_1">
+						<div class="swiper-container" id="notice_swiper">
+							<div class="swiper-wrapper">
+								<div class="swiper-slide" ng-repeat="item in noticelist">{{item.title}}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- 推荐位 爱生活 -->
+			<div class="feature_one">
+				<div class="f_o_info">
+					<div class="f_o_item" ng-repeat="item in recInfo.life" ui-sref='goods.goodslist-cate({type:$index+1,title:item.title})'>
+						<img ng-src="{{item.thumb}}">
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="cate-online-scroll" id='cate-online-scroll'>
+			<div class="online_nav_list">
+				<ul>
+					<li ng-class="{'on':curCateIndex == -1}" ng-click='switchNav("0","-1")'>
+						热卖
+					</li>
+					<li ng-repeat='item in recInfo.goodsCate' ng-class="{'on':curCateIndex==$index}" ng-click='switchNav(item.id,$index)'>
+						{{item.title}}
+					</li>
+				</ul>
+				<!--<ion-scroll class="flex_row_left" direction='x' scrollbar-x='false'>
+					<li class="{{navid==0?'on':''}}" ng-click='switchNav("0","")'>
+						热卖
+					</li>
+					<li ng-repeat='item in recInfo.goodsCate' class="{{navid==item.id?'on':''}}" ng-click='switchNav(item.id,$index)'>
+						{{item.title}}
+					</li>
+				</ion-scroll>-->
+				<div class="onl_subList flex_row_left" ng-if='navid!=0'>
+					<div class="onl_s_item flex_col_center" ng-repeat='items in recInfo.goodsCate[curCateIndex].son' ng-click='switchNav(items.id)'>
+						<div class="onl_s_img">
+							<img ng-src="{{items.thumb}}" />
+						</div>
+						<span class="onl_s_title" ng-class="{'on':navid==items.id}">{{items.title}}</span>
+					</div>
+				</div>
+			</div>
+			<div class="onlineshops-serch">
+				<dl>
+					<dd>
+						<a ng-click="active(1,$event)" id='1' ng-class="{'on': type == 1}">销量</a>
+					</dd>
+					<dd>
+						<a id='6' ng-click="active(2,$event)" ng-class="{'on': type == 2}">{{globalInfo.nounInfo.LOVE}}</a>
+					</dd>
+					<dd class="priceshow">
+						<a ng-click='active("",$event)'>
+							<span ng-class="{'on': type == 3 || type == 4}">价格</span>
+							<b>
+								<i class="icon ion-android-arrow-dropup" ng-class="{'on': type ==3}"></i>
+								<i class="icon ion-android-arrow-dropdown" ng-class="{'on': type ==4}"></i>
+							</b>
+						</a>
+					</dd>
+					<dd>
+						<a id='6' ng-click="active(5,$event)" ng-class="{'on': type == 5}">最新</a>
+					</dd>
+				</dl>
+			</div>
+		</div>
+<!--on-scroll="godslistScroll()" on-drag-down='downFun()'-->
+		<ion-scroll id='ion-scroll' direction="y" delegate-handle="goodsList-scroll" >
+			<div class="goodsList_online" ng-if='goods.length>0'>
+				<ul class="clearfix">
+					<li class="flex" ui-sref="{{good.type!=2?'goods.taokeGoodsInfo({goodsId:good.id})':'goods.onlinegoodsInfo({id:good.id})'}}  "
+					    ng-repeat='good in goods'>
+						<img class="imgs" ng-src="{{good.thumb || 'img/goodsLogo.png'}}">
+						<div class="info clearfix flex_1">
+							<h3 class="text-overflow_2">
+								<span>{{goodsType[good.type]}}</span>{{good.goodsName}}</h3>
+							<div class="middle">
+								<span>￥{{good.spe_price}}</span>
+								<!--<span ng-if='good.freeDelivery=="1"'>包邮</span>-->
+								<i ng-if='good.sales!=0'>最近销量：{{good.sales}}</i>
+							</div>
+							<div class="bottom_add">
+								<span>购买奖励{{good.memberHeart}}{{globalInfo.nounInfo.LOVE}}</span>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="commonend-empty" ng-if="!noMore">
+				没有更多了...
+			</div>
+			<ion-infinite-scroll ng-if="noMore" on-infinite="loadMoreGoods()" distance="2%" icon="" immediate-check="false">
+			</ion-infinite-scroll>
+		</ion-scroll>
+
+	</ion-content>
+	<!-- 	<div class="usetop tab_online ">
+		<div class="online_nav_list">
+			<ion-scroll class="flex_row_left" direction='x' scrollbar-x='false'>
+				<li class="{{navid==0?'on':''}}" ng-click='switchNav("0")'>
+					热卖
+				</li>
+				<li ng-repeat='item in recInfo.goodsCate' class="{{navid==item.id?'on':''}}" ng-click='switchNav(item.id,$index)'>
+					{{item.title}}
+				</li>
+			</ion-scroll>
+			<div class="onl_subList flex_row_left">
+				<div class="onl_s_item flex_col_center" ng-repeat='item in recInfo.goodsCate[curCateIndex].son' ng-click='switchNavList(item.id)'>
+					<div class="onl_s_img">
+						<img ng-src="{{item.thumb}}" />
+					</div>
+					<span class="onl_s_title">{{item.title}}</span>
+				</div>
+			</div>
+		</div>
+		<div class="onlineshops-serch">
+			<dl>
+				<dd> <a ng-click="active(1)" id='1' ng-class="{'on': type == 1}">销量</a> </dd>
+				<dd> <a id='6' ng-click="active(2)" ng-class="{'on': type == 2}">{{globalInfo.nounInfo.LOVE}}</a> </dd>
+				<dd class="priceshow"> <a ng-click='active("")'><span ng-class="{'on': type == 3 || type == 4}">价格</span>
+						<b><i class="icon ion-android-arrow-dropup" ng-class="{'on': type ==3}"></i>
+							<i class="icon ion-android-arrow-dropdown" ng-class="{'on': type ==4}"></i></b>
+					</a> </dd>
+
+				<dd> <a id='6' ng-click="active(5)" ng-class="{'on': type == 5}">最新</a> </dd>
+			</dl>
+		</div>
+	</div> -->
+	<!-- <ion-content class='iosuse tab-ion-content tab_online tab_online_change' lazy-scroll>
+		<ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()"></ion-refresher>
+		<div class="goodsList_online" style="padding-top: 5px;" ng-if='goods.length>0'>
+			<ul class="clearfix">
+				<li class="flex" ui-sref="{{good.type!=2?'goods.taokeGoodsInfo({goodsId:good.id})':'goods.onlinegoodsInfo({id:good.id})'}}  "
+				 ng-repeat='good in goods'>
+					<img class="imgs" ng-src="{{good.thumb || 'img/goodsLogo.png'}}">
+					<div class="info clearfix flex_1">
+						<h3 class="text-overflow_2"><span>{{goodsType[good.type]}}</span>{{good.goodsName}}</h3>
+						<div class="middle">
+							<span>￥{{good.spe_price}}</span>
+							<i ng-if='good.sales!=0'>最近销量：{{good.sales}}</i>
+						</div>
+						<div class="bottom_add">
+							<span>购买奖励{{good.memberHeart}}{{globalInfo.nounInfo.LOVE}}</span>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="commonend-empty" ng-if="!noMore">
+			没有更多了...
+		</div>
+		<ion-infinite-scroll ng-if="noMore" on-infinite="loadMoreGoods()" distance="1%" icon="" immediate-check="false">
+		</ion-infinite-scroll>
+	</ion-content> -->
+</ion-view>

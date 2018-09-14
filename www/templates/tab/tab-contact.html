@@ -1,0 +1,72 @@
+<ion-view view-title="我的消息" hide-nav-bar="true">
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">我的消息</h1>
+	</ion-header-bar>
+	<style type="text/css">
+		/*.imMessagelist{
+			padding-top: 10px;
+		}*/
+		.imMessagelist li{
+			height: 70px;position: relative;padding:10px 10px  0px 60px;line-height: 0;background: #fff;
+		}
+		.imMessagelist li>img{
+			position: absolute;left: 5px;top:10px;width: 50px;height: 50px;border-radius: 5px;
+		}
+		.imMessagelist li>div{
+			width: 100%;border-bottom: solid 1px #f0f0f0;height: 60px;
+		}
+		.imMessagelist li>div>div{
+			display: flex;align-items: center;height: 25px;line-height: 25px;
+		}
+		.imMessagelist li>div>div h3{
+			font-size: 16px;color: #333;height: 25px;line-height: 25px;margin: 0;font-family: arial;
+		}
+		.imMessagelist li>div>div span{
+			width: auto;font-size: 12px;color: #999;
+		}
+		.imMessagelist li>div p{
+			margin: 0;line-height: 18px;color: #999;font-size: 14px;
+		}
+	</style>
+	<ion-content class="bodybg-normal">
+		<ul class="imMessagelist">
+			<!--<li >
+				<a  class="flex">
+					<b class="ion-person-stalker assertive"></b>
+					<img ng-src="{{item.target.avatarThumbPath||'img/9.png'}}" style="width: 40px;height: 40px;margin-top: 5px;"/>
+					<h3 class="flex_1">{{item.target.nickname}}</h3>
+					<i class="ion-ios-arrow-right t_arrow_right"></i>
+				</a>
+			</li>-->
+				<li ng-repeat='item in info.infoList'  ui-sref='user.imMessagePerson({username:item.target.username})'>
+					<img ng-src="{{item.target.avatarThumbPath||'img/headimg.jpg'}}" onerror='this.src="img/headimg.jpg" ' />
+				<div >
+				<div >
+					<h3 class="text-overflow_1 flex_1">{{item.target.nickname}}</h3>
+					<span >{{item.latestMessage.createTime | date:"yyyy-MM-dd"}}</span>
+				</div>
+					
+					<p class="text-overflow_1">{{item.latestMessage.text}}</p>
+				</div>
+			</li>
+			<!--<li><textarea name="" rows="" ng-model='info.mess' cols=""></textarea></li>-->
+			<!--<li >
+					<img ng-src="{{item.target.avatarThumbPath||'img/9.png'}}" />
+				<div >
+				<div >
+					
+					<h3 class="text-overflow_1 flex_1">{{item.target.nickname}}返回if红佛滴滴殴斗ID是我我我哦哦搜爱车偶奇偶第  哦你的家</h3>
+					<span >2018/03/18</span>
+				</div>
+					
+					<p class="text-overflow_1">返回if红佛滴滴殴斗ID是我我我哦哦搜爱车偶奇偶第信息</p>
+				</div>
+			</li>-->
+			
+		</ul>
+	</ion-content>
+</ion-view>
+

@@ -1,0 +1,39 @@
+<ion-view view-title="分润明细" hide-nav-bar="true">
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">分润明细 </h1>
+		<!--<h1 class="title">{{globalInfo.nounInfo.LOVE}}激励明细 </h1>-->
+	</ion-header-bar>
+	  <!--<p style="position: fixed;top: 55px;z-index: 111;padding: 0 10px;">{{globalInfo.nounInfo.LOVE}}激励需要扣除10%税收及平台维护费用</p>-->
+	<ion-content class="bodybg-normal lovesdetail" >
+		<div class="common-empty" ng-if='awardlist==""'>
+			什么也没有...
+		</div>
+           <dl ng-repeat='item in awardlist' ng-if='awardlist!=""'>
+           	<!--<dt>{{item.createTime*1000| date:"yyyy-MM-dd"}}2017年07月</dt>-->
+           	<!--<dd >
+           		<a>收</a>
+           		<h5 ng-bind-html='item.title'></h5>
+           		<p>{{item.createTime*1000| date:"yyyy-MM-dd HH:mm:ss"}}</p>
+           		<b>+{{item.awardMoney}}</b>
+           	</dd>-->
+           	<dd style="display: flex;align-items: center;">
+				<a  class="flexG_0">收</a>
+				<div class="flexG_1">
+					<h5>{{item.title}}</h5>
+				<b>{{item.createTime*1000| date:"MM-dd HH:mm:ss"}}</b>
+				</div>
+				<div class="flexG_0" style="text-align: right;">
+					<p >{{item.awardMoney}}</p>
+				<!--<p ng-if="item.type ==2">-{{item.num}}</p>-->
+				<b ng-if='item.all_award>0'>当前{{globalInfo.nounInfo.LOVE}}:{{item.all_award||0}}</b>
+				</div>
+			</dd>
+           	
+           </dl>
+			<!--<ion-label></ion-label>-->
+	</ion-content>
+</ion-view>
+    

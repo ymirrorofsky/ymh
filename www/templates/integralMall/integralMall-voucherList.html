@@ -1,0 +1,28 @@
+<ion-view view-title="明细" hide-nav-bar="true">
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">{{globalInfo.nounInfo.LOVE}}券明细 </h1>
+	</ion-header-bar>
+	<ion-content class="bodybg-normal lovesdetail">
+		<div class="common-empty" ng-if='loveslist==""'>
+			什么也没有
+		</div>
+           <dl ng-if='loveslist!=""' ng-repeat='item in loveslist | orderBy:"item.id":true'>
+           	<!--<dt ng-if='item.addTime!=""'>{{item.addTime*1000| date:"yyyy年MM月"}}</dt>-->
+           	<dd >
+           		<a>收</a>
+           		<h5 ng-if='issplit==1'>{{item.heart}}{{globalInfo.nounInfo.LOVE}}用户{{globalInfo.nounInfo.LOVE}}参与转换</h5>
+           		<h5 ng-if='issplit!=1'>{{item.heart}}用户{{globalInfo.nounInfo.LOVE}} <br />
+           			{{item.shop_heart}}商家{{globalInfo.nounInfo.LOVE}}参与转换</h5>
+           		<p >{{item.create_time*1000| date:"yyyy-MM-dd HH:mm:ss"}}</p>
+           		<b>+{{item.heart_voucher}}</b>
+           	</dd>
+           </dl>
+			<!--<ion-label></ion-label>-->
+			<ion-infinite-scroll ng-if="noMore" on-infinite="loadMoreGoods()" distance="1%" icon="" immediate-check="false">
+		</ion-infinite-scroll>
+	</ion-content>
+</ion-view>
+

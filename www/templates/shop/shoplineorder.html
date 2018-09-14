@@ -1,0 +1,63 @@
+<ion-view title="面对面订单" hide-nav-bar="true" hide-back-button="true">
+	<ion-header-bar class="bar-calm header-back" style='border: none;'>
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+			<!--ng-click="$ionicGoBack()"-->
+		</div>
+		<h1 class="title">面对面订单</h1>
+	</ion-header-bar>
+	<ion-content class="bodybg-normal shoplinorder">
+		<ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()"></ion-refresher>
+		<div class="order-type">
+			<a ng-class="{'clickthis':ordertype=='0'}" ng-click='chooseorder("0")'>用户订单</a>
+			<a ng-class="{'clickthis':ordertype=='1'}" ng-click='chooseorder("1")'>商家付款订单</a>
+		</div>
+		<div class="common-empty" ng-if="orderEmpty">什么也没有...</div>
+		<div class="order-list" ng-if='ordertype=="0"'>
+			<div class="shop-userorderlist common-shoplineorder">
+				<dl ng-repeat="singles in goodslist">
+					<dt>
+				    <span>订单编号：{{singles.orderId}}</span>
+				    <i>{{singles.orderStatus}}</i>
+				      <!--<i style="color: #EC0005;" ng-bind="statusName[singles.orderStatus]"></i>-->
+						</dt>
+					<dd ui-sref='shops.shoplineuserorderinfo({id:singles.id})'>
+						<p><span>付款金额：<em>{{singles.orderPrice}}</em></span> <i>实收金额：<em>{{singles.payPrice}}</em></i></p>
+						<p><span>付款人：{{singles.mobile}}</span>
+							<i>{{singles.createtime*1000 | date:"yyyy-MM-dd HH:mm:ss" }}</i>
+						</p>
+					</dd>
+					<dt>
+							<!--<b class="tinct{{singles.orderStatus}}" ng-if='singles.orderStatus=="0"'>付款</b>-->
+							<!--<b  ng-if='singles.orderStatus=="0"' ng-click='cancel(singles.orderId,singles.id)'>取消订单</b>-->
+							<b class="tinct{{singles.orderStatus}}" ng-if='singles.orderStatus=="已取消"||singles.orderStatus=="已完成"' ng-click='delorder(singles.orderId,singles.id)'>删除订单</b>
+						</dt>
+				</dl>
+			</div>
+		</div>
+		<div class="order-list" ng-if='ordertype=="1"'>
+			<div class="common-shoplineorder">
+				<dl ng-repeat="singles in goodslist">
+					<dt>
+				    <span>{{singles.orderId}}</span>
+				      <i style="color: #EC0005;" ng-bind="singles.orderStatus"></i>
+				       <!--<i style="color: #EC0005;" ng-bind="statusName[singles.orderStatus]"></i>-->
+						</dt>
+					<dd ui-sref='shops.shoplineshoporderinfo({id:singles.id})'>
+						<p><span>订单金额：{{singles.orderPrice}}元</span> <i>付款人{{singles.mobile}}</i></p>
+						<p><span>订单日期：{{singles.createtime*1000 | date:"yyyy-MM-dd HH:mm:ss" }}</span>
+							<i>让利比：{{singles.shopRebateType}}%</i>
+						</p>
+					</dd>
+					<dt>
+							<!--<b class="tinct{{singles.orderStatus}}" ng-if='singles.orderStatus=="待付款"'>去付款</b>-->
+							<!--<b  ng-if='singles.orderStatus=="待付款"' ng-click='cancel(singles.orderId,singles.id)'>取消订单</b>-->
+							<b class="tinct{{singles.orderStatus}}" ng-if='singles.orderStatus=="已取消"||singles.orderStatus=="已完成"' ng-click='delorder(singles.orderId,singles.id)'>删除订单</b>
+						</dt>
+				</dl>
+			</div>
+		</div>
+		<ion-infinite-scroll ng-if="noMore" on-infinite="loadMore()" distance="1%" immediate-check="false">
+		</ion-infinite-scroll>
+	</ion-content>
+</ion-view>

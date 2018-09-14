@@ -1,0 +1,50 @@
+<ion-view view-title="账户明细" hide-nav-bar="true" hide-back-button="true">
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">余额明细</h1>
+	</ion-header-bar>
+	<div class="bar bar-subheader" style="padding: 0;">
+		<div class="row">
+			<div class="col" ng-click="active(1)" ng-class="{'active': select == 1}">消费明细</div>
+			<div class="col" ng-click="active(2)" ng-class="{'active': select == 2}">激励明细</div>
+			<div class="col" ng-click="active(3)" ng-class="{'active': select == 3}">充值明细</div>
+			<div class="col" ng-click="active(4)" ng-class="{'active': select == 4}">其它明细</div>
+		</div>
+	</div>
+	<ion-content class="bodybg-normal balancedetail">
+		<!--<ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()"></ion-refresher>-->
+
+		<div class="s-empty"></div>
+		<div class="common-empty" ng-if="orderEmpty">什么也没有...</div>
+		<div ng-if="!orderEmpty">
+			<dl>
+				<!--<dd ng-repeat="item in repoList" ui-sref="user.repoInfo({id:item.id})">
+					<a ng-if='item.paymentsType==1'>收</a>
+					<a ng-if='item.paymentsType==2' style="background: #11C1F3;">支</a>
+           		<h5 ng-bind-html='item.useType'></h5>
+           		<p >{{item.time*1000| date:"yyyy-MM-dd HH:mm:ss"}}</p>
+           		<b ng-if='item.paymentsType==1'>+{{item.num}}</b>
+           		<b ng-if='item.paymentsType==2'>-{{item.num}}</b>
+				</dd>-->
+				<dd style="display: flex;align-items: center;" ng-repeat="item in repoList" ui-sref="user.repoInfo({id:item.id})">
+				<a ng-if="item.paymentsType ==1" class="flexG_0">收</a>
+				<a ng-if="item.paymentsType ==2" class="flexG_0" style="background:#11c1f3;">支</a>
+				<div class="flexG_1">
+					<h5 ng-bind-html='item.useType'></h5>
+				<b>{{item.time*1000| date:"MM-dd HH:mm:ss"}}</b>
+				</div>
+				<div class="flexG_0" style="text-align: right;">
+					<p >{{item.num}}</p>
+				<!--<p ng-if="item.paymentsType ==2">-{{item.num}}</p>-->
+				<b ng-if='item.all_num>0'>余额:{{item.all_num}}</b>
+				</div>
+			</dd>
+			</dl>
+		</div>
+
+		<ion-infinite-scroll ng-if="!noMore" on-infinite="loadMore()" distance="1%" immediate-check="false">
+		</ion-infinite-scroll>
+	</ion-content>
+</ion-view>

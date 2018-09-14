@@ -1,0 +1,92 @@
+[hidden] {
+	display: none;
+}
+html {
+	font-family: sans-serif;
+	-ms-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
+}
+body {
+	margin: 0;
+}
+mark {
+	background: #ff0;
+	color: #000;
+}
+img {
+	border: 0;
+}
+html {
+	cursor: default;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/*抽奖页面*/
+#lottery {
+	width: 80vw;
+	height: 80vw;
+	margin: 10px auto 0;
+	position: relative;
+}
+#lottery>img{
+	width: 100%;height: 100%;
+}
+#lottery table {
+	position: absolute;top: 0px;width: 100%;
+	background-color: transparent;height: 100%;
+	overflow: hidden;
+}
+#lottery table tr{
+	/*display: flex;*/
+	
+}
+#lottery table tbody{
+	position: absolute;padding: 20px 20px 30px;
+}
+#lottery table td {
+	/*position: relative;*/
+	/*border: solid 1px #fff;*/
+	/*flex-grow: 1;*/
+	text-align: center;
+	padding: 5px;
+	color: #333;
+	font-index: -999;
+  position: relative;
+}
+
+#lottery table td img {
+	display: block;
+	border: solid 1px #FFFF00;border-radius:5px ;
+	/*width:33vw;*/
+	/*height: 33vw;*/
+}
+
+#lottery table td a {
+	position: absolute;
+	display: block;top: 5px;height: 90%;width: 90%;margin-left: -5px;margin-top: -5px;
+	/*top: 0;*/
+	/*border: solid 10px transparent;*/
+	text-decoration: none;
+	background: url('../imggame/luckdraw_start.png') no-repeat top center;
+	background-size: cover;
+}
+
+#lottery table td a:hover {
+	background-image: url('../imggame/11.jpg');
+}
+
+#lottery table td.active .gamemask {
+	display: block;
+}
+
+.gamemask {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	background-color: rgba(252, 211, 4, 0.5);
+	display: none;
+}

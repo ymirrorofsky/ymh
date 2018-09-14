@@ -1,0 +1,51 @@
+<ion-view view-title="商品管理" hide-nav-bar="true">
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">商品管理</h1>
+		<!--<div class="buttons" ng-if="orderInfo.orderStatus == 0 && type == 'shops'" ng-click="rejectContent()">
+			<button class="button button-clear">拒绝</button>
+		</div>-->
+	</ion-header-bar>
+	<ion-content>
+		<!--<ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()"></ion-refresher>-->
+		<h3 class="managegoodstitle">
+			<div ng-click='changetyps("0")' id='cho0'>
+				<b></b><a>已上架 </a>
+			</div>
+			<div ng-click='changetyps("1")' id='cho1'>
+				<b></b><a class="chooosetype">已下架 </a>
+			</div>
+			<div ng-click='changetyps("2")' id='cho2'><a class="chooosetype">待处理</a></div>
+		</h3>
+		<div class="common-empty" ng-if='goodsempty'>
+			什么也没有
+		</div>
+		<ul ng-if='!goodsempty&&showgoto' class="managegoodslist" >
+			<li ng-repeat=' item in goodslist' ui-sref='goods.onlinegoodsInfo({id:item.id})'>
+				<img ng-src="{{item.thumb}}"/>
+				<h4>{{item.goodsName}}</h4>
+				<p>￥{{item.spe_price}}
+					<span><img src="img/lovelogo.png" /> <b>{{item.memberHeart}}</b></span> 
+					<i>{{item.createtime*1000| date:"yyyy-MM-dd HH:mm"}}</i></p>
+			</li>
+		</ul>
+		<ul ng-if='!goodsempty&&!showgoto' class="managegoodslist">
+			<li ng-repeat=' item in goodslist'>
+				<img ng-src="{{item.thumb}}"/>
+				<h4>{{item.goodsName}}</h4>
+				<p>￥{{item.spe_price}}
+					<span><img src="img/lovelogo.png" /> <b>{{item.memberHeart}}</b></span> 
+					<i>{{item.createtime*1000| date:"yyyy-MM-dd HH:mm"}}</i></p>
+			</li>
+		</ul>
+		<!--<ion-infinite-scroll ng-if="noMore && curPosition.status != 1 " on-infinite="loadMoreGoods()" distance="-1%" icon="" immediate-check="false">
+		</ion-infinite-scroll>-->
+		<!--<ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()"></ion-refresher>-->
+	</ion-content>
+	<!--<footer class="common-footer" style="bottom: 50px;background: #f50;" ng-if='isshop==false' ui-sref='user.shoptypes'>立即入驻</footer>
+	<footer class="common-footer tabshopfooter" ng-if='isshop==true'>
+	  <a ui-sref="shops.qrcode({spid:globalInfo.user.isShop})">生成二维码</a><a ui-sref="user.linepay({spid:shopsInfo.id})">商家付款</a>	-->
+	<!--</footer>-->
+</ion-view>

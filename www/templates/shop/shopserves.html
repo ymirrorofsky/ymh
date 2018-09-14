@@ -1,0 +1,17 @@
+<ion-view view-title="商家服务" hide-nav-bar="true">
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">商家服务 </h1>
+	</ion-header-bar>
+	<ion-content class="bodybg-normal shopintroduce" style='bottom: 80px;'>
+		<h5>商家服务</h5>
+		<p >是指商家提供给客户的服务</p>
+		<textarea name="" rows="" cols="" placeholder="请输入商家服务信息" style="border: none;text-indent: 10px;" ng-model='info.serveinfo'></textarea>
+		<h5>客服QQ</h5>
+		<input type="text" style="width: 100%;text-indent: 10px;margin-bottom: 20px;" ng-model='info.qq'/>
+	</ion-content>
+	<footer class="common-footer" ng-click='saveinfo()'>保存</footer>
+</ion-view>
+

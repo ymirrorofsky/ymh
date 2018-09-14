@@ -1,0 +1,20 @@
+<ion-view view-title="百家书院" hide-nav-bar="true">
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">{{titleshows}}</h1>
+	</ion-header-bar>
+	<ion-content class="bodybg-normal sandeshuyuan" overflow-scroll="true">
+		<div class="common-empty" ng-if='empty'>
+			什么也没有...
+		</div>
+		<ul ng-if='!empty'>
+			<li ng-repeat='items in newslist.article' ui-sref='user.academydetail({id:items.id})'>
+				<img ng-src="{{items.thumb}}" />
+				<h5>{{items.title}}</h5>
+				<p>{{items.description}}</p>
+			</li>
+		</ul>
+	</ion-content>
+</ion-view>

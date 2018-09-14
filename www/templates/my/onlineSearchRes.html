@@ -1,0 +1,103 @@
+<ion-view view-title="" hide-nav-bar="true" hide-back-button="true" class="online_search">
+    <div class="header_fix_wrapper">
+        <div class="bar bar-header item-input-inset" style="background: #EC0005;">
+            <i class="iconfont icon-back1" ng-click="$ionicGoBack()"></i>
+            <label class="item-input-wrapper">
+                <i class="icon ion-ios-search placeholder-icon" ng-click="goSearch()"></i>
+                <input type="text" placeholder="搜索" value="" id='onlineSearchK' ng-focus="goSearch()">
+            </label>
+            <button class="button button-clear" id="search_btn" ng-click="goSearch()">
+                搜索
+            </button>
+        </div>
+        <div class="onlineshops-serch onlineshops-searchAdd">
+            <dl >
+                <dd>
+                    <a ng-click="active(1)" id='1' ng-class="{'on': type == 1}">销量</a>
+                </dd>
+                <dd>
+                    <a id='6' ng-click="active(2)" ng-class="{'on': type == 2}">{{globalInfo.nounInfo.LOVE}}</a>
+                </dd>
+                <dd class="priceshow">
+                    <a ng-click='showPrice()'>
+                        <span ng-class="{'on': type == 3 || type == 4}">价格</span>
+                        <b>
+                            <i class="icon ion-android-arrow-dropup" ng-class="{'on': type ==3}"></i>
+                            <i class="icon ion-android-arrow-dropdown" ng-class="{'on': type ==4}"></i>
+                        </b>
+                    </a>
+                </dd>
+
+                <dd>
+                    <a id='6' ng-click="active(5)" ng-class="{'on': type == 5}">最新</a>
+                </dd>
+                <!--<dd>
+                    <a id='6' ng-click="active(6)" ng-class="{'on': type == 6}">店铺</a>
+                </dd>-->
+            </dl>
+        </div>
+    </div>
+    <style type="text/css">
+    	.onlineshops-searchAdd dl{
+    		background: #fff;border-bottom: solid 1px #eee;
+    	}
+    	.onlineshops-searchAdd dl dd a{
+    		color: #000;
+    	}
+    	.onlineshops-searchAdd dl dd a.on{
+    		color: #EB2F58 !important;
+    	}
+    </style>
+    <ion-content>
+        <ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()"></ion-refresher>
+
+
+
+        <!--<ul class="clearfix">
+        <li class="flex" ng-repeat="goods in goodList" ui-sref="goods.onlinegoodsInfo({id:goods.id})">
+            <img class="imgs" ng-src="{{goods.thumb || 'img/wuimg.png'}}">
+            <div class="info clearfix flex_1">
+                <h3 class="flex text-overflow_1" ng-bind="goods.goodsName"> </h3>
+                <div class="middle">
+                    <span ng-if='goods.freeDelivery==0'>包邮</span> <i>最近销量：{{goods.sales}}</i>
+                </div>
+                <div class="bottom">
+                    <span>{{goods.spe_price}}</span>
+                    <i> <img src="img/aixinzhi.png"/> <em>{{goods.memberHeart}}</em></i>
+                </div>
+
+            </div>
+        </li>
+    </ul>-->
+        <div class="common-empty" ng-if="orderEmpty" style="padding-top: 80px;">什么都没有</div>
+        <div class="online-shops-list" style="padding-top: 80px;" ng-if="type != 6&&!orderEmpty">
+            <ul class="clearfix">
+                <li class="flex" ng-repeat='goods in goodList' ui-sref="{{goods.type!=2?'goods.taokeGoodsInfo({goodsId:goods.id})':'goods.onlinegoodsInfo({id:goods.id})'}}  " style='min-height: 90px;'>
+                    <img class="imgs" ng-src="{{goods.thumb || 'img/goodsLogo.png'}}">
+                    <div class="info clearfix flex_1">
+                        <h3 class="text-overflow_2"><span>{{goodsType[goods.type]}}</span>{{goods.goodsName}}</h3>
+                        <div class="middle">
+                            <!--<span ng-if='goods.freeDelivery=="包邮"'>包邮</span>-->
+                            <span>￥{{goods.spe_price}}</span>
+                            <i>最近销量：{{goods.sales}}</i>
+                        </div>
+                        <div class="bottom_add">
+                            <!--  <b>￥{{goods.spe_price}}</b>-->
+                            <!--<div>
+                                 <img src="img/lovebg.png"/> <em>{{goods.memberHeart}}</em></div>
+                    </div>-->
+                    <!--id="goodsInfo_integral"-->
+                            <span >
+                                购买奖励{{goods.memberHeart}}{{globalInfo.nounInfo.LOVE}}
+                            </span>
+                            <!--<span id="goodsInfo_integral" ng-if="goods.direct == 1">
+                                自营商品
+                            </span>-->
+                        </div>
+                </li>
+            </ul>
+            </div>
+            <ion-infinite-scroll ng-if="!noMore " on-infinite="loadMore() " distance="1% " immediate-check="false ">
+            </ion-infinite-scroll>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,55 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-app-version": {
+      "PACKAGE_NAME": "com.ymh2.app"
+    },
+    "cordova-plugin-baidumaplocation": {
+      "ANDROID_KEY": "dqmrXYKDfQv9RK8k4V5Bjn1z38n9L7kZ",
+      "IOS_KEY": "<API_KEY_IOS>",
+      "IOS_LOCATION_DESC": "请点击'好'以允许访问。",
+      "PACKAGE_NAME": "com.ymh2.app"
+    },
+    "cordova-plugin-camera": {
+      "PACKAGE_NAME": "com.ymh2.app"
+    },
+    "cordova-plugin-clipboard2": {
+      "PACKAGE_NAME": "com.ymh2.app"
+    },
+    "cordova-plugin-cszbar": {
+      "PACKAGE_NAME": "com.ymh2.app"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "com.ymh2.app"
+    },
+    "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "com.ymh2.app"
+    },
+    "cordova-plugin-ionic-keyboard": {
+      "PACKAGE_NAME": "com.ymh2.app"
+    },
+    "cordova-plugin-ionic-webview": {
+      "PACKAGE_NAME": "com.ymh2.app"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "com.ymh2.app"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.ymh2.app"
+    },
+    "cordova-plugin-baichuan": {
+      "PACKAGE_NAME": "com.ymh2.app"
+    },
+    "cordova-plugin-alipay-v2": {
+      "APP_ID": "2016082201785095",
+      "PACKAGE_NAME": "com.ymh2.app"
+    }
+  },
+  "dependent_plugins": {}
+}

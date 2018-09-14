@@ -1,0 +1,34 @@
+<ion-view view-title="转账记录" hide-nav-bar="true">
+    <ion-header-bar class="bar-calm header-back">
+        <div class="buttons">
+            <button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+        </div>
+        <h1 class="title">转账记录</h1>
+
+    </ion-header-bar>
+    <ion-content class="bodybg-normal white_integral">
+        <!--<ion-refresher pulling-text="下拉刷新.." on-refresh="doRefresh()"></ion-refresher>-->
+        <div class="wi_list">
+
+            <div class="heart_passer_bottom" ng-repeat="item in info">
+                
+                <div class="bottom_right" style="position: relative;padding-left: 40px;">
+                    <div style="text-align: left;" class="bottom_middle_role">
+                    	<b style="float: right;color: red;">{{item.num}}</b>
+                        <span style="position: absolute;left: 0;">来源：</span>
+                        <span>{{item.reMark}}</span>
+                    </div>
+                </div>
+                <div class="bottom_middle">
+                    <div class="bottom_middle_name" style="width: auto;">
+                        <!--赠品券:-->
+                        <span style="color: #999;">{{item.createtime*1000|date:"yyyy-MM-dd HH:mm"}}              	
+                    </span>
+                        <div style="float: right;font-size:12px;color: #999;" >当前余额:{{item.all_num}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+  <ion-infinite-scroll ng-if="!noMore" on-infinite="loadMore()" distance= "1%" icon = "" immediate-check="false"></ion-infinite-scroll >
+    </ion-content>
+</ion-view>

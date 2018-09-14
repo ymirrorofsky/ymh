@@ -1,0 +1,31 @@
+<ion-view title=" " hide-nav-bar="true" hide-back-button="true">
+
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">{{globalInfo.nounInfo.AXLM}}</h1>
+	</ion-header-bar>
+	<ion-content class="bodybg-normal shopaddgoods">
+		<h4>
+			<p><i class="icon ion-ios-information-outline"></i>详细信息请登录联盟后台<!--(请使用浏览器<span></span>访问)--></p>
+			<p>{{unioninfo.link||'http://sd.weishang6688.com'}}</p>
+		</h4>
+		<h6>
+			<p>登录<span>账号</span>：{{globalInfo.nounInfo.SCMC}}注册的账号</p>
+			<p>登录<span>密码</span>：{{globalInfo.nounInfo.SCMC}}登录的密码</p>
+			<p>客服热线：{{unioninfo.mobile}}</p>
+		</h6>
+		<dl>
+			<dt>联盟后台<span>信息展示</span> </dt>
+			<dd><em>1.</em><span>展示</span>运营中心下<span>所有商家</span>； </dd>
+			<dd><em>2.</em>展示运营中心下的<span>所有订单</span>；</dd>
+			<dd><em>3.</em>运营中心产生的<span>{{globalInfo.nounInfo.LOVE}}激励相关统计</span>。</dd>
+		</dl>
+		
+	</ion-content>
+	<footer class="common-footer" >
+		<a href="tel:{{unioninfo.mobile}}"></a>
+		联系客服 {{unioninfo.mobile}}
+	</footer>
+</ion-view>

@@ -1,0 +1,147 @@
+<ion-view view-title="  " hide-nav-bar="true">
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ui-sref='tab.tcmytc'>返回</button>
+		</div>
+		<h1 class="title">{{globalInfo.nounInfo.LOVE}}</h1>
+	</ion-header-bar>
+	<ion-content class="bodybg-normal loves">
+		<div class="loves-top">
+			<!--<img src="img/lovebg.png" />-->
+			<em>
+				  <b>{{rest  || 0 }}</b>
+                <span>有效{{globalInfo.nounInfo.LOVE}}</span>
+              
+            </em>
+			<!--<h4>
+                <p>小提示：</p>
+                <p>1.满1个{{globalInfo.nounInfo.LOVE}}才能参与激励</p>
+                <p>2.激励扣除{{lovesinfo.rate}}%税收及维护费用,数量同步减少</p>
+                <p>3.激励扣除10%税收及平台维护费用</p>
+            </h4>-->
+            <h5></h5>
+			<!--<h5>
+                <div> 
+                    <b></b>
+                    <span>{{possess || 0 |number:4}}</span>
+                    <span>当前{{globalInfo.nounInfo.LOVE}}数</span>
+                </div>
+                <div>   
+                    <span>{{total  || 0 |number:4}}</span>
+                    <span>累计{{globalInfo.nounInfo.LOVE}}数</span>
+                </div>
+            </h5>-->
+		</div>
+		
+				<!--<div class="loves-money" ng-if="lovesinfo.open_merge == 1">
+			<div>
+				<a href="#/my/balanceindex ">
+					<span>{{lovesinfo.todayaward}}元</span>
+					<span>今日激励</span>
+				</a>
+			</div>
+			<div>
+				<a href="#/my/loves ">
+					<span>{{lovesinfo.todayadd}}个</span>
+					<span>今日新增
+						<img src="img/lovelogo.png"/>
+					</span>
+				</a>
+			</div>
+		</div>-->
+      <ul class="loves-info" ng-if="lovesinfo.open_merge == 1">
+      	<li ui-sref="user.getlovesdetail">已分润金额：{{totalAward|number:4}}<span>查看 <i class="icon ion-ios-arrow-right"></i></span> </li>
+      	<li ui-sref='user.lovesdetail'>{{globalInfo.nounInfo.LOVE}}明细<span><i class="icon ion-ios-arrow-right"></i></span> </li>
+      	<li ui-sref='user.couponList'>有效期明细<span><i class="icon ion-ios-arrow-right"></i></span> </li>
+        
+        
+        <!--<li ui-sref='user.redIntegralOut'>{{globalInfo.nounInfo.LOVE}}转账<span><i class="icon ion-ios-arrow-right"></i></span> </li>
+      	<li ui-sref='user.redIntegralOutRecord'>{{globalInfo.nounInfo.LOVE}}转账明细<span><i class="icon ion-ios-arrow-right"></i></span> </li>
+      	-->
+      </ul>
+		<div class="loves_detail" ng-if="lovesinfo.open_merge != 1">
+			<div class="loves_users">
+				<div class="loves_count">
+					<div class="loves_count_img">
+						<img src="img/loves_user.png" alt="">
+					</div>
+					<div class="loves_count_info">
+						<p class="loves_c_i_ing">可激励【用户{{globalInfo.nounInfo.LOVE}}】
+							<span class="" ng-bind="lovesinfo.hasheart_user"></span>个</p>
+						<p>当前{{globalInfo.nounInfo.LOVE}}:
+							<span ng-bind="lovesinfo.nowheartnum_user"></span>个</p>
+					</div>
+				</div>
+				<div class="loves_info">
+					<div class="loves_info_new flex_row_center" ui-sref='user.lovesdetail'>
+						<div class="loves_i_content">
+							<div class="loves_i_title">今日新增</div>
+							<div class="loves_i_num">
+								<span ng-bind="lovesinfo.todayadd_user"></span>个</div>
+							<div class="loves_i_total">共获得
+								<span>{{lovesinfo.totheartnum_user}}</span>个</div>
+						</div>
+						<div class="loves_i_more">
+							<img src="img/arrowright.png" alt="">
+						</div>
+					</div>
+					<div class="loves_info_today  flex_row_center" ui-sref="user.getlovesdetail">
+						<div class="loves_i_content">
+							<div class="loves_i_title">今日激励</div>
+							<div class="loves_i_num">
+								<span ng-bind="lovesinfo.todayaward_user">0.00</span>元</div>
+							<div class="loves_i_total">共激励
+								<span>{{lovesinfo.alreadyaward_user}}</span>元</div>
+						</div>
+						<div class="loves_i_more">
+							<img src="img/arrowright_2.png" alt="">
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div class="loves_shops" >
+				<div class="loves_count">
+					<div class="loves_count_img">
+						<img src="img/loves_shop.png" alt="">
+					</div>
+					<div class="loves_count_info">
+						<p class="loves_c_i_ing">可激励【商家{{globalInfo.nounInfo.LOVE}}】
+							<span class="" ng-bind="lovesinfo.hasheart_shop"></span>个</p>
+						<p>当前{{globalInfo.nounInfo.LOVE}}:
+							<span ng-bind="lovesinfo.nowheartnum_shop"></span>个</p>
+					</div>
+				</div>
+				<div class="loves_info">
+					<div class="loves_info_new flex_row_center" ui-sref='user.lovesdetail'>
+						<div class="loves_i_content">
+							<div class="loves_i_title">今日新增</div>
+							<div class="loves_i_num">
+								<span ng-bind="lovesinfo.todayadd_shop">0.00</span>个</div>
+							<div class="loves_i_total">共获得
+								<span>{{lovesinfo.totheartnum_shop}}</span>个</div>
+						</div>
+						<div class="loves_i_more">
+							<img src="img/arrowright.png" alt="">
+						</div>
+					</div>
+					<div class="loves_info_today  flex_row_center" ui-sref="user.getlovesdetail">
+						<div class="loves_i_content">
+							<div class="loves_i_title">今日激励</div>
+							<div class="loves_i_num">
+								<span ng-bind="lovesinfo.todayaward_shop">0.00</span>元</div>
+							<div class="loves_i_total">共激励
+								<span>{{lovesinfo.alreadyaward_shop}}</span>元</div>
+						</div>
+						<div class="loves_i_more">
+							<img src="img/arrowright_2.png" alt="">
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+
+	</ion-content>
+</ion-view>

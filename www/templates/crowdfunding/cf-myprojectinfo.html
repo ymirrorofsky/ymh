@@ -1,0 +1,92 @@
+<ion-view title="众筹" hide-nav-bar="true" hide-back-button="true">
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">众筹</h1>
+	</ion-header-bar>
+	<ion-content class='cfprojectinfo bodybg-normal'>
+	<header>
+		<img ng-src="{{iteminfo.avatar||'img/headimg.jpg'}}"/>
+		<b>{{iteminfo.username}}</b>
+		<span>{{iteminfo.createtime*1000|date:'yyyy-MM-dd'}}</span>
+		<a >剩余<i>{{iteminfo.endtime}}</i>天</a>
+	</header>
+	<dl class="cfprojectinfo-top">
+		<dt>
+			<h4>{{iteminfo.CName}}</h4>
+		</dt>
+		<dd>
+			<div>
+				<span>{{iteminfo.CMoney}}元</span>
+				<i>目标金额</i>
+			</div>
+			<div>
+				<span>{{iteminfo.CMoneyed}}元</span>
+				<i>已筹金额</i>
+			</div>
+			<div>
+				<span>{{iteminfo.support}}次</span>
+				<i>支持次数</i>
+			</div>
+		</dd>
+		<dt>
+			<h5>{{iteminfo.CName}}</h5>
+			<div>
+				<img ng-repeat='item in iteminfo.thumbs' ng-click='showimg($index)' ng-src="{{item||'img/aixin.png'}}" />
+			</div>
+		</dt>
+	</dl>
+	<dl class="cfprojectinfo-center">
+		<dt>帮Ta实现</dt>
+		<dd>
+			<h5>
+				<span>{{iteminfo.CMoney}}</span>元
+				<a>已有<i>{{iteminfo.support}}</i>人支持</a>
+			</h5>
+			<p>{{iteminfo.CName}}</p>
+		</dd>
+	</dl>
+	<div class="cfprojectinfo-list" ng-if='iteminfo.supportList!=""'>
+		<h3>支持者</h3>
+	<div  ng-repeat='items in iteminfo.supportList'>
+		<img ng-src="{{items.avatar||'img/headimg.jpg'}}"/>
+		<div >
+			<h4>{{items.username}}支持了<i>{{items.SMoney}}</i>元</h4>
+			<p>{{items.createtime*1000|date:'yyyy-MM-dd HH:mm:ss'}}</p>
+			<h5>联系电话:<i>{{items.mobile}}</i></h5>
+		</div>
+	</div>
+	</div>
+	</ion-content>
+	<div class="cfbtn-commonbottom3">
+		<div ng-click='followItem(iteminfo.id,iteminfo.isAttention)'>
+			<img ng-if='iteminfo.isAttention!=1' src="imgG/cfcare.png"/>
+			<img ng-if='iteminfo.isAttention==1' src="imgG/cfcareed.png"/>
+			<span>关注<i>{{iteminfo.attention}}</i></span>
+		</div>
+		<button ng-click='fill()'>我要支持</button>
+		<!--<div>
+			<img src="imgG/cfshare.png"/>
+			<span>分享 <i>{{iteminfo.share}}</i></span>
+		</div>-->
+	</div>
+	<div class="cf-fillMoney" ng-if='showpay' >
+		<div>
+			<h4><i ng-click='fill()'>×</i></h4>
+			<h3>帮TA众筹   </h3>
+		<dl>
+			<dt><span>支持金额</span><input type="text" name="" id="" value="" placeholder="填写金额" ng-model='info.money' /></dt>
+			<dd><span>手机号码</span><input type="text" disabled="" value="{{globalInfo.user.mobile}}" /></dd>
+			<dd><span>联系人姓名</span><input type="text" name="" id="" value="" placeholder="填写姓名(必填)" ng-model='info.name' /></dd>
+		</dl>
+		<button ng-click='cfsubmit()'>确认支付</button>
+		</div>
+		
+	</div>
+	<div ng-if="bigImage" class="popover-backdrop" style="position: fixed;top: 0;left: 0;z-index: 10; width: 100%;height: 100%;background: #fff;" ng-click="hideBigImage()">
+		<img ng-repeat='item in iteminfo.thumbs' ng-if='showimgNum==$index' ng-src="{{item}}"
+			style="position: absolute;top: 10%;left: 50%;z-index: 10;display: block;margin-top: 18px;  
+         margin-left: -165px;height: 420px;width: 330px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);"  />
+	</div>
+</ion-view>

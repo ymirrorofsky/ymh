@@ -1,0 +1,109 @@
+<ion-view view-title="商家" hide-nav-bar="true">
+	<div>
+		<ion-header-bar class="bar-calm">
+			<div class="t_header" style="background: #fff;">
+				<button class="button iconfont icon-back1 button-clear" style="font-size: 14px;margin-top: 10px;position: absolute;left: 0;color: #333;"
+					ng-click="$ionicGoBack()">返回</button>
+				<h1 style="text-overflow: ellipsis;white-space: nowrap;overflow: hidden;color: #333;">
+					{{shopsinfo.list.title}}</h1>
+				<div class="t_classify" ui-sref='goods.onlineshopgoodscate({spid:shopsinfo.list.spid})'>
+					<i class="ion-navicon-round "></i>
+					<!--<span>分类</span>-->
+				</div>
+			</div>
+		</ion-header-bar>
+
+		<ion-content overflow-scroll="false">
+			<div class="online-shops-list">
+				<div class="onlineshopinfo">
+					<img class="img" ng-src="{{shopsinfo.list.photo||'img/shopLogo.png'}}" alt="" />
+					<div class="onlineshopinfo-intro">
+						<div class="logos">
+							<!--<b ng-bind="levelName[shopsinfo.list.leve]"></b>-->
+							<b ng-if='shopsinfo.list.leve=="品牌店"'>品牌店</b>
+							<img ng-src="{{shopsinfo.list.logo||'img/goodsLogo.png'}}" />
+						</div>
+
+						<div class="num">
+							<b style="float: right;width: 1px;height:30px;background: #aaa;margin-top: 8px;"></b>
+							<i>{{shopsinfo.goodsNum}}件</i>
+							<span>全部商品</span>
+						</div>
+						<div class="num">
+							<i>{{shopsinfo.recent}}单</i>
+							<span>近期成交</span>
+						</div>
+						<div class="onlineshop-menulist">
+							<a ng-click='shareLink(shopsinfo.list.title,0,0,shopsinfo.list.logo)'><img src="img/分享.png" alt="" /></a>
+							<a ng-click='contactserve()'><img src="img/客服.png" alt="" /></a>
+							<a ng-click='gocollect()' ng-if='isCollect==0'><img src="img/收藏.png" alt="" /></a>
+							<a ng-click='gocollect()' ng-if='isCollect==1'><img src="img/收藏1.png" alt="" /></a>
+						</div>
+					</div>
+				</div>
+				<div class="onlineshops-serch">
+					<h5><input type="text" placeholder="搜索商品" id='shopSearchK' />
+						<i class="icon ion-android-search"></i>
+						<span ng-click="goSearch()">搜索</span>
+					</h5>
+					<dl>
+						<dd>
+							<a ng-click="showchoo(1)" id='1' class="red">全部</a>
+						</dd>
+						<dd class="priceshow">
+							<a ng-click='showchoo1()'><span>价格</span>
+								<b><i class="icon ion-android-arrow-dropup"></i>
+								<i class="icon ion-android-arrow-dropdown"></i></b>
+							</a>
+						</dd>
+						<dd class="lovesshow">
+							<a ng-click='showchoo2()'><span>{{globalInfo.nounInfo.LOVE}}</span>
+								<b><i class="icon ion-android-arrow-dropup"></i>
+							<i class="icon ion-android-arrow-dropdown"></i></b>
+							</a>
+						</dd>
+						<dd>
+							<a id='6' ng-click="showchoo(6)">最近成交</a>
+						</dd>
+					</dl>
+				</div>
+				<ul class="clearfix">
+					<li class="flex" ng-repeat="goods in goodList" ui-sref="goods.onlinegoodsInfo({id:goods.id})">
+						<img class="imgs" ng-src="{{goods.thumb || 'img/goodsLogo.png'}}">
+						<div class="info clearfix flex_1">
+							<h3 class="text-overflow_2" ng-bind="goods.goodsName"> </h3>
+							<div class="middle">
+								<!--ng-if='goods.freeDelivery==1'-->
+								<span >￥{{goods.spe_price}}</span> <i>最近销量：{{goods.sales}}</i>
+							</div>
+							<div class="bottom">
+								<!--<b>￥{{goods.spe_price}}</b>-->
+								<span>
+									购买奖励{{goods.memberHeart}}{{globalInfo.nounInfo.LOVE}}
+									<!--<img src="img/lovelogo.png" style="width:24px;height:24px;position:relative;z-index:5;">--> 
+									<!--<em class="ng-binding">购买奖励{{goods.memberHeart}}{{globalInfo.nounInfo.LOVE}}</em>-->	
+								</span>
+
+
+								<!--<span id="goodsInfo_integral" ng-if="goods.direct == 1">
+									<img src="img/lovelogo.png" style="width:24px;height:24px;position:relative;z-index:5;"> 
+									<em class="ng-binding">自营商品</em>	
+								</span>-->
+							</div>
+							<!--<p>￥{{item.goodsPrice}}
+							<span><img src="img/aixinbg.png"/> <b>{{item.userHeart}}</b></span> 
+							<i>×{{item.goodsNum}}</i></p>-->
+						</div>
+					</li>
+				</ul>
+			</div>
+			<!--<ion-refresher pulling-text="下拉刷新" refreshing-icon="" on-refresh="method.reLoad()"></ion-refresher>-->
+			<ion-infinite-scroll ng-if="noMore" on-infinite="loadMore()" distance="1%" icon="" immediate-check="false">
+			</ion-infinite-scroll>
+		</ion-content>
+	</div>
+	<!--省市县-->
+	<!--<div ng-if="pageMsg.bool._city._s" ng-include="src='templates/shop/province.html'" class="t_city_op"></div>
+	<div ng-if="pageMsg.bool._city._c" ng-include="src='templates/shop/city.html'" class="t_city_op"></div>
+	<div ng-if="pageMsg.bool._city._x" ng-include="src='templates/shop/county.html'" class="t_city_op"></div>-->
+</ion-view>

@@ -1,0 +1,66 @@
+<ion-view view-title="  " hide-nav-bar="true">
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">{{globalInfo.nounInfo.LOVE}}</h1>
+	</ion-header-bar>
+	<ion-content class="bodybg-normal loves">
+		<div class="loves-top">
+			<img src="img/lovebg.png"/>
+			<em>
+				<span>可激励{{globalInfo.nounInfo.LOVE}}</span>
+				<b>{{lovesinfo.hasheart}}个</b>
+			</em>
+			<h4>
+			<p>小提示：</p>
+			<p>1.满1个{{globalInfo.nounInfo.LOVE}}才能参与激励</p>
+			<p>2.激励扣除{{lovesinfo.rate}}%税收及维护费用,数量同步减少</p>
+			<!--<p>3.激励扣除10%税收及平台维护费用</p>-->
+			</h4>
+			<h5>
+				<div >
+					<b></b>
+					<span>{{lovesinfo.nowheartnum}}</span>
+					<span>当前{{globalInfo.nounInfo.LOVE}}数</span>
+				</div>
+				<div >
+					<span>{{lovesinfo.totheartnum}}</span>
+					<span>累计{{globalInfo.nounInfo.LOVE}}数</span>
+				</div>
+			</h5>
+		</div>
+		<div class="loves-money">
+			<div>
+				<a href="#/my/balanceindex ">
+					<span>{{lovesinfo.todayaward}}元</span>
+					<span>今日激励<!--(<b>{{counts.integral}}</b>)--></span>
+				</a>
+			</div>
+			<div>
+				<a href="#/my/loves ">
+					<span>{{lovesinfo.todayadd}}个</span>
+					<span>今日新增
+						<img src="img/lovelogo.png"/>
+					</span>
+				</a>
+			</div>
+		</div>
+      <ul class="loves-info">
+      	<li ui-sref="user.getlovesdetail">已激励金额：{{lovesinfo.alreadyaward}}<span>查看 <i class="icon ion-ios-arrow-right"></i></span> </li>
+      	<li ui-sref='user.lovesdetail'>获得{{globalInfo.nounInfo.LOVE}}明细<span><i class="icon ion-ios-arrow-right"></i></span> </li>
+      </ul>
+		<!--<ion-label></ion-label>
+			<a class="item  item-icon-right" >
+        <img src = "img_ad/yinfanshouyi.png"/>
+				已完成消费收益
+				<span class="item-note">
+			 {{profitInfo.done||0}}
+			</span>
+				<!--<i class="icon ion-ios-arrow-right"></i>
+			</a>-->
+
+		<ion-label></ion-label>
+
+	</ion-content>
+</ion-view>

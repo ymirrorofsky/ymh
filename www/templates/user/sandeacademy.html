@@ -1,0 +1,32 @@
+<ion-view view-title="百家书院" hide-nav-bar="true">
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">{{globalInfo.nounInfo.BJSY}}</h1>
+	</ion-header-bar>
+	<ion-content class="bodybg-normal sandeshuyuan" overflow-scroll="true">
+		<ion-scroll direction='x' delegate-handle='' scrollbar-x='true'>
+			<dl>
+			<dd id='s1' ng-click='chooseshow()'>推荐</dd>
+			<dd ng-repeat='cate in catelist' id='{{cate.id}}' ng-click='chooseshow(cate.id)'>{{cate.title}}</dd>
+		</dl>
+		</ion-scroll>
+		
+		<ion-slide-box delegate-handle="slideimgs" show-pager="true" auto-play="true" does-continue='true' ng-if='showslide'>
+			<ion-slide ng-repeat="focus in newslist.list" class='box' does-continue='true'>
+				<a ui-sref='shops.shopsInfo({spid:focus.spid})'><img ng-src="{{focus.thumb}}" width="100%" class="banner-img"></a>
+			</ion-slide>
+		</ion-slide-box>
+		<div class="common-empty" ng-if='empty'>
+			什么也没有...
+		</div>
+		<ul ng-if='!empty'>
+			<li ng-repeat='items in newslist.article' ui-sref='user.academydetail({id:items.id})'>
+				<img ng-src="{{items.thumb}}" />
+				<h5>{{items.title}}</h5>
+				<div>{{items.description}}</div>
+			</li>
+		</ul>
+	</ion-content>
+</ion-view>

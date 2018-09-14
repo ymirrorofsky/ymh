@@ -1,0 +1,49 @@
+<ion-view view-title="货款" hide-nav-bar="true">
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">货款</h1>
+	</ion-header-bar>
+	<ion-content class="bodybg-normal">
+		<ul class="t_mess_list">
+			<li>
+				<a href="javascript:;" class="flex">
+					<!--<b class="ion-locked assertive"></b>-->
+					<h3 class="flex_1">当前货款</h3>
+					<i >{{shopMoney.applyPending}}</i>
+				</a>
+			</li>
+			<!--<li>
+				<a href="javascript:;" class="flex">
+					<b class="ion-locked assertive"></b>
+					<h3 class="flex_1">提现总额</h3>
+					<i >{{shopMoney.apply}}</i>
+				</a>
+			</li>-->
+			<li>
+				<a href="javascript:;" class="flex">
+					<!--<b class="ion-locked assertive"></b>-->
+					<h3 class="flex_1">已提现</h3>
+					<i >{{shopMoney.applyOK}}  </i>
+				</a>
+			</li>
+			<li>
+				<a href="javascript:;" class="flex">
+					<!--<b class="ion-locked assertive"></b>-->
+					<h3 class="flex_1">提现中</h3>
+					<i >{{shopMoney.applyIng}}</i>
+				</a>
+			</li>
+			<li ui-sref='shops.shopRepo'>
+				<a href="javascript:;" class="flex">
+					<!--<b class="ion-locked assertive"></b>-->
+					<h3 class="flex_1">去提现</h3>
+					<i> <em class="ion-ios-arrow-right"></em></i>
+				</a>
+			</li>
+
+		</ul>
+	</ion-content>
+</ion-view>
+

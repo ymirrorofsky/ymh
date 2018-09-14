@@ -1,0 +1,26 @@
+<ion-view view-title="{{globalInfo.nounInfo.CDDS}}" hide-nav-bar="true">
+
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">{{globalInfo.nounInfo.CDDS}}</h1>
+	</ion-header-bar>
+	<ion-content class="bodybg-normal ambassadordelivery">
+		<div class="ambassadorlogo">
+				<img src="img_ad/ambassadorlogo.jpg" alt="" />
+			 <p>{{ambassador.ambassMoney}}</p>
+		</div>
+		<h5><span>有效期：一年</span><b>已开通：{{ambassador.sum}}人</b></h5>
+          <dl>
+          	<dt> <i class="icon "></i>为什么要加入{{globalInfo.nounInfo.CDDS}}行列？</dt>
+          	<dd>1.可以成为大爱社会公益传播者;</dd>
+          	<dd>2.享有分享直接客户消费5%{{globalInfo.nounInfo.LOVE}}激励，如消费1000元，可获得0.5颗{{globalInfo.nounInfo.LOVE}};</dd>
+          	<dd>3.享有分享间接客户消费2.5%{{globalInfo.nounInfo.LOVE}}激励，如消费1000元，可获得0.25颗{{globalInfo.nounInfo.LOVE}};</dd>
+          	<dd>4.享有推荐商家入驻后，其销售额3%{{globalInfo.nounInfo.LOVE}}激励，如销售10000元，可获得3颗{{globalInfo.nounInfo.LOVE}};</dd>
+          	<dd>5.开通品牌商家，可获得让利额*2倍{{globalInfo.nounInfo.LOVE}}激励。个人商家获得让利额*1倍{{globalInfo.nounInfo.LOVE}}激励，可申请成为运营中心或{{globalInfo.nounInfo.LOVE}}超市合伙人。</dd>
+          	<dt> <i class="icon "></i>为什么要加入{{globalInfo.nounInfo.CDDS}}行列？</dt>
+          </dl>
+	</ion-content>
+  <footer class='common-footer' ui-sref='user.suregift'>立即开通</footer>
+</ion-view>

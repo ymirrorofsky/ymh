@@ -1,0 +1,84 @@
+<ion-view view-title="受助人名单" hide-nav-bar="true">
+    <ion-header-bar class="bar-calm header-back poorBar">
+        <div class="buttons">
+            <button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+        </div>
+        <h1 class="title">受助人名单</h1>
+    </ion-header-bar>
+    <ion-content class="poorContent asker-list">
+        <ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()"></ion-refresher>
+        <div class="asker-type flex textCenter">
+            <div class="flex_1 a_p_r" ng-click="showReason = !showReason">致贫原因
+                <image src='img/arrowright.png'></image>
+                <div class="linshops-class" ng-class="{'on':showReason}">
+                    <ul>
+                        <li ng-click="reasonTypeS(0)">全部</li>
+                        <li ng-click="reasonTypeS(1)">大病救助</li>
+                        <li ng-click="reasonTypeS(2)">灾难救助</li>
+                        <li ng-click="reasonTypeS(3)">公益助学</li>
+                        <li ng-click="reasonTypeS(4)">孤独儿童老人求助</li>
+                        <li ng-click="reasonTypeS(5)">其他爱心求助</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="flex_1" ng-class="{'on':chooseId == 2}" ng-click="choose(2)">个人</div>
+            <div class="flex_1" ng-class="{'on':chooseId == 1}" ng-click="choose(1)">企业</div>
+        </div>
+        <div class="common-empty" ng-if="orderEmpty">什么也没有...</div>
+        <div class="poor-home-plist bgwhite">
+            <div class="plist-cnt" ui-sref='poorson.detail'>
+                <div class="plist-cnt-item" ng-repeat="item in info"  ng-click='goDetail(item.id)'>
+                 <div class="plist-cnt-img">
+                        <img ng-src="{{item.thumb}}" alt="">
+                    </div>
+                    <div class="plist-cnt-info">
+                        <div class="flex">
+                            <div class="info-name hei" ng-bind="item.username"></div>
+                            <div class="info-reason flex_1">致贫原因: <span ng-bind="item.because"> 大病救助</span></div>
+                        </div>
+                        <div class="info-asker hei">发起人:<span ng-bind="item.tMobile"></span></div>
+                        <p class="info-desc" ng-bind="item.info"></p>
+                        <div class="flex ">
+                            <div class="info-num">共接收捐赠<span ng-bind="item.getNum || '0'"></span>次</div>
+                            <div class="info-money flex_1">金额<span ng-bind="item.getMoney || 0.00">677.3</span>元</div>
+                        </div>
+                        <div class="donate_btn">
+                            <button class="d-good" ng-click="donateGood($event,item.id,item.username,item.mobile,e)" ng-if="fromPage == 'both' || fromPage == 'good' || fromPage == 'goodInfo' || fromPage == 'cart'">向ta捐物</button>
+                            <button class="d-money" ng-click="donateMoney($event,item.id,item.username,item.identity,e)" ng-if="fromPage == 'both' || fromPage == 'money'">向ta捐钱</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!--死数据-->
+                <!--<div class="plist-cnt-item">
+                    <div class="plist-cnt-img">
+                        <img src="/img/adam.jpg" alt="">
+                    </div>
+                    <div class="plist-cnt-info">
+                        <div class="flex">
+                            <div class="info-name hei">孙延兵</div>
+                            <div class="info-reason flex_1">致贫原因<span> 大病救助</span></div>
+                        </div>
+                        <div class="info-asker hei">发起人:<span>已不是原来的样子了</span></div>
+                        <p class="info-desc">李满，男，籍贯：湖北省武汉市黄陂陂区王家河镇，出生日期：1990年7月14日，身高：172厘米</p>
+                        <div class="flex ">
+                            <div class="info-num">共接收捐赠<span>135</span>次</div>
+                            <div class="info-money flex_1">金额<span>677.3</span>元</div>
+                        </div>
+                        <div class="donate_btn">
+                            <button class="d-good" ng-click="donateGood(1234,'孙延兵',1965652545)" ng-if="fromPage == 'both' || fromPage == 'good'">向ta捐物</button>
+                            <button class="d-money" ng-click="donateMoney(1234,'孙延兵',456456455)" ng-if="fromPage == 'both' || fromPage == 'money'">向ta捐钱</button>
+                        </div>
+                    </div>
+                </div>-->
+                 <!--死数据-->
+            </div>
+        </div>
+
+
+
+
+        <ion-infinite-scroll ng-if="!noMore" on-infinite="loadMore()" distance="1%" immediate-check="false">
+        </ion-infinite-scroll>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,20 @@
+<ion-view view-title="商品分类" hide-nav-bar="true">
+	<div>
+		<ion-header-bar class="bar-calm">
+			<div class="t_header">
+				<h1><button class="button iconfont icon-back1 button-clear" style="float: left;font-size: 14px;margin-top: 10px;"  ng-click="$ionicGoBack()">返回</button>
+					 商品分类</h1>
+				<!--<i class="ion-ios-search t_search" ui-sref="tab.shops_search"></i>-->
+			</div>
+		</ion-header-bar>
+		<ion-content >
+			<ul class="onlineshopscate">
+				<li ui-sref='goods.onlineshops({spid:spid})'>
+					<span>全部商品</span><i class="icon ion-ios-arrow-right"></i>
+				</li>
+				<li ng-repeat='item in cateslist' ui-sref='goods.onlineshops({spid:item.spid,cid:item.id})'>
+					<span id='{{item.id}}'>{{item.title}}({{item.sum}})</span><i class="icon ion-ios-arrow-right"></i>
+				</li>
+			</ul>
+
+</ion-view>

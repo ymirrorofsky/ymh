@@ -1,0 +1,49 @@
+<ion-view view-title="分类" hide-nav-bar="true">
+	<div>
+		<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">分类</h1>
+	</ion-header-bar>
+		<!--<ion-header-bar class="bar-calm">
+			<div class="t_header">
+				<h1>
+					<button class="button iconfont icon-back1 button-clear" style="float: left;font-size: 14px;margin-top: 10px;"  ng-click="$ionicGoBack()">返回</button>
+					 分类</h1>
+			</div>
+		</ion-header-bar>-->
+		<!--<ion-content class='good-autoheight'>-->
+			<div class="goodsList">
+				<ul class="goodsList-classify">
+					<li ng-click='getrecom()' class="clickchange">推荐分类</li>
+					<li ng-repeat='single in goodsCate'  id="p{{single.id}}" ng-click='getClassify(single.id)'>{{single.title}}</li>
+				</ul>
+				<div class="goodsList-lists">
+					<dl ng-repeat='item in recomList' ng-if='recom'>
+						<dt>{{item.title||'分类'}}</dt>
+						<dd ng-repeat='reca in item.son' ui-sref='goods.goodslist-online({id:reca.id})'>
+							<img ng-src='{{reca.thumb||"img/goodsLogo.png"}}'>
+							<h5 class="text-overflow_1">{{reca.title}}</h5>
+							<!--<p>{{item.goodsDesc}}</p>
+							<span>{{item.spe_price}}</span>-->
+						</dd>
+					</dl>
+					<dl ng-repeat='item in goodstwocate' ng-if='!recom'>
+						<dt>{{item.title||'分类'}}</dt>
+						<dd ng-repeat='x in item.son' ui-sref='goods.goodslist-online({id:x.id})'>
+							<img ng-src='{{x.thumb||"img/goodsLogo.png"}}'>
+							<h5 class="text-overflow_1">{{x.title}}</h5>
+							<!--<p>{{item.goodsDesc}}</p>
+							<span>{{item.spe_price}}</span>-->
+						</dd>
+					</dl>
+				</div>
+			</div>
+     <!--</ion-content>-->
+	</div>
+	<!--省市县-->
+	<!--<div ng-if="pageMsg.bool._city._s" ng-include="src='templates/shop/province.html'" class="t_city_op"></div>
+	<div ng-if="pageMsg.bool._city._c" ng-include="src='templates/shop/city.html'" class="t_city_op"></div>
+	<div ng-if="pageMsg.bool._city._x" ng-include="src='templates/shop/county.html'" class="t_city_op"></div>-->
+</ion-view>

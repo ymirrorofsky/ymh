@@ -1,0 +1,127 @@
+<ion-view view-title="奖品详情" hide-nav-bar='true'>
+    
+        <ion-header-bar class="bar-calm">
+            <div class="buttons">
+                <button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+            </div>
+            <h1 class="title">奖品详情</h1>
+        </ion-header-bar>
+    
+        <ion-content class="goods_info">
+            <div class="ginfo_top borderB10">
+                <img ng-src="{{info.goodsInfo.thumb}}" alt="" class="db_img">
+                <div class="ginfo_t_name">(第{{info.periodInfo.periods}}期){{info.goodsInfo.title}}</div>
+                <div class="ginfo_t_total ginfo_t_joined flex_row_center gray">
+                    <div class="flex_1 gray">总需 : {{info.periodInfo.zong_codes}}人次</div>
+                    <div class="ginfo_t_rest gray "  ng-if="!info.periodInfo.endtime">剩余总次数
+                        <span>{{info.periodInfo.shengyu_codes}}</span>
+                    </div>
+                </div>
+                <div class="ginfo_t_process" ng-if="!info.periodInfo.endtime">
+                    <progress value="{{info.periodInfo.scale}}" max="100"></progress>
+                </div>
+                <div class="ginfo_t_joined flex_row_center" ng-if="!info.periodInfo.endtime">
+                    <div class="flex_1 gray">已参与{{info.periodInfo.canyurenshu}}人次</div>
+                    <div class="ginfo_t_rest gray">剩余最大购买次数
+                        <span>0</span>
+                    </div>
+                </div>
+                <div class="ginfo_t_award" ng-if="info.periodInfo.endtime">
+                    <div class="ginfo_t_a_top flex">
+                        <div class="ginfo_t_a_img">
+                            <img class="db_img" src="http://img0.imgtn.bdimg.com/it/u=2643935020,1131285829&fm=214&gp=0.jpg" alt="">
+                        </div>
+                        <div class="flex_1">
+                            <div>获奖者:
+                                <span class="blue">{{info.periodInfo.nickname || info.periodInfo.mobile1  }}</span>
+                            </div>
+                            <div>揭晓时间:{{info.periodInfo.endtime * 1000 | date:'yyyy-MM-dd HH:mm:ss'}}</div>
+                            <div>本期参与:{{info.periodInfo.partakes}}人次
+                                <!-- <span class="blue">查看Ta的号码</span> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ginfo_t_a_num">
+                        幸运号码:110100
+                        <!-- <span>查看计算详情</span> -->
+                    </div>
+    
+                </div>
+    
+    
+    
+    
+    
+    
+    
+                <div class="ginfo_t_notIn" ng-if="info.myTime == 0">你没有参与本次夺宝</div>
+                <div class="ginfo_t_in" ng-if="info.myTime > 0">
+                    <p>您参与了:{{info.myTime}}</p>
+                    <p>夺宝号码:{{info.finalCode}}</p>
+                </div>
+            </div>
+            <div class="ginfo_middle borderB10">
+                <div class="widge_header flex " ui-sref='dbson.goodsDetail({goodsId:info.goodsInfo.id})'>
+                    <div class="wc_h_title flex_1">图文详情</div>
+                    <div class="wc_h_all">
+                        <img src="img/db/arrowright.png" alt="">
+                    </div>
+                </div>
+                <!-- <div class="widge_header flex ">
+                    <div class="wc_h_title flex_1">往期揭晓</div>
+                    <div class="wc_h_all">
+                        <img src="img/db/arrowright.png" alt="">
+                    </div>
+                </div>
+                <div class="widge_header flex">
+                    <div class="wc_h_title flex_1">晒单分享</div>
+                    <div class="wc_h_all">
+                        <img src="img/db/arrowright.png" alt="">
+                    </div>
+                </div>
+                <div class="widge_header flex">
+                    <div class="wc_h_title flex_1">幸运码计算方式</div>
+                    <div class="wc_h_all">
+                        <img src="img/db/arrowright.png" alt="">
+                    </div>
+                </div> -->
+            </div>
+            <div class="ginfo_rec">
+                <div class="widge_header flex borderB1">
+                    <div class="wc_h_title flex_1">所有参与记录
+                        <span class="gray">(自{{info.peroidInfo.createtime | date:'yyyy-MM-dd HH:mm:ss'}}) </span>
+                    </div>
+                    <!-- <div class="wc_h_all">
+                        <img src="img/db/arrowright.png" alt="">
+                    </div> -->
+                </div>
+                <div class="ginfo_r_list">
+                    <div class="ginfo_r_line"></div>
+                    <div class="ginfo_r_item flex_row_center" ng-repeat="item in info.recode">
+                        <div class="gindo_r_img">
+                            <img ng-src="{{item.avatar || 'img/headimg.jpg'}}" alt="">
+                        </div>
+                        <div class="flex_1 flex_col_center gindo_r_info">
+                            <div class="gindo_r_name">
+                                <span>{{item.nickname  || item.mobile1}}</span>(ip:{{item.ip}})</div>
+                            <div class="gindo_r_num">参与了{{item.num || 0}}人次 {{item.createtime * 1000 | date:'yyyy-MM-dd HH:mm:ss'}}</div>
+                        </div>
+                    </div>
+                </div>
+    
+    
+            </div>
+    
+    
+        </ion-content>
+        <ion-footer-bar class="borderT1">
+            <div class="ginfo_m_btns flex_row_center" ng-if="info.periodInfo.status == '1'">
+                <div class="ginfo_m_join" ng-click="submit('buy')">立即参与</div>
+                <div class="ginfo_m_add" ng-click="submit('add')">加入清单</div>
+            </div>
+            <div class="ginfo_m_btns flex_row_center" ng-if="info.periodInfo.status > 1">
+                <div class="flex_1 gray">最新一期正在火热进行..</div>
+                <div class="ginfo_m_add" style="background:#DB3752" ui-sref='db.goodsList'>立即前往</div>
+            </div>
+        </ion-footer-bar>
+    </ion-view>

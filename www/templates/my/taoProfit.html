@@ -1,0 +1,35 @@
+<ion-view view-title=" " hide-nav-bar="true">
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">收益</h1>
+	</ion-header-bar>
+	<ion-content class="bodybg-normal">
+		<div class="taoprofit">
+             <div>
+             	<p>￥{{info.myTaokeInput||'0'}}</p>
+             </div>
+             <ul>
+             	<li  >
+             		<b>结算优惠券</b>
+             		<p>{{info.lastMonthJsYhq||'0'}}</p>
+             		<span>上月优惠券</span>
+             	</li>
+             	<li  >
+             		<b>预估优惠券</b>
+             		<p>{{info.curMonthYgYhq||'0'}}</p>
+             		<span>本月优惠券</span>
+             	</li>
+             	<li  >
+             		<b>预估优惠券</b>
+             		<p>{{info.lastMonthYgYhq||'0'}}</p>
+             		<span>上月优惠券</span>
+             	</li>
+             	
+             </ul>
+			</div>
+			  <!--<ion-label></ion-label>-->
+	</ion-content>
+</ion-view>
+

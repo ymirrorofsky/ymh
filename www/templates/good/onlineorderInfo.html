@@ -1,0 +1,96 @@
+<ion-view view-title="确认订单" hide-nav-bar="true">
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">确认订单</h1>
+		<div class="buttons" ng-if="orderInfo.orderStatus == 0 && type == 'shops'" ng-click="rejectContent()">
+			<button class="button button-clear">拒绝</button>
+		</div>
+	</ion-header-bar>
+	<ion-content class="bodybg-normal" style='bottom: 50px;'>
+
+		<!--收货方式选择-->
+		<!--<div class="prf-info">
+			<div class="flex prf-type">
+				<div>收货方式：</div>
+				<div class="relative" style="margin-right:5px;">
+					<input id="item1" type="radio" name="item1" value="1" ng-model="choose">
+					<label for="item1"></label>
+					<span>物流</span>
+				</div>
+				<div class="relative">
+					<input id="item2" type="radio" name="item2" value="2" checked ng-model="choose">
+					<label for="item2"></label>
+					<span>自提</span>
+				</div>
+			</div>
+		</div>
+		<dl class="cartorder-list" ng-if="choose == '2'" style="">
+			<dt class="cartorder-serve" style="margin-top:0;">
+				<p><span>商家账号:</span> <textarea name="" rows="" cols="" maxlength="50" ng-change="myFunc(items.spid)" ng-model="myValue"></textarea></p>
+			</dt>
+		</dl>-->
+		<div class="yd-add-bank" ui-sref="goods.orderAddress" ng-if="!orderlist.addressinfo">
+			<i class="ion-ios-plus-outline"></i>
+			<p>点击添加收货地址</p>
+		</div>
+		<ion-list ui-sref="goods.orderAddress" ng-if="orderlist.addressinfo">
+			<ion-item class="item-avatar item-icon-right">
+				<img src="img_ad/location2.png">
+				<h3><span>{{orderlist.addressinfo.username}}</span> <span>{{orderlist.addressinfo.mobile}}</span></h3>
+				<p><span>{{orderlist.addressinfo.address}}</span> </p>
+				<i class="icon ion-ios-arrow-right right-color"></i>
+			</ion-item>
+		</ion-list>
+		<dl class="cartorder-list" ng-repeat='items in orderlist.orderinfo'>
+			<dt class="shoptit">
+				<span>  {{items.title}}</span></dt>
+			<dd ng-repeat='item in items.goods'>
+				<img ng-src='{{item.thumb}}' alt="" />
+				<div>
+					<h5>{{item.goodsName}}</h5>
+					<!--<p><span ng-repeat='butes in item.goodsField'>{{butes}}</span></p>-->
+					<p><span>{{item.fields.field_1}}</span><span>{{item.fields.field_2}}</span></p>
+					<p>￥<b>{{item.goodsPrice}}</b><i>×{{item.goodsNum}}</i></p>
+				</div>
+			</dd>
+			<dt class="cartorder-serve" id='p{{items.spid}}'>
+				<p><span>配送方式</span> <i>{{items.expressinfo.name}}￥{{items.expressinfo.price}}</i></p>
+				<p><span>给卖家留言:</span> <textarea name="" rows="" cols="" maxlength="50" ng-change="myFunc(items.spid)" ng-model="myValue"></textarea></p>
+			</dt>
+		</dl>
+		<!--<dl class="cartorder-list" >
+			<dt class="shoptit">
+				<span> 商家店铺名</span></dt>
+			<dd>
+				<img src='img/ali_logo.png' alt="" />
+				<div>
+					<h5>商品名字</h5>
+					<p><span >颜色:褐色</span><span >颜色：褐色</span></p>
+					<p>￥<b>125.00</b><i>×2</i></p>
+				</div>
+			</dd>
+			<dt class="cartorder-serve">
+				<p><span>配送方式</span> <i>快递</i></p>
+				<p><span>给卖家留言:</span> <textarea name="" rows="" cols=""></textarea></p>
+			</dt>
+		</dl>-->
+		<h5 class="cartorder-tot">消费总额：￥{{orderlist.total}}</h5>
+
+		<dl class="cartorder-list" style="padding-top:0" ng-if="orderlist.is_direct == '1'">
+			<dt class="cartorder-serve" style="margin-top:0;">
+				<p><span>自提点账号:</span> <textarea name="" rows="" cols="" maxlength="11" ng-change="" ng-model="info.selfReceive"></textarea></p>
+			</dt>
+		</dl>
+	</ion-content>
+	<div class="cartorder-bottom">
+		<div class="allChoose">
+			共<span>1</span>件商品
+		</div>
+		<span class="totMoney">
+				<b>总金额：</b>￥{{orderlist.total}}
+		</span>
+		<a class='cartorder-tj ' ng-click="cartgoodsPay()">提交订单</a>
+	</div>
+</ion-view>

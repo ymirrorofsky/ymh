@@ -1,0 +1,48 @@
+<ion-view view-title="购物车" hide-nav-bar='true'>
+
+    <ion-header-bar class="bar-calm">
+        <h1 class="title">购物车</h1>
+    </ion-header-bar>
+
+    <ion-content class="cart_list" style="background:#EFEFF4">
+            <ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()"></ion-refresher>
+        <div>
+            <div class="cart_item flex borderB1" ng-repeat='item in list'>
+                <div class="ci_img">
+                    <img ng-src="{{item.thumb}}"
+                        alt="" class="db_img">
+                </div>
+                <div class="ci_info flex_1">
+                    <div class="ci_i_name">
+                        <span>({{item.onePrice}}元/人次)</span>{{item.title}}</div>
+                    <div class="ci_i_tip gray">总需{{item.zong_codes}}人次，剩余最大购买次数
+                        <span>{{item.shengyu}}</span> 人次</div>
+                    <div class="flex ci_i_input gray" >
+                        <div ng-if="item.shengyu != 0">参与人次</div>
+                        <div class="flex ci_i_num"  ng-if="item.shengyu != 0">
+                            <span ng-click="edit(item.id,'down',$index)">-</span>
+                            <input type="text" ng-model="item.num" ng-blur="edit(item.id,'input',$index,item.num)" disabled>
+                            <span ng-click="edit(item.id,'up',$index)">+</span>
+                        </div>
+                        <div ng-if="item.shengyu == 0" class="flex_1">
+                            购买次数达到上限，请删除该商品
+                        </div>
+                        <div class="flex_1 ci_i_trash" ng-click="delCart(item.id)">
+                            <i class="iconfont icon-lajixiang"></i>
+                        </div>
+                    </div>
+                    <div class="ci_i_price" ng-if="item.shengyu != 0">￥{{item.onePrice * list[$index].num}}</div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </ion-content>
+    <ion-footer-bar>
+        <div class="flex cl_footer borderT1" >
+            <div class="cl_f_tip flex_1">共{{totalGoods}}件商品,总计:{{totalPrice}}{{globalInfo.nounInfo.LOVE}}</div>
+            <div class="cl_f_submit" ng-click="submit()">提交</div>
+        </div>
+    </ion-footer-bar>
+</ion-view>

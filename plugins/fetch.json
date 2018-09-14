@@ -1,0 +1,121 @@
+{
+  "cordova-plugin-whitelist": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-whitelist@1.3.3"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-device": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-device@2.0.2"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-splashscreen": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-splashscreen@5.0.2"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-ionic-webview": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-ionic-webview@1.1.19"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-ionic-keyboard": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-ionic-keyboard@2.0.5"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-app-version": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-app-version"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-camera": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-camera@4.0.3"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-inappbrowser": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-inappbrowser@3.0.0"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-cszbar": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-cszbar"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova.custom.plugins.exitapp": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-exitapp"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-baidumaplocation": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-baidumaplocation@4.0.1"
+    },
+    "is_top_level": true,
+    "variables": {
+      "ANDROID_KEY": "dqmrXYKDfQv9RK8k4V5Bjn1z38n9L7kZ",
+      "IOS_KEY": "<API_KEY_IOS>"
+    }
+  },
+  "cordova-plugin-clipboard2": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-clipboard2@^0.1.0"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-baichuan": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-baichuan"
+    },
+    "is_top_level": true,
+    "variables": {
+      "APPKEY": "25008746"
+    }
+  },
+  "cordova-plugin-alipay-v2": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-alipay-v2"
+    },
+    "is_top_level": true,
+    "variables": {
+      "APP_ID": "2016082201785095"
+    }
+  }
+}

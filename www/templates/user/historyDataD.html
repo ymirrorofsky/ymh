@@ -1,0 +1,40 @@
+<ion-view view-title="历史数据" hide-nav-bar="true">
+    <ion-header-bar class="bar-calm header-my">
+        <div class="buttons">
+            <button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+        </div>
+        <h1 class="title">{{title}}</h1>
+    </ion-header-bar>
+    <ion-content class="history_data">
+        <div class="hd_list">
+            <!--近日剩余利润-->
+            <div class="hd_item" ng-repeat="item in list" ng-if="type == 1">
+                <div class="hd_i_name">{{item.title}}</div>
+                <div class="hd_i_num">{{item.residue || 0}}</div>
+            </div>
+
+            <!--近日分红使用-->
+            <div class="hd_item" ng-repeat="item in list" ng-if="type == 2">
+                <div class="hd_i_name">{{item.title}}</div>
+                <div class="hd_i_num">{{item.used || 0}}</div>
+            </div>
+                        <!--近日的积分总额-->
+            <div class="hd_item" ng-repeat="item in list" ng-if="type == 3">
+                <div class="hd_i_name">{{item.title}}</div>
+                <div class="hd_i_num">{{item.heart || 0}}</div>
+            </div>
+
+                        <!--近日的分润指数-->
+            <div class="hd_item" ng-repeat="item in list" ng-if="type == 4">
+                <div class="hd_i_name">{{item.title}}</div>
+                <div class="hd_i_num">{{item.index || 0}}</div>
+            </div>
+                        <!--近日系数均线-->
+            <div class="hd_item" ng-repeat="item in list" ng-if="type == 5">
+                <div class="hd_i_name">{{item.title}}</div>
+                <div class="hd_i_num">{{item.avg || 0}}</div>
+            </div>
+        </div>
+    </ion-content>
+
+</ion-view>

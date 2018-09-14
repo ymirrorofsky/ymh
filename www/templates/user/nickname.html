@@ -1,0 +1,17 @@
+<ion-view view-title="系统消息" hide-nav-bar="true">
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">修改昵称</h1>
+		<button class="button button-clear" ng-click='setNickname({nickname:NickName.nickname})'>保存</button>
+	</ion-header-bar>
+	<ion-content class="bodybg-normal">
+		
+		<div style="padding: 0 10px;">
+			<input style="width: 100%;border: solid 1px #E0E0E0;height: 40px;line-height: 40px;margin-top: 10px;border-radius: 15px;padding-left:20px;"  ng-model="NickName.nickname"
+				type="text" placeholder="输入昵称"/>
+		</div>
+		
+	</ion-content>
+</ion-view>

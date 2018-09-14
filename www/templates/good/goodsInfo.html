@@ -1,0 +1,97 @@
+<ion-view title="商品详情" hide-nav-bar="true" hide-back-button="true">
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">商品详情</h1>
+	</ion-header-bar>
+	<ion-content>
+		<ion-slide-box delegate-handle="slideimgs" does-continue="true" show-pager="true">
+			<ion-slide ng-repeat="img in goodsdetail.slide">
+				<img ng-src="{{img}}" width="100%" class="banner-img">
+			</ion-slide>
+		</ion-slide-box>
+		<div class="shops-detai-header" ng-if="!goodsdetail.slide">
+			<img src="img/goodsLogo.png" style='max-height:220px'>
+		</div>
+		<div class="shops-detai-middle">
+			<!--<div class="tit flex"><h3 class="flex_1 text-overflow_1" ng-bind="shopsdetail.title"></h3><span ng-click="praise()"><i class="iconfont icon-dianzan1"></i></br>赞{{shopsdetail.followNum}}</span></div>-->
+			<!--<div class="address common" ng-disabled = '!shopsdetail.locationUrl' ng-click="showAddress(shopsdetail.locationUrl)"><a class="flex" ng-href=""><i class="ion-android-pin calm"></i><p class="text-overflow_2 flex_1" ng-bind="shopsdetail.birthInfo || '暂无'"></p></a></div>-->
+			<!--<div class="common"><a class="flex" href="tel:{{shopsdetail.tel}}"><i class="icon ion-ios-telephone calm"></i>{{shopsdetail.tel || '暂无'}}</a></div>-->
+			<!--<div class="bodybg-normal" style="height: 10px;"></div>-->
+			<!--<div class="shop-descr common flex"><i class="ion-android-bookmark assertive"></i><p class="text-overflow_2 flex_1" ng-bind="shopsdetail.description"></p></div>-->
+
+			<!--<div class="home-shops-list">-->
+			<!--<ul class="clearfix">-->
+			<!--<li class="flex" ng-repeat="good in shopsdetail.goods"  ui-sref="goods.goodsInfo({id:good.id})>-->
+			<!--<img ng-src="{{good.thumb || 'img/wuimg.png'}}">-->
+			<!--<div class="info clearfix flex_1">-->
+			<!--<h3 class="title flex"><p class="text-overflow_1" ng-bind="good.goodsName"></p></h3>-->
+			<!--<div class="middle">-->
+			<!--</div>-->
+			<!--<div class="bottom flex">-->
+			<!--<span class="indus">{{good.goodsDescwwww}}</span>-->
+			<!--<p class="s-addrerss text-overflow_1 flex_1">{{good.goodsTag}}</p>-->
+			<!--<span class="distance">{{good.marketprice}}</span>-->
+			<!--</div>-->
+			<!--</div>-->
+			<!--</li>-->
+			<!--</ul>-->
+			<!--</div>-->
+			<div id="goods-model">
+				<dl><dt class="">
+					<p ng-bind="goodsdetail.goodsName"></p>
+           <!-- <img ng-src="{{goodsdetail.thumb}}"/>-->
+          <p >
+          	<span>已售{{goodsdetail.sales||10}}{{goodsdetail.unit}}</span>
+          	<span> ¥<i>{{ goodsdetail.spe_price| number:2}}</i> </span>
+          	<span>市场价&nbsp;¥{{ goodsdetail.marketprice| number:2}}</span>
+           </p>
+        <!--  <h4>库存<q data-stock="1305">{{goodsdetail.total}}</q>件</h4>-->
+         <!-- <i class="iconfont icon-close" ng-click="popover.hide()"></i>-->
+          </dt>
+			<dd class="goodsinfo-desc">
+				<p class="" ng-bind="goodsdetail.goodsDesc">
+				</p>
+				<!--<p> $compile("{{model}}")($scope)</p>-->
+				<p id='goodsinfo-info'></p>
+			</dd>
+					<!--<dd class="clr">
+						<h5 style="float:left">购买数量：</h5>
+						<div class="goods-op" id="goods-op">
+							<i class="iconfont icon-move" ng-click="minusNum()"></i>
+							<input type="text" id="special" ng-model="buyNum">
+							<i class="iconfont icon-add" ng-click="addNum()"></i>
+						</div>
+					</dd>
+					<dd class="clr">
+						<h5 style="float:left">总价格：</h5>
+						<div class="goods-op" id="">
+							{{goodsdetail.spe_price* buyNum}}
+						</div>
+					</dd>-->
+
+					<!--<button class="button-clear" ng-click="buyGoods()">提交</button>-->
+					<!--<button ng-click="addCart()" ng-if="buyType == 1">确定</button>-->
+					<!--<button ng-click="buyInterim()" ng-if="buyType == 2">确定</button>-->
+					<!--<button ng-click="login()" ng-if="buyType == 3">请先登录</button>-->
+				</dl>
+			</div>
+		</div>
+	</ion-content>
+	<div class="goodsinfo-bottom">
+		<span class="buymon">
+				<span>总价格：</span>{{goodsdetail.spe_price* buyNum}}
+		</span>
+		<span class="buynum">
+				<span>购买数量：</span>
+		<div class="goods-op" id="goods-op">
+			<i class="iconfont icon-move" ng-click="minusNum()"></i>
+			<input type="text" id="special" ng-model="buyNum">
+			<i class="iconfont icon-add" ng-click="addNum()"></i>
+		</div>
+		</span>
+
+		<button ng-click="buyGoods()">立即抢购</button>
+	</div>
+</ion-view>

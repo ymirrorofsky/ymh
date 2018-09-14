@@ -1,0 +1,24 @@
+<ion-view view-title="收款码" hide-nav-bar="true">
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">收款码</h1>
+	</ion-header-bar>
+	<ion-content class="bodybg-normal">
+		<div class="zlz-my-header flex padding">
+			<img ng-src="{{myqrcode.user.avatar || 'img/headimg.jpg'}}">
+			<div class="flex_1 user-share">
+				<h3 class="text-overflow_1">{{myqrcode.user.nickname}}</h3>
+				<p class="num assertive">{{myqrcode.user.mobile}}</p>
+			</div>
+		</div>
+		<div style="height: 10px; background-color: #f3f3f3;"></div>
+		<div class="share-qcode">
+			<h5>扫描下边的二维码付款</h5>
+			<img ng-src="{{myqrcode.img||'img_ad/qrcode.png'}}" />
+		</div>
+
+	</ion-content>
+</ion-view>
+

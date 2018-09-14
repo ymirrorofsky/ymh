@@ -1,0 +1,54 @@
+<ion-view view-title="确认订单" hide-nav-bar="true">
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">商品兑换</h1>
+		<div class="buttons" ng-if="orderInfo.orderStatus == 0 && type == 'shops'" ng-click="rejectContent()">
+			<button class="button button-clear">拒绝</button>
+		</div>
+	</ion-header-bar>
+	<ion-content class="bodybg-normal" style='bottom: 50px;'>
+		<!--<div class="yd-shops-avatar">-->
+		<!--<img src="img/ali_logo.png">-->
+		<!--</div>-->
+		<div class="yd-add-bank" ui-sref="integral.addressList" ng-if="!addressInfo">
+			<i class="ion-ios-plus-outline"></i>
+			<p>点击添加收货地址</p>
+		</div>
+		<ion-list ui-sref="integral.addressList" ng-if="addressInfo">
+			<ion-item class="item-avatar item-icon-right">
+				<img src="img_ad/location2.png">
+				<h3><span>{{addressInfo.username}}</span> <span>{{addressInfo.mobile}}</span></h3>
+				<p><span>{{addressInfo.birth}}{{addressInfo.address}}</span> </p>
+				<i class="icon ion-ios-arrow-right right-color"></i>
+			</ion-item>
+		</ion-list>
+		<div class="co-pay">
+			<div class="integralpay" ng-if='exchange.mode==3'>
+				<h4>￥{{exchange.factMoney|number:2}}</h4>
+				<p>兑换方式：{{globalInfo.nounInfo.LOVE}}券{{exchange.heartVoucher}}</p>
+				<p>可用{{globalInfo.nounInfo.LOVE}}券：{{exchange.loves}}</p>
+			</div>
+			<div class="integralpay" ng-if='exchange.mode!=3'>
+				<h4 ng-if='exchange.mode==1'>￥{{exchange.factMoney|number:2}}</h4>
+				<h4 ng-if='exchange.mode==2'>￥{{exchange.factMoney|number:2}}</h4>
+				<!--<h6 class="exchange-payLoves" ng-if='exchange.mode==2'><span>{{globalInfo.nounInfo.LOVE}}：</span><input type="text" placeholder="输入使用的数量" ng-change='judgeLove()' ng-model='exchange.loveNum'/></h6>-->
+
+				<h6 class="exchange-payLoves" ng-if='exchange.mode==2'><span>{{globalInfo.nounInfo.LOVE}}：</span><input type="text" placeholder="输入使用的数量" ng-change='judgeLove()' ng-model='exchange.loveNum'
+					/></h6>
+				<h6 class="exchange-payLoves" ng-if='exchange.mode==1'><span>{{globalInfo.nounInfo.LOVE}}：</span><input type="text" style="background: #fff;" disabled ng-model='exchange.loveNum'
+					/></h6>
+				<p ng-if='exchange.mode==2'>兑换方式：自由组合,{{globalInfo.nounInfo.LOVE}}最多可用{{exchange.useLove}}</p>
+				<p ng-if='exchange.mode==1'>兑换方式：{{exchange.loveNum}}{{globalInfo.nounInfo.LOVE}}+￥{{exchange.factMoney}}</p>
+				<!--<p ng-if='exchange.mode==1' >兑换方式：{{globalInfo.nounInfo.LOVE}}{{exchange.loveNum}}+￥{{exchange.factMoney}}</p>-->
+				<p>可用{{globalInfo.nounInfo.LOVE}}：{{lovesinfo.red_integral + lovesinfo.white_integral}}</p>
+				<!--<p >可用{{globalInfo.nounInfo.LOVE}}：{{exchange.loves}}</p>-->
+			</div>
+		</div>
+
+		<button ng-if='exchange.mode==3' class="button button-block button-calm zl_btn_center" style="margin-top: 40px;" ng-click="vouchPay()">确定</button>
+		<button ng-if='exchange.mode!=3' class="button button-block button-calm zl_btn_center" style="margin-top: 40px;" ng-click="goodsPay()">确定</button>
+
+	</ion-content>
+</ion-view>

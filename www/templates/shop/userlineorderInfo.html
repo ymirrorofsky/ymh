@@ -1,0 +1,26 @@
+<ion-view view-title="订单详情" hide-nav-bar="true">
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">订单详情</h1>
+		<div class="buttons" ng-if="orderInfo.orderStatus == 0 && type == 'shops'" ng-click="rejectContent()">
+			<button class="button button-clear">拒绝</button>
+		</div>
+	</ion-header-bar>
+	<ion-content class="bodybg-normal userlineorderinfo">
+		<hr style="background: #E0E0E0;height: 15px;margin:0;" />
+		<ul>
+			<li><b>订单编号：</b> {{orderInfo.orderId}} <i ng-bind='statusName[orderInfo.orderStatus]'></i></li>
+			<li ui-sref='shops.shopsInfo({spid:orderInfo.shop.id})'>{{orderInfo.shop.title}} <i class="icon ion-ios-arrow-right"></i></li>
+			<li><!--{{pos.province}}{{pos.city}}{{pos.district}}-->{{orderInfo.shop.address}}</li>
+			<li style="background: #E0E0E0;"></li>
+			<li>消费金额：<span>{{orderInfo.payPrice}}元</span></li>
+			<li>赠送{{globalInfo.nounInfo.LOVE}}：<span>{{orderInfo.userHeart}}</span>个</li>
+			<li>创建时间：<b>{{orderInfo.createtime*1000|date:'yyyy-MM-dd HH:mm:ss'}}</b></li>
+			<li>支付时间：<b>{{orderInfo.payTime*1000|date:'yyyy-MM-dd HH:mm:ss'}}</b></li>
+		</ul>
+
+	</ion-content>
+</ion-view>
+

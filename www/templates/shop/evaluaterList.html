@@ -1,0 +1,30 @@
+<ion-view title="评价列表" hide-nav-bar="true" hide-back-button="true">
+	<ion-header-bar class="bar-calm header-back" style='border: none;'>
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">评价列表</h1>
+		<button class=" icon ion-edit button" style="border: none;" ui-sref='shops.evaluate({spid:spid})'></button>
+	</ion-header-bar>
+	<ion-content class="bodybg-normal">
+		<ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()"></ion-refresher>
+		<div class="list card" ng-if="!orderEmpty">
+
+			<div class="item item-avatar">
+				<img src="img_ad/test.jpg">
+				<h2>{{evaluateList.username||'李三'}}</h2>
+				<span>{{evaluateList.createtime||'465625418'| date:'yyyy-MM-dd HH:mm'}}</span>
+				<p>{{evaluateList.descr||'不错'}}</p>
+			</div>
+			<div class="item item-avatar">
+				<img src="img_ad/test.jpg">
+				<h2>Pretty Hate Machine</h2>
+				<span>时间</span>
+				<p>Nine Inch Nails</p>
+			</div>
+		</div>
+		<div class="common-empty" ng-if="orderEmpty">什么也没有...</div>
+		<!--<ion-infinite-scroll ng-if="!noMore" on-infinite="loadMore()" distance="-1%" immediate-check="false">
+		</ion-infinite-scroll>-->
+	</ion-content>
+</ion-view>

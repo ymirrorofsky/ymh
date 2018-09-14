@@ -1,0 +1,19 @@
+<ion-view view-title="公司信息" hide-nav-bar="true">
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">平台账号 </h1>
+	</ion-header-bar>
+	<ion-content class="bodybg-normal">
+		<div class="about-tcbj">
+         <img class="pic" src='vricon.png' alt="" />
+		<p class="about-intro" style="text-align: center;">
+				开户行：{{platInfo.bank}}
+		</p>
+		</div>
+		<div class="about-net">
+			{{platInfo.account}}
+		</div>
+	</ion-content>
+</ion-view>

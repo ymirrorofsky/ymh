@@ -1,0 +1,17 @@
+<ion-view view-title="商家信息" hide-nav-bar="true">
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">全部分类 </h1>
+	</ion-header-bar>
+	<ion-content class="bodybg-normal lineshopallcate">
+		
+   <!--<ion-label></ion-label>-->
+	 <ul>
+	 	
+	 	<li ng-repeat=' item in linecateList' id='{{item.id}}' ui-sref='shops.linelocations({cid:item.id,title:item.title})'>{{item.title}}</li>
+	 </ul>
+	</ion-content>
+</ion-view>
+

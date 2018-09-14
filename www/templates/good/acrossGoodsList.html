@@ -1,0 +1,110 @@
+<ion-view view-title="让利" hide-nav-bar="true">
+    <div>
+        <!-- style='height:135px;' -->
+        <ion-header-bar class="bar-calm activegoods" >
+            <div class="t_header">
+                <h1><button class="button iconfont icon-back1 button-clear" style="float: left;font-size: 14px;margin-top: 5px;"
+                        ng-click="$ionicGoBack()">返回</button>
+                    <span style="margin-left: -45px;">敬请期待</span>
+                </h1>
+                <!--<i class="ion-ios-search t_search" ui-sref="tab.shops_search"></i>-->
+                <!--<i class="ion-ios-search t_share" ui-sref="tab.shops_search"></i>-->
+            </div>
+            <!-- <div  ng-if="!empty" class="onlineshops-serch" style="background: #fff;display: block;width: 100%;top: 45px;position: absolute;">
+                <h5><input type="text" placeholder="搜索商品" /> <i class="icon ion-android-search"></i>
+                    <span ng-click='searchgoods()'>搜索</span>
+                </h5>
+                <dl>
+                    <dd> <a ng-click="showchoo(1)" id='1' class="red">全部</a> </dd>
+                    <dd> <a ng-click='showchoo(2)' id='2'>推荐 </a> </dd>
+                    <dd class="priceshow"> <a ng-click='showchoo1()'><span>价格</span> 
+							<b><i class="icon ion-android-arrow-dropup"></i>
+							<i class="icon ion-android-arrow-dropdown"></i></b>
+						</a> </dd>
+                    <dd> <a id='5' ng-click="showchoo(5)">最近成交</a> </dd>
+                </dl>
+            </div> -->
+
+        </ion-header-bar>
+        <ion-content overflow-scroll="false" style='top:141px;' class='activegoods' style="display: none;"  > 
+            <div class="commonend-empty" ng-if="empty">
+                没有更多了...
+            </div>
+            <div class="activegood-list" ng-if="!empty">
+                <ul class="clearfix">
+                    <li class="flex" ng-repeat="goods in goodsList" ui-sref="goods.onlinegoodsInfo({id:goods.id,isAcross:'yes'})">
+                        <img class="imgs" ng-src="{{goods.thumb || 'img/goodsLogo.png'}}">
+                        <div class="info clearfix flex_1">
+                            <h3 class="text-overflow_1" ng-bind="goods.goodsName"> </h3>
+                            <div class="middle">
+                                <!--<span>{{goods.freeDelivery}}</span>-->
+                                <span ng-if='goods.leve==2'>品牌店</span>
+                                <!--<span ng-bind='levelName[goods.leve]'></span>-->
+                                <i>最近销量：{{goods.sales}}</i>
+                            </div>
+                            <div class="bottom">
+                                <b>￥{{goods.spe_price}}</b>        
+                                <!--<div> <img src="img/lovelogo.png" /> <em>{{goods.memberHeart}}</em></div>-->
+                                <span id="goodsInfo_integral">
+									<img src="img/lovelogo.png" style="width:24px;height:24px;position:relative;z-index:5;"> 
+									<em class="ng-binding">{{goods.memberHeart}}</em>	
+								</span>
+
+
+
+                            </div>
+                            <!--<p>￥{{item.goodsPrice}}
+							<span><img src="img/aixinbg.png"/> <b>{{item.userHeart}}</b></span> 
+							<i>×{{item.goodsNum}}</i></p>-->
+                        </div>
+                    </li>
+                </ul>
+                <!--<ul class="clearfix">
+					<li class="flex" ng-repeat="goods in goodsList" ui-sref="goods.onlinegoodsInfo({id:goods.id})">
+						<img ng-src="{{goods.thumb || 'img/wuimg.png'}}">
+						<div class="info clearfix flex_1">
+							<div class="info-fal">
+								<h3 class="flex text-overflow_1" ng-bind="goods.goodsName"> </h3>
+								<div class="middle">
+									<span>{{goods.goodsDesc}}</span>
+								</div>
+								<div class="bottom">
+									<span class="indus">{{goods.spe_price}}{{goods.unit}}</span>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>-->
+            </div>
+
+            <!--<div class="t_shopsList">-->
+            <!--<ion-refresher pulling-text="下拉刷新" refreshing-icon="" on-refresh="method.reLoad()"></ion-refresher>-->
+            <!--<div class="common-empty" ng-if="pageInfo.data < 1">什么也没有</div>-->
+            <!--<div class="_list flex" ng-repeat="x in pageInfo.data" ui-sref="tab.shops_details({spid:x.id})">-->
+            <!--<div class="img">-->
+            <!--<img ng-src="{{x.logo}}" alt="">-->
+            <!--</div>-->
+            <!--<div class="flex_1 con">-->
+            <!--<h3 class="h text-overflow_1" ng-cloak>{{x.title}}</h3>-->
+            <!--<p class="t text-overflow_1">{{x.description}}</p>-->
+            <!--<p class="c"><span class="fl">{{x.categoryname}}</span>&lt;!&ndash;<span class="fr">距离：{{x.distance}}</span>&ndash;&gt;</p>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--</div>-->
+            <ion-infinite-scroll ng-if="noMore" on-infinite="loadMore()" distance="1%" icon="" immediate-check="false"></ion-infinite-scroll>
+            <!--<ion-refresher pulling-text="下拉刷新" refreshing-icon="" on-refresh="method.reLoad()"></ion-refresher>-->
+        </ion-content>
+
+        <ion-content>
+            <img style="width: 100%;
+            height: 100%;" src="img/developing.png" alt="">
+        </ion-content>
+
+
+
+    </div>
+    <!--省市县-->
+    <!--<div ng-if="pageMsg.bool._city._s" ng-include="src='templates/shop/province.html'" class="t_city_op"></div>
+	<div ng-if="pageMsg.bool._city._c" ng-include="src='templates/shop/city.html'" class="t_city_op"></div>
+	<div ng-if="pageMsg.bool._city._x" ng-include="src='templates/shop/county.html'" class="t_city_op"></div>-->
+</ion-view>

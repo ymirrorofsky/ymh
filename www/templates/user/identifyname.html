@@ -1,0 +1,112 @@
+<ion-view view-title="实名认证" hide-nav-bar="true">
+	<div>
+		<ion-header-bar class="bar-calm header-back">
+			<div class="buttons">
+				<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+			</div>
+			<h1 class="title">实名认证</h1>
+		</ion-header-bar>
+		<ion-content class="bodybg-normal" style="bottom:50px">
+			<div class="yd-donate-count real-count s-apply-c">
+				<ul>
+					<li>
+						<label>姓名</label>
+						<input type="text" placeholder="请输入姓名" ng-model="applyInfo.userName">
+					</li>
+					<li>
+						<label>身份证号</label>
+						<input type="text"  placeholder="请输入身份证号" ng-model="applyInfo.idNumber">
+					</li>
+				</ul>
+			</div>
+			<div class="yd-apply-img" >
+				<h3>上传证件照 <span>({{satusName[isupload]}})</span> </h3>
+				<div class="row" ng-if='isupload=="0"||isupload==3'>
+					<div class="col photo_box">
+						<p>身份证正面照</p>
+						<em id="divImg01"></em>
+						<i class="iconfont icon-add" ng-click="uploadAvatar(1)"></i>
+					</div>
+					<div class="col photo_box">
+						<p>示例照片</p>
+						<!--<em id="divImg02" style="background:url('imgG/cf-idcard.jpg');"></em>-->
+						<img src="img/frontImg.png"/>
+						<!--<i class="iconfont icon-add"></i>-->
+					</div>
+				</div>
+				<div class="row" ng-if='isupload=="0"||isupload==3'>
+					<div class="col photo_box">
+						<p>身份证反面照</p>
+						<em id="divImg02"></em>
+						<i class="iconfont icon-add" ng-click="uploadAvatar(2)"></i>
+					</div>
+					<div class="col photo_box">
+						<p>示例照片</p>
+						<!--<em id="divImg02" style="background:url('imgG/cf-idcard.jpg');"></em>-->
+						<img src="img/turnImg.jpg"/>
+						<!--<i class="iconfont icon-add"></i>-->
+					</div>
+				</div>
+				<div class="row" ng-if='isupload=="0"||isupload==3'>
+					<div class="col photo_box">
+						<p>手持身份证照</p>
+						<em id="divImg03"></em>
+						<i class="iconfont icon-add" ng-click="uploadAvatar(3)"></i>
+					</div>
+					<div class="col photo_box">
+						<p>示例照片</p>
+						<!--<em id="divImg02" style="background:url('imgG/cf-idcard.jpg');"></em>-->
+						<img src="img/cf-idcard.jpg"/>
+						<!--<i class="iconfont icon-add"></i>-->
+					</div>
+				</div>
+				<div class="row" ng-if='isupload==2||isupload==1'>
+					<div class="col photo_box">
+						<p>身份证正面照</p>
+						<!--<em id="divImg02" style="background:url('imgG/cf-idcard.jpg');"></em>-->
+						<img ng-src="{{applyInfo.frontImg}}"/>
+						<!--<i class="iconfont icon-add"></i>-->
+					</div>
+					<div class="col photo_box">
+						<p>身份证反面照</p>
+						<!--<em id="divImg02" style="background:url('imgG/cf-idcard.jpg');"></em>-->
+						<img ng-src="{{applyInfo.turnImg}}"/>
+						<!--<i class="iconfont icon-add"></i>-->
+					</div>
+				</div>
+				<div class="row" ng-if='isupload==2||isupload==1'>
+					<div class="col photo_box">
+						<p>手持身份证照</p>
+						<!--<em id="divImg02" style="background:url('imgG/cf-idcard.jpg');"></em>-->
+						<img ng-src="{{applyInfo.handImg}}"/>
+						<!--<i class="iconfont icon-add"></i>-->
+					</div>
+					<div class="col photo_box">
+						<!--<p>手持身份证</p>-->
+						<!--<em id="divImg02" style="background:url('imgG/cf-idcard.jpg');"></em>-->
+						<!--<img ng-src="{{applyInfo.handImg}}"/>-->
+						<!--<i class="iconfont icon-add"></i>-->
+					</div>
+				</div>
+			</div>
+		</ion-content>
+		<ion-footer-bar ng-if='isupload==0||isupload==3'>
+			<button  class="button button-calm"  style="width: 100%;color: #fff;background: #EC0005;" ng-click="apply()">提交认证</button>
+		</ion-footer-bar>
+	</div>
+	<!--商家描述-->
+	<!--<div class="applyBol>
+		<ion-header-bar class="bar-calm header-back">
+			<div class="buttons">
+				<button class="button iconfont icon-back1 button-clear" ng-click="showShopDesc()">返回</button>
+			</div>
+			<h1 class="title">商家描述</h1>
+		</ion-header-bar>
+		<ion-content class="bodybg-normal">
+			<div class="yd-reject-con flex">
+				<textarea rows="10" class="flex_1" placeholder="请输入商家描述信息" ng-model="applyInfo.shopDescrip"></textarea>
+			</div>
+			<button style="background: #EC0005;color: #fff;" class="button button-block button-calm zl_btn_center" ng-click="showShopDesc();">提交</button>
+		</ion-content>
+	</div>-->
+</ion-view>

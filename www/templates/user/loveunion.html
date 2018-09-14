@@ -1,0 +1,29 @@
+<ion-view view-title=" " hide-nav-bar="true">
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">{{globalInfo.nounInfo.AXLM}}</h1>
+		<!--<div class="buttons" ng-if="orderInfo.orderStatus == 0 && type == 'shops'" ng-click="rejectContent()">
+			<button class="button button-clear">拒绝</button>
+		</div>-->
+	</ion-header-bar>
+	<ion-content class="bodybg-normal loveunion">
+	 <dl>
+	 	<dt> <img src="img/jinggao.png"/>申请条件  </dt>
+	 	<dd>1.成为{{globalInfo.nounInfo.CDDS}}</dd>
+	 	<dd>2.品牌商家身份</dd>
+	 	<dd>3.申请董事长：需<em>{{unioninfo.chairmanlove}}</em>个{{globalInfo.nounInfo.LOVE}},运营股东,培训股东：需<em>{{unioninfo.pxlove}}</em>个{{globalInfo.nounInfo.LOVE}}，行业股东：需<em>{{unioninfo.hylove}}</em>个{{globalInfo.nounInfo.LOVE}}</dd>
+	 </dl>
+	 <dl>
+	 	<dt><img src="img/liucheng.png"/>入驻流程</dt>
+	 	<dd><i>1</i> 选择<em>区域</em>运营中心或<em>行业</em>运营中心</dd>
+	 	<dd><i>2</i> 选择运营中心角色</dd>
+	 	<dd><i>3</i> 符合申请条件，提交待平台审核</dd>
+	 	<dd><i>4</i>审核通过，享受运营中心股东收益</dd>
+	 </dl>
+	
+	</ion-content>
+	<footer class="common-footer" ng-click='applyambassador()'>我知道了，前去申请</footer>
+</ion-view>
+

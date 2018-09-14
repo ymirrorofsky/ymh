@@ -1,0 +1,50 @@
+<ion-view title="众筹" hide-nav-bar="true" hide-back-button="true">
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ui-sref="tab.online">返回</button>
+		</div>
+		<h1 class="title">众筹</h1>
+	</ion-header-bar>
+<!--<div class="cfhome-top flex">
+			<div class="top_one flex_1" ng-class="{'on': type == 1}" ng-click="getteamP(1)">
+				<div>首页</div>
+			</div>
+			<div class="top_two flex_1" ng-class="{'on': type == 2}" ng-click="getteamP(2)">
+				<div>梦想(普通)</div>
+			</div>
+			<div class="top_two flex_1" ng-class="{'on': type == 3}" ng-click="getteamP(3)">
+                <div>爱心(回报)</div>
+            </div>
+		</div>-->
+	<ion-content class='cfhome bodybg-normal'>
+		<ion-refresher pulling-text="下拉刷新..." on-refresh="doRefresh()"></ion-refresher>
+		<div class="cfhome-common">
+			<ion-slide-box delegate-handle="slideimgs" show-pager="true" auto-play="true" does-continue='true'>
+				<ion-slide class='box' does-continue='true' ng-repeat='item in indextop'>
+					<!--<a ng-href="{{focus.link}}"><img ng-src="{{focus.thumb}}" width="100%" class="banner-img"></a>-->
+					<a ><img ng-src="{{item.thumb||'imgG/home-slide.jpg'}}" width="100%" class="banner-img"/></a>
+				</ion-slide>
+			</ion-slide-box>
+			<!--<img class="cfhome-count" ng-src="imgG/home-count.png" />-->
+		</div>
+		<div class="cfhome-project" ng-repeat='items in indexItem' ui-sref='cdF.cf-myprojectinfo({itemId:items.id})'>
+			<h5>
+          		<img src="{{items.avatar||'img/headimg.jpg'}}"/> <span>{{items.username}}</span> <i>{{items.createtime}}</i>
+          	</h5>
+			<h4>{{items.CName}}</h4>
+			<h6>{{items.desc}}</h6>
+			<div class="cfhome-projectcenter" >
+				<img ng-repeat='item in items.thumbs'  ng-src="{{item||'img/aixin.png'}}" />
+			</div>
+			<h3>已有{{items.support}}人支持</h3>
+			<div class="cfhome-projectend ">
+				<span>目标{{items.CMoney}}元</span>
+				<span>已筹{{items.CMoneyed}}元</span>
+				<span>{{items.endtime}}</span>
+			</div>
+		</div>
+
+		<ion-infinite-scroll ng-if="noMore" on-infinite="loadMore()" distance="1%" immediate-check="false">
+        </ion-infinite-scroll>
+	</ion-content>
+</ion-view>

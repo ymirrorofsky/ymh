@@ -1,0 +1,149 @@
+<ion-view view-title="受助人详细信息" hide-nav-bar="true">
+	<ion-header-bar class="bar-calm header-back poorBar">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">受助人详细信息 </h1>
+		<div class="buttons">
+			<button class="button button-clear" ng-click="shareLink()">分享</button>
+		</div>
+	</ion-header-bar>
+	<ion-content class="bodybg-normal poorContent poorDetail">
+		<div class="poor-home-plist bgwhite">
+			<div class="plist-cnt">
+				<div class="plist-cnt-item">
+					<div class="plist-cnt-img">
+						<img ng-src="{{info.info.thumb || 'img/wuimg.png'}}" alt="">
+					</div>
+					<div class="plist-cnt-info">
+						<p>受助人：<span ng-bind="info.info.username || '受助者'">孙延兵</span></p>
+						<p>发起人：<span ng-bind="info.info.tMobile|| '发起人'">已不是原来的样子</span></p>
+						<p>致贫原因：<span ng-bind="info.info.because || '致贫原因'">大病救助</span></p>
+						<p>身份证号：<span ng-bind="info.info.IDCard || '410122135265845'">410122135265845</span></p>
+						<p>{{globalInfo.nounInfo.SCMC}}收款账户：<span ng-bind="info.info.identity || '15685458521'">156135854985</span></p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="given bgwhite">
+			<div class="flex given-top">
+				<div class="">受助信息</div>
+				<div class="flex_1 g-t-r">接收捐助:<span class="span-color" ng-bind="info.info.getNum || '0'">1234</span>次</div>
+			</div>
+			<div class="flex given-bottom">
+				<div class="flex_1">
+					<span><i class="span-color" ng-bind="info.info.getMoney || '0'">74155</i>元</span>
+					<p>受助资金</p>
+				</div>
+				<div class="flex_1">
+					<span><i class="span-color" ng-bind="info.info.getGoods || '0'">74155</i>元</span>
+					<p>受助物资</p>
+				</div>
+
+			</div>
+		</div>
+		<div class="given bgwhite">
+			<div class="flex given-top">
+				<div class="">物资接收地址</div>
+			</div>
+			<div class="given-info">
+				<div class="flex">
+					<div ng-bind="info.info.username || '受助人'" style="margin-right: 10px;">孙延兵：</div>
+					<div class="g-i-m" ng-bind="info.info.mobile || '1234568754'">15865945684</div>
+				</div>
+
+				<div class="g-i-d"><span>收货地址 : </span> <i ng-bind="info.info.receive_address || '受助人的收货地址'"></i></div>
+			</div>
+		</div>
+		<div class="given bgwhite">
+			<div class="flex given-top">
+				<div class="">受助记录</div>
+			</div> 
+			<div class="given_rec heart_passer_bottom flex" style="border-bottom:1px solid #eee;" ng-repeat='item in info.recode'>
+				<div class="bottom_left">
+					<img ng-src="{{item.avatar||'img/headimg.jpg'}}" alt="avatar">
+				</div>
+				<div class="flex_1">
+					<div class="">{{item.nickname || '无'}} <span>{{relationType[item.relation]}}</span></div>
+					<div class="">捐助现金:<span class="span-color">{{item.giveNum}}</span>元<span style="float:right">{{item.createtime*1000 | date:'yyyy-MM-dd'}}</span></div>
+					<div style="background:#F2F2F2" class="g-r-m" ng-if="item.leaveMsg"><span></span> {{item.leaveMsg}}</div>
+				</div>
+			</div>
+
+
+			<div class="plist-more" ui-sref='poorson.detailrec({"reuid":info.info.reuid})'>更多受助记录捐助<i class="icon ion-chevron-right" style="font-size: 1em;"></i></div>
+		</div>
+		<div class="given bgwhite given-pro">
+			<div class="flex given-top">
+				<div class="">发起人承若书</div>
+				<div class="flex_1 g-t-r">发起人:<span ng-bind="info.info.tMobile || '发起人'">已不是原来的样子</span></div>
+			</div>
+			<div class="given-bottom">
+				<p>
+					所提交的文字、图片、事件完全真实， 无任何虚构事实及隐瞒部分，如用不实，愿承担全部法律责任
+				</p>
+
+			</div>
+		</div>
+		<div class="given bgwhite given-detail">
+			<div class="flex given-top">
+				<div>基本信息</div>
+			</div>
+			<div class="given-bottom">
+				<p class="g-d-off" ng-if="!show" ng-bind="info.info.info || '这是基本信息'">
+				</p>
+				<p ng-if="show"  ng-bind="info.info.info || '这是基本信息'">
+				</p>
+			</div>
+			<div class="plist-more" style="border-top:1px solid #eee;" ng-if="!show&&info.info.info.length>100" ng-click="showAll()">展开<i class="icon ion-chevron-down" style="font-size: 1em;"></i></div>
+
+			<div class="plist-more" style="border-top:1px solid #eee;" ng-if="show" ng-click="showAll()">收起<i class="icon ion-chevron-up" style="font-size: 1em;"></i></div>
+
+		</div>
+		<div class="given bgwhite given-img">
+			<div class="flex given-top">
+				<div class="">资料图片</div>
+			</div>
+			<div class="given-bottom">
+				<img ng-src="{{x}}" alt="" ng-repeat=" x in info.info.thumbs track by $index" ng-click="openPic($index)">
+			</div>
+		</div>
+
+		
+	</ion-content>
+	<div class="mask " ng-if="showPic">
+		<div class="pd-mask bgwhite">
+			<div class="prp-mask-top">
+				<span class="prp-cancel"></span>
+				<span class="prp-sure" ng-click="openPic()">关闭</span>
+			</div>
+			<div class="pd-mask-bottom relative">
+				<div class="swiper-container" style="position:absolute;z-index:99999">
+					<div class="swiper-wrapper" style="transform: translate3d(-6471px, 0px, 0px); transition-duration: 0ms;">
+						<div class="swiper-slide" ng-repeat=" x in info.info.thumbs">
+							<img ng-src="{{x}}" alt="">
+						</div>
+						<!--<div class="swiper-slide">
+                            <img src="img/adam.jpg" alt="">
+                        </div>-->
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<div class="goodsinfo-bottom">
+		<a ng-click="shareLink()" style="width:21%;">
+			<i class="icon ion-ios-cart-outline"></i>
+			<span>分享</span>
+		</a>
+		<a ng-click='gocollect()' style="width:21%;">
+			<i ng-if='isCollect==0' class="icon ion-android-star-outline" style="font-size: 22px;"></i>
+			<i ng-if='isCollect==1' class="icon ion-android-star" style="font-size: 22px;color: #EC0005;"></i>
+			<i class="icon ion-android-star" style="font-size: 22px;color: #EC0005;"></i>
+			<span class="collectnum">关注<b>{{goodsdetail.collect}}</b></span>
+		</a>
+		<button ng-click="donateGood(info.info.id,info.info.username,info.info.mobile)" style="background: #F19465;">给Ta捐物</button>
+		<button ng-click="donateMoney(info.info.id,info.info.username,info.info.identity)" style="background: #FF5400;">给Ta捐款</button>
+	</div>
+</ion-view>

@@ -1,0 +1,40 @@
+<ion-view view-title="余额转出" hide-nav-bar="true">
+	<ion-header-bar class="bar-calm header-back">
+		<div class="buttons">
+			<button class="button iconfont icon-back1 button-clear" ng-click="$ionicGoBack()">返回</button>
+		</div>
+		<h1 class="title">代金券转账</h1>
+		<!--<div class="buttons">
+			<button class="button button-clear" ui-sref='user.balanceOutRecord'>转账记录</button>
+		</div>-->
+	</ion-header-bar>
+	<ion-content class="bodybg-normal">
+		<!--<div class="yd-donate-text padding" ng-bind-html="info.message"></div>-->
+		<div class="yd-donate-count real-count">
+			<ul>
+				<li class="flex">
+					<p class="flex_1">账户消费{{globalInfo.nounInfo.BALA}}</p>
+					<span>{{info.disBalance}}</span>
+				</li>
+                <li class="repo">
+					<label>对方账户</label>
+					<input type="text" placeholder="请输入对方账户" ng-model="info.userMobile">
+				</li>
+				<li class="repo">
+					<label>转账金额</label>
+					<input type="text" placeholder="请输入数量" ng-model="info.num">
+				</li>
+				<!--<li class="repo">
+					<label>支付密码</label>
+					<input type="password" placeholder="请输入支付密码" ng-model="info.passwords">
+				</li>-->
+				<li class="flex" >
+					<p class="flex_1">注：转出需要支付{{info.fee_rate}}%手续费</p>
+				</li>
+			</ul>
+			<div class="padding sure-btn">
+				<button class="button button-block button-calm" ng-click="submit()">确定</button>
+			</div>
+		</div>
+	</ion-content>
+</ion-view>
